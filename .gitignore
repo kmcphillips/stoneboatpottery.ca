@@ -1,4 +1,8 @@
 .classpath
 .project
 .settings
-/log/*.log
+log/*.log
+tmp/**/*
+doc/api
+doc/app
+
