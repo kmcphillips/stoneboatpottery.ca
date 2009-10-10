@@ -177,6 +177,13 @@ namespace :spec do
       end
     end
   end
+
+  desc "prepare the development database then the test database."
+  task :prepare => :environment do
+    Rake::Task[ "db:migrate" ].execute
+    Rake::Task[ "db:test:clone" ].execute
+    Rake::Task[ "db:test:prepare" ].execute
+  end
 end
 
 end
