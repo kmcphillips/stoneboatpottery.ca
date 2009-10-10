@@ -9,7 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091010144449) do
+ActiveRecord::Schema.define(:version => 20091010151552) do
+
+  create_table "images", :force => true do |t|
+    t.string   "path"
+    t.boolean  "primary",        :default => false
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "links", :force => true do |t|
     t.string   "title"

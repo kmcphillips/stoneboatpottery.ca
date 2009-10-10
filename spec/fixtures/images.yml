@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  path: MyString
+  primary: false
+  imageable_id: 1
+  imageable_type: MyString
+
+two:
+  path: MyString
+  primary: false
+  imageable_id: 1
+  imageable_type: MyString
