@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091011141532) do
+ActiveRecord::Schema.define(:version => 20091011143634) do
 
   create_table "blocks", :force => true do |t|
     t.text     "body"
@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(:version => 20091011141532) do
     t.datetime "updated_at"
   end
 
+  create_table "forms", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.float    "wholesale_price", :default => 0.0
+    t.float    "retail_price",    :default => 0.0
+    t.boolean  "active",          :default => true
+    t.integer  "subcategory_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "images", :force => true do |t|
     t.string   "path"
     t.boolean  "primary",        :default => false
@@ -41,6 +52,16 @@ ActiveRecord::Schema.define(:version => 20091011141532) do
     t.string   "title"
     t.string   "url"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pieces", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.float    "price",       :default => 0.0
+    t.boolean  "for_sale",    :default => false
+    t.boolean  "active",      :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
