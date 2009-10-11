@@ -1,0 +1,8 @@
+- unless flash[:error].blank?
+  %div.flash-error
+    Error: 
+    = flash[:error]
+
+- unless flash[:notice].blank?
+  %div.flash-notice 
+    = flash[:notice]
