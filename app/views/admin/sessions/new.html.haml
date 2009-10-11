@@ -1,0 +1,13 @@
+%h2 Login
+
+- form_tag admin_sessions_path, :method => :post do
+  %table
+    %tr
+      %td Username
+      %td= text_field_tag :username
+    %tr
+      %td Password
+      %td= password_field_tag :password
+    %tr
+      %td &nbsp;
+      %td= submit_tag "Login"

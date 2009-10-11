@@ -4,6 +4,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.namespace :admin do |admin|
     admin.resources :sessions, :only => [:new, :create, :destroy]
+    admin.connect 'login', :controller => 'sessions', :action => 'new'
+    
+    admin.resources :posts
   end
     
   # The priority is based upon order of creation: first created -> highest priority.
