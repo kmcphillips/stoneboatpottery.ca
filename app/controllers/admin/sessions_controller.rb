@@ -1,5 +1,9 @@
 class Admin::SessionsController < ApplicationController
 
+  def index
+    redirect_to "/admin/login"
+  end
+
   def new
     # just render
   end

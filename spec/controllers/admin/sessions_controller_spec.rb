@@ -5,6 +5,13 @@ describe Admin::SessionsController do
     @u = mock_model(User)
   end
 
+  describe "GET index" do
+    it "should redirect to new action" do
+      get :index
+      response.should redirect_to("/admin/login")
+    end
+  end
+
   describe "GET new" do
     it "should render the default view" do
       get :new

@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :categories, :only => [:index, :show]
 
   map.namespace :admin do |admin|
-    admin.resources :sessions, :only => [:new, :create, :destroy]
+    admin.resources :sessions, :only => [:index, :new, :create, :destroy]
     admin.connect 'login', :controller => 'sessions', :action => 'new'
     
     admin.resources :posts
