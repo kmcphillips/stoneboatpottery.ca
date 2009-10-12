@@ -2,7 +2,10 @@ class Subcategory < ActiveRecord::Base
   has_one :image, :as => :imageable
   belongs_to :category
   
-  validates_presence_of :category
+  validates_presence_of :category, :name
+  validates_uniqueness_of :permalink
+  
+  attr_protected :id, :permalink
   
   named_scope :all_active, :conditions => ["active = ?", true]
   

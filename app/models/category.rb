@@ -2,6 +2,11 @@ class Category < ActiveRecord::Base
   has_one :image, :as => :imageable
   has_many :subcategories
   
+  validates_uniqueness_of :permalink
+  validates_presence_of :name
+  
+  attr_protected :id, :permalink
+  
   named_scope :all_active, :conditions => ["active = ?", true]
   
   include Permalink

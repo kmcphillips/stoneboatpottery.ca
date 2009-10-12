@@ -1,4 +1,9 @@
 class Post < ActiveRecord::Base
+  validates_uniqueness_of :permalink
+  validates_presence_of :body, :title
+  
+  attr_protected :id, :generated, :permalink
+  
   include Permalink
   before_save :update_permalink
   
