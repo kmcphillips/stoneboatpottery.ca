@@ -1,6 +1,0 @@
-*** Blog/News
-Scaffolded model
-
-
-
-*** 
