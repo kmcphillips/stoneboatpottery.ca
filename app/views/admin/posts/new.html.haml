@@ -1,0 +1,5 @@
+%h2 New Post
+
+- form_for [:admin, @post], :method => :post do |f| 
+  = render :partial => 'admin/posts/form', :locals => {:f => f}
+  = f.submit "Create New Post"

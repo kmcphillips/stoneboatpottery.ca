@@ -14,4 +14,5 @@ class ApplicationController < ActionController::Base
       redirect_to "/admin/login"
     end
   end
+  
 end

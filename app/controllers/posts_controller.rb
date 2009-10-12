@@ -1,18 +1,15 @@
 class PostsController < ApplicationController
   
   def index
-    @posts = Post.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-    end
+    @posts = Post.all(:order => "updated_at DESC")
   end
 
   def show
     @post = Post.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
+    
+    unless @post
+      flash[:error] = "Could not find that post."
+      redirect_to posts_path
     end
   end
 

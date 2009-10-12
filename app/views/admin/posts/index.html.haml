@@ -1,1 +1,22 @@
 %h2 Posts
+
+%p= link_to "Create new post", new_admin_post_path
+
+- if @posts.blank?
+  %h3 No posts
+- else
+  %table.data
+    %tr
+      %th Last Updated
+      %th Title
+      %th Body
+      %th Actions
+    - @posts.each do |post| 
+      %tr
+        %td= h post.updated_at
+        %td= h post.title
+        %td= h truncate(post.body, :length => 120, :omission => " (more..)")
+        %td
+          = link_to "View", admin_post_path(post)
+          = link_to "Edit", edit_admin_post_path(post)
+          = button_to "Delete", admin_post_path(post), :method => :delete, :confirm => "Are you sure you want to delete this post?"

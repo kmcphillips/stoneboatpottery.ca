@@ -1,0 +1,5 @@
+%h2 Edit Post
+
+- form_for [:admin, @post] do |f| 
+  = render :partial => 'admin/posts/form', :locals => {:f => f}
+  = f.submit "Save Post"

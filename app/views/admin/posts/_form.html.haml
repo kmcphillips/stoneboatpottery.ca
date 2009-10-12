@@ -1,0 +1,12 @@
+%p
+  = f.label :title
+  = f.text_field :title
+
+%p
+  = f.text_area :body, :rows => 15, :cols => 70
+
+- if f.object.permalink
+  %p
+    = f.label :permalink
+    = ": "
+    = f.object.permalink
