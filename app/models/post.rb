@@ -1,8 +1,6 @@
 class Post < ActiveRecord::Base
   include Permalink
-  
   before_save :update_permalink
-  
   
 protected
   
