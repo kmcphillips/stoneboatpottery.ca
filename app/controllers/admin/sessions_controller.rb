@@ -22,8 +22,13 @@ class Admin::SessionsController < ApplicationController
   end
 
   def destroy
+    flash[:notice] = "You have been logged out."
     session[:admin_user] = nil
     redirect_to "/"
+  end
+  
+  def logout
+    destroy
   end
   
   # def edit

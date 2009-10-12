@@ -7,4 +7,11 @@ class ApplicationController < ActionController::Base
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
+  
+  def require_login
+    unless session[:admin_user]
+      flash[:error] = "You must login to view that page."
+      redirect_to "/admin/login"
+    end
+  end
 end
