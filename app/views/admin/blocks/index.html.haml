@@ -1,0 +1,21 @@
+%h2 Blocks
+
+- if @blocks.blank?
+  %h3 None here
+- else
+  %table.data
+    %tr
+      %th Section Name
+      %th Last Updated
+      %th Title
+      %th Body
+      %th Actions
+    - @blocks.each do |block| 
+      %tr
+        %td= h block.label_display
+        %td= h block.updated_at
+        %td= h block.title
+        %td= h truncate(block.body, :length => 120, :omission => " (more..)")
+        %td
+          = link_to "View", admin_block_path(block)
+          = link_to "Edit", edit_admin_block_path(block)

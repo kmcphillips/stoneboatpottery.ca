@@ -6,4 +6,8 @@ class Block < ActiveRecord::Base
   
   attr_protected :id, :label
   
+  def label_display
+    label.humanize
+  end
+  
 end

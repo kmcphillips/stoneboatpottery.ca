@@ -1,15 +1,22 @@
 ActionController::Routing::Routes.draw do |map|
   
   map.resources :categories, :only => [:index, :show]
+  
   map.resources :posts, :only => [:index, :show]
+  
+  map.resources :blocks, :only => [], :collection => [:about_stoneboat, :about_joanna]
+  map.connect 'about_joanna', :controller => 'blocks', :action => 'about_joanna'
+  map.connect 'about_stoneboat', :controller => 'blocks', :action => 'about_stoneboat'
 
   map.namespace :admin do |admin|
     admin.resources :sessions, :only => [:index, :new, :create, :destroy], :collection => [:logout]
     admin.connect 'login', :controller => 'sessions', :action => 'new'
     admin.connect 'logout', :controller => 'sessions', :action => 'logout'
-    admin.connect '/', :controller => 'posts'
     
     admin.resources :posts
+    admin.connect '/', :controller => 'posts'
+    
+    admin.resources :blocks, :only => [:index, :show, :update, :edit]
   end
   
   map.root :controller => "posts"
