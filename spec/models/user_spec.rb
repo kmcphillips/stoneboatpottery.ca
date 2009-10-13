@@ -25,12 +25,12 @@ end
     end
     
     it "should find a user by name and password" do
-      User.should_receive(:first).with(:conditions => ["username = ? AND password = ?", "km", "pie_encrypted"]).and_return(@u)
+      User.should_receive(:first).with(:conditions => ["username = ? AND password_hash = ?", "km", "pie_encrypted"]).and_return(@u)
       User.authenticate("km", "pie").should == @u
     end
     
     it "should not find a user because of invalid username or password" do
-      User.should_receive(:first).with(:conditions => ["username = ? AND password = ?", "km", "pie_encrypted"]).and_return(nil)
+      User.should_receive(:first).with(:conditions => ["username = ? AND password_hash = ?", "km", "pie_encrypted"]).and_return(nil)
       User.authenticate("km", "pie").should == nil
     end
   end
