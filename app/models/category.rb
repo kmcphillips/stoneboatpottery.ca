@@ -17,6 +17,10 @@ class Category < ActiveRecord::Base
     self.subcategories.find(:all, :conditions => ["active = ?", true])
   end
 
+  def count_forms
+    subcategories.inject(0) { |total, subcategory| total + subcategory.forms.size }
+  end
+
 protected
 
   def update_permalink

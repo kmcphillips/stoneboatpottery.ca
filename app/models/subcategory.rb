@@ -1,5 +1,6 @@
 class Subcategory < ActiveRecord::Base
   has_one :image, :as => :imageable
+  has_many :forms
   belongs_to :category
   
   validates_presence_of :category, :name
