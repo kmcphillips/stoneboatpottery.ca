@@ -5,7 +5,8 @@ class Category < ActiveRecord::Base
   validates_uniqueness_of :permalink
   validates_presence_of :name
   
-  attr_protected :id, :permalink
+  attr_protected :id
+  attr_readonly :permalink
   
   named_scope :all_active, :conditions => ["active = ?", true]
   

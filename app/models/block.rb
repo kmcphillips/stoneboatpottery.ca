@@ -3,8 +3,8 @@ class Block < ActiveRecord::Base
   
   validates_uniqueness_of :label
   
-  # TODO: lable should be protected
   attr_protected :id
+  attr_readonly :label
   
   def label_display
     label.humanize

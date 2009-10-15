@@ -5,7 +5,8 @@ class Subcategory < ActiveRecord::Base
   validates_presence_of :category, :name
   validates_uniqueness_of :permalink
   
-  attr_protected :id, :permalink
+  attr_protected :id
+  attr_readonly :permalink
   
   named_scope :all_active, :conditions => ["active = ?", true]
   

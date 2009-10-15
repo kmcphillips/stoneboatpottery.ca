@@ -6,7 +6,8 @@ class Form < ActiveRecord::Base
   validates_uniqueness_of :permalink
   validate :retail_price_must_be_more_than_wholesale_price, :wholesale_price_must_be_valid, :retail_price_must_be_valid
   
-  attr_protected :id, :permalink
+  attr_protected :id
+  attr_readonly :permalink
   
   include Permalink
   before_save :update_permalink

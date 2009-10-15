@@ -3,7 +3,8 @@ class Piece < ActiveRecord::Base
 
   validates_presence_of :name, :description, :permalink
   
-  attr_protected :id, :permalink
+  attr_protected :id
+  attr_readonly :permalink
 
   include Permalink
   before_save :update_permalink
