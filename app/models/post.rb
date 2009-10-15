@@ -6,7 +6,7 @@ class Post < ActiveRecord::Base
   attr_readonly :generated, :permalink
   
   include Permalink
-  before_save :update_permalink
+  before_validation_on_create :update_permalink
   
 protected
   

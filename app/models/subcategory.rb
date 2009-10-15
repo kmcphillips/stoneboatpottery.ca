@@ -12,7 +12,7 @@ class Subcategory < ActiveRecord::Base
   named_scope :all_active, :conditions => ["active = ?", true]
   
   include Permalink
-  before_save :update_permalink
+  before_validation_on_create :update_permalink
 
 protected
 

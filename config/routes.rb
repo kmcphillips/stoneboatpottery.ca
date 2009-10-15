@@ -19,6 +19,8 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :blocks, :only => [:index, :show, :update, :edit]
 
     admin.resources :links
+
+    admin.resources :pieces
   end
   
   map.root :controller => "posts"

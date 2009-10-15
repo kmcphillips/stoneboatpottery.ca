@@ -7,11 +7,11 @@ class Piece < ActiveRecord::Base
   attr_readonly :permalink
 
   include Permalink
-  before_save :update_permalink
+  before_validation_on_create :update_permalink
 
 protected
 
   def update_permalink
-    self.permalink = generate_permalink_for(self, self.title)
+    self.permalink = generate_permalink_for(self, self.name)
   end
 end

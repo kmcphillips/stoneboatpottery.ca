@@ -1,0 +1,6 @@
+%h2 Edit Piece
+
+- form_for [:admin, @piece] do |f| 
+  = render :partial => 'admin/pieces/form', :locals => {:f => f}
+  = f.submit "Save Piece"
+

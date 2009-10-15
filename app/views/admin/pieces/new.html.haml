@@ -1,0 +1,5 @@
+%h2 New Piece
+
+- form_for [:admin, @piece], :method => :post do |f| 
+  = render :partial => 'admin/pieces/form', :locals => {:f => f}
+  = f.submit "Create New Piece"

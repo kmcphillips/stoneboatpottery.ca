@@ -11,7 +11,7 @@ class Category < ActiveRecord::Base
   named_scope :all_active, :conditions => ["active = ?", true]
   
   include Permalink
-  before_save :update_permalink
+  before_validation_on_create :update_permalink
   
   def active_subcategories
     self.subcategories.find(:all, :conditions => ["active = ?", true])

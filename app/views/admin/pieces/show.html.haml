@@ -1,0 +1,17 @@
+%h2 Show Piece
+
+%h3= h @piece.name
+
+%p= h @piece.description
+
+%p
+  Price: 
+  = h @piece.price
+
+%p
+  For Sale:
+  = @piece.for_sale?
+
+%p
+  Active:
+  = @piece.active?
