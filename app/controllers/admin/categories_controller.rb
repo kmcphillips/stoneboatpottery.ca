@@ -47,7 +47,7 @@ class Admin::CategoriesController < ApplicationController
     if category.delete
       flash[:notice] = "Category successfully deleted."
     else
-      flash[:error] = @category.errors.full_messages.to_sentence
+      flash[:error] = category.errors.full_messages.to_sentence
     end
 
     redirect_to admin_categories_path

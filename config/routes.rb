@@ -23,7 +23,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :pieces
 
     admin.resources :categories do |categories|
-      categories.resources :subcategories
+      categories.resources :subcategories, :only => [:new, :show, :create, :update, :edit, :destroy]
     end
   end
   
