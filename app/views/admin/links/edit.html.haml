@@ -1,0 +1,6 @@
+%h2 Edit Link
+
+- form_for [:admin, @link] do |f| 
+  = render :partial => 'admin/links/form', :locals => {:f => f}
+  = f.submit "Save Link"
+

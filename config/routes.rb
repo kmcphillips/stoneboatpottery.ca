@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :categories, :only => [:index, :show]
   
   map.resources :posts, :only => [:index, :show]
-  
+
   map.resources :blocks, :only => [], :collection => [:about_stoneboat, :about_joanna]
   map.connect 'about_joanna', :controller => 'blocks', :action => 'about_joanna'
   map.connect 'about_stoneboat', :controller => 'blocks', :action => 'about_stoneboat'
@@ -17,6 +17,8 @@ ActionController::Routing::Routes.draw do |map|
     admin.connect '/', :controller => 'posts'
     
     admin.resources :blocks, :only => [:index, :show, :update, :edit]
+
+    admin.resources :links
   end
   
   map.root :controller => "posts"

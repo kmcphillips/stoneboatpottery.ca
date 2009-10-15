@@ -1,0 +1,5 @@
+%h2 New Link
+
+- form_for [:admin, @link], :method => :post do |f| 
+  = render :partial => 'admin/links/form', :locals => {:f => f}
+  = f.submit "Create New Link"

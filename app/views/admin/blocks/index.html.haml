@@ -17,5 +17,5 @@
         %td= h block.title
         %td= h truncate(block.body, :length => 120, :omission => " (more..)")
         %td
-          = link_to "View", admin_block_path(block)
+          = link_to "Show", admin_block_path(block)
           = link_to "Edit", edit_admin_block_path(block)
