@@ -29,6 +29,20 @@ describe Category do
       @c.count_forms.should == 3
     end
   end
+
+  describe "count subcategories" do
+    before(:each) do
+      @s2 = Subcategory.create!(:name => "plates", :description => "plates for eating", :permalink => "plates", :category => @c)
+    end
+
+    it "should create a list of subcategories" do
+      @c.list_subcategories.should == "bowls, plates"
+    end
+
+    it "should show a blank string if there are no subcategories" do
+      Category.new.list_subcategories.should == ""
+    end
+  end
   
   after(:each) do
     Subcategory.delete_all

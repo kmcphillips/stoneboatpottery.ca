@@ -21,6 +21,10 @@ class Category < ActiveRecord::Base
     subcategories.inject(0) { |total, subcategory| total + subcategory.forms.size }
   end
 
+  def list_subcategories
+    subcategories.map(&:name).join(", ") || ""
+  end
+
 protected
 
   def update_permalink

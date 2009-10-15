@@ -21,6 +21,10 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :links
 
     admin.resources :pieces
+
+    admin.resources :categories do |categories|
+      categories.resources :subcategories
+    end
   end
   
   map.root :controller => "posts"

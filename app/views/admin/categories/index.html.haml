@@ -1,0 +1,26 @@
+%h2 Categories
+
+%p= link_to "Create new category", new_admin_category_path
+
+- if @categories.blank?
+  %h3 None here
+- else
+  %table.data
+    %tr
+      %th Name
+      %th Description
+      %th Active?
+      %th Subcategories
+      %th Number of Forms
+      %th Actions
+    - @categories.each do |category| 
+      %tr
+        %td= h category.name
+        %td= h truncate(category.description, :length => 120, :omission => " (more..)")
+        %td= category.active?
+        %td= h category.list_subcategories
+        %td= category.count_forms
+        %td
+          = link_to "Show", admin_category_path(category)
+          = link_to "Edit", edit_admin_category_path(category)
+          = button_to "Delete", admin_category_path(category), :method => :delete, :confirm => "A category may only be deleted if it is empty. Are you sure you want to delete this category?"

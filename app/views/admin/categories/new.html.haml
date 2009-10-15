@@ -1,0 +1,5 @@
+%h2 New Category
+
+- form_for [:admin, @category], :method => :post do |f| 
+  = render :partial => 'admin/categories/form', :locals => {:f => f}
+  = f.submit "Create New Category"

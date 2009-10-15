@@ -1,0 +1,14 @@
+%h2 Show Category
+
+%h3= h @category.name
+
+%p= h @category.description
+
+%p
+  permalink:
+  = h @category.permalink
+
+%p
+  Active:
+  = @category.active?
+

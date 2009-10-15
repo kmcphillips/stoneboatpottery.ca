@@ -1,0 +1,6 @@
+%h2 Edit Category
+
+- form_for [:admin, @category] do |f| 
+  = render :partial => 'admin/categories/form', :locals => {:f => f}
+  = f.submit "Save Category"
+
