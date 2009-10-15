@@ -15,6 +15,6 @@ class Subcategory < ActiveRecord::Base
 protected
 
   def update_permalink
-    self.permalink = generate_permalink_for(self, self.title)
+    self.permalink = generate_permalink_for(self, self.name)
   end
 end

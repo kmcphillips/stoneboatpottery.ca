@@ -1,0 +1,1 @@
+WholesalePassword.create(:password => "wholesale")
