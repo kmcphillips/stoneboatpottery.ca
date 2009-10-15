@@ -2,9 +2,9 @@ class Block < ActiveRecord::Base
   has_one :image, :as => :imageable
   
   validates_uniqueness_of :label
-  validates_presence_of :body
   
-  attr_protected :id, :label
+  # TODO: lable should be protected
+  attr_protected :id
   
   def label_display
     label.humanize

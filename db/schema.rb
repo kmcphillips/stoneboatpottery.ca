@@ -9,12 +9,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091015011043) do
+ActiveRecord::Schema.define(:version => 20091015021549) do
 
   create_table "blocks", :force => true do |t|
     t.text     "body"
-    t.text     "title"
-    t.text     "label"
+    t.string   "title"
+    t.string   "label"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

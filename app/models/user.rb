@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   validates_presence_of :username, :password_hash
   validates_uniqueness_of :username
   
+  # TODO: username should be protected
   attr_protected :id
   
   def self.authenticate(username, password)
