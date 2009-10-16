@@ -12,7 +12,11 @@
   Active:
   = @subcategory.active?
 
-%h3
+%p
   Parent Category :
-  = h @subcategory.category.name
+  = link_to @subcategory.category.name, admin_category_path(@subcategory.category)
+
+%h3 Forms
+
+= render :partial => "admin/forms/forms", :object => @subcategory
 

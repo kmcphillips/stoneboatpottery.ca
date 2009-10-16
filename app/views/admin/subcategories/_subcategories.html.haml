@@ -5,12 +5,14 @@
     %tr
       %th Name
       %th Description
+      %th Number of Forms
       %th Active?
       %th Actions      
     - subcategories.subcategories.each do |sub|
       %tr
         %td= h sub.name
         %td= h sub.description
+        %td= sub.forms.size
         %td= sub.active?
         %td
           = link_to "Show", admin_category_subcategory_path(subcategories, sub)
