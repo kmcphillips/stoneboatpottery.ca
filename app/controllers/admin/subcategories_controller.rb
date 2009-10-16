@@ -1,4 +1,4 @@
-class Admin::CategoriesController < ApplicationController
+class Admin::SubcategoriesController < ApplicationController
   before_filter :require_login, :set_objects
   
   def new
@@ -21,7 +21,7 @@ class Admin::CategoriesController < ApplicationController
       redirect_to admin_category_path(@category)
     else
       flash[:error] = @subcategory.errors.full_messages.to_sentence
-      render 'admin/categories/subcaategories/edit'
+      render 'admin/subcaategories/edit'
     end      
   end
 
@@ -33,7 +33,7 @@ class Admin::CategoriesController < ApplicationController
       redirect_to admin_category_path(@category)
     else
       flash[:error] = @category.errors.full_messages.to_sentence
-      render 'admin/categories/subcategories/new'
+      render 'admin/subcategories/new'
     end  
   end
 

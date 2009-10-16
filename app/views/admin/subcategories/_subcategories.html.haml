@@ -1,0 +1,18 @@
+- if subcategories.subcategories.blank?
+  None
+- else
+  %table.data
+    %tr
+      %th Name
+      %th Description
+      %th Active?
+      %th Actions      
+    - subcategories.subcategories.each do |sub|
+      %tr
+        %td= h sub.name
+        %td= h sub.description
+        %td= sub.active?
+        %td
+          = link_to "Show", admin_category_subcategory_path(subcategories, sub)
+          = link_to "Edit", edit_admin_category_subcategory_path(subcategories, sub)
+          = button_to "Delete", admin_category_subcategory_path(subcategories, sub), :method => :delete, :confirm => "A subcategory may only be deleted if it is empty. Are you sure you want to delete this category?"

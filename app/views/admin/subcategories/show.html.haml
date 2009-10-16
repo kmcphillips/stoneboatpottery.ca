@@ -1,0 +1,18 @@
+%h2 Show Subategory
+
+%h3= h @subcategory.name
+
+%p= h @subcategory.description
+
+%p
+  permalink:
+  = h @subcategory.permalink
+
+%p
+  Active:
+  = @subcategory.active?
+
+%h3
+  Parent Category :
+  = h @subcategory.category.name
+
