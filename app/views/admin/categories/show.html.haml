@@ -12,3 +12,7 @@
   Active:
   = @category.active?
 
+%h3 Subcategories
+
+= render :partial => "admin/categories/subcategories/subcategories", :object => @category
+
