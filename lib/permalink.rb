@@ -16,4 +16,8 @@ module Permalink
     end
     text
   end
+
+  def to_param
+    permalink
+  end
 end
