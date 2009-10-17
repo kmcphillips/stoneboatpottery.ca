@@ -1,0 +1,5 @@
+%h2 New Subcategory
+
+- form_for [:admin, @category, @subcategory] do |f| 
+  = render :partial => 'admin/subcategories/form', :locals => {:f => f}
+  = f.submit "Save Subategory"

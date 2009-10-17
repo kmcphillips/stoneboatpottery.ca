@@ -10,15 +10,15 @@ class Admin::CategoriesController < ApplicationController
   end
   
   def show
-    @category = Category.find(params[:id])
+    @category = Category.find_by_permalink(params[:id])
   end
   
   def edit
-    @category = Category.find(params[:id])
+    @category = Category.find_by_permalink(params[:id])
   end
   
   def update
-    @category = Category.find(params[:id])
+    @category = Category.find_by_permalink(params[:id])
     
     if @category.update_attributes(params[:category])
       flash[:notice] = "Category successfully updated."
@@ -42,12 +42,16 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def destroy
-    category = Category.find(params[:id])
+    category = Category.find_by_permalink(params[:id])
 
-    if category.delete
-      flash[:notice] = "Category successfully deleted."
+    if category.subcategories.size > 0
+      flash[:error] = "Can only delete empty categories. This category has #{category.subcategories.size} subcategories."
     else
-      flash[:error] = category.errors.full_messages.to_sentence
+      if category.delete
+        flash[:notice] = "Category successfully deleted."
+      else
+        flash[:error] = category.errors.full_messages.to_sentence
+      end
     end
 
     redirect_to admin_categories_path

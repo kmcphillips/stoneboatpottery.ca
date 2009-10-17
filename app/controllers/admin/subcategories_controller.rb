@@ -6,15 +6,15 @@ class Admin::SubcategoriesController < ApplicationController
   end
   
   def show
-    @subcategory = @category.subcategories.find(params[:id])
+    @subcategory = @category.subcategories.find_by_permalink(params[:id])
   end
   
   def edit
-    @subcategory = @category.subcategories.find(params[:id])
+    @subcategory = @category.subcategories.find_by_permalink(params[:id])
   end
   
   def update
-    @subcategory = @category.subcategories.find(params[:id])
+    @subcategory = @category.subcategories.find_by_permalink(params[:id])
     
     if @subcategory.update_attributes(params[:subcategory])
       flash[:notice] = "Subcategory successfully updated."
@@ -26,7 +26,7 @@ class Admin::SubcategoriesController < ApplicationController
   end
 
   def create
-    @subcategory = @category.subcaategories.new(params[:subcategory])
+    @subcategory = @category.subcategories.new(params[:subcategory])
     
     if @subcategory.save
       flash[:notice] = "Subcategory successfully created."
@@ -38,12 +38,16 @@ class Admin::SubcategoriesController < ApplicationController
   end
 
   def destroy
-    subcategory = @category.subcategories.find(params[:id])
+    subcategory = @category.subcategories.find_by_permalink(params[:id])
 
-    if subcategory.delete
-      flash[:notice] = "Subcategory successfully deleted."
+    if subcategory.forms.size > 0
+      flash[:error] = "You can only delete empty subcategories. This subcategory has #{subcategory.forms.size} forms."
     else
-      flash[:error] = subcategory.errors.full_messages.to_sentence
+      if subcategory.delete
+        flash[:notice] = "Subcategory successfully deleted."
+      else
+        flash[:error] = subcategory.errors.full_messages.to_sentence
+      end
     end
 
     redirect_to admin_category_path(@category)
@@ -52,6 +56,6 @@ class Admin::SubcategoriesController < ApplicationController
 protected
 
   def set_objects
-    @category = Category.find(params[:category_id])
+    @category = Category.find_by_permalink(params[:category_id])
   end  
 end
