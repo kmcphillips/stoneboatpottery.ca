@@ -14,6 +14,8 @@ class Form < ActiveRecord::Base
 
   delegate :category, :to => :subcategory
 
+  named_scope :all_active, :conditions => ["active = ?", true]
+
 protected
 
   def update_permalink

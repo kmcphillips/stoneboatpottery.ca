@@ -14,3 +14,7 @@
 %p
   Price:
   = @form.retail_price
+  - if wholesale?
+    %br
+    Wholesale Price:
+    = @form.wholesale_price

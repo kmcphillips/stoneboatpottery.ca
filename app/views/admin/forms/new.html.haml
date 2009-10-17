@@ -1,5 +1,7 @@
 %h2 New Form
 
+%h3= h @category.name + " : " + @subcategory.name
+
 - form_for [:admin, @category, @subcategory, @form], :method => :post do |f| 
   = render :partial => 'admin/forms/form', :locals => {:f => f}
   = f.submit "Create New Form"

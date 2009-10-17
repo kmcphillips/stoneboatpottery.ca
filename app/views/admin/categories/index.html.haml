@@ -15,7 +15,7 @@
       %th Actions
     - @categories.each do |category| 
       %tr
-        %td= h category.name
+        %td= link_to category.name, admin_category_path(category)
         %td= h truncate(category.description, :length => 120, :omission => " (more..)")
         %td= category.active?
         %td= h category.list_subcategories

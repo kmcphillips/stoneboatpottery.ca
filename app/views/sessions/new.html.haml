@@ -1,0 +1,14 @@
+%h2 Enter Password to view Wholesale Arae
+
+- form_tag sessions_path, :method => :post do
+  %table
+    %tr
+      %td Password
+      %td= password_field_tag :password
+    %tr
+      %td &nbsp;
+      %td= submit_tag "Enter"
+
+%p
+  Permitted? :
+  = wholesale?

@@ -10,8 +10,8 @@
       %th Actions      
     - subcategories.subcategories.each do |sub|
       %tr
-        %td= h sub.name
-        %td= h sub.description
+        %td= link_to sub.name, admin_category_subcategory_path(subcategories, sub)
+        %td= truncate(sub.description, :length => 120, :omission => " (more..)")
         %td= sub.forms.size
         %td= sub.active?
         %td

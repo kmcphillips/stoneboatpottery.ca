@@ -1,15 +1,30 @@
 class BlocksController < ApplicationController
-  
+  before_filter :load_block  
+
+  include ApplicationHelper  # I don't know why this is needed
+
   def about_joanna
-    @block = Block.find_by_label('about_joanna')
   end
   
   def about_stoneboat
-    @block = Block.find_by_label('about_stoneboat')
   end
 
   def contact
-    @block = Block.find_by_label('contact')
+  end
+
+  def wholesale
+    if wholesale?
+      @categories = Category.all_active
+    else
+      flash[:error] = "You are not authorized to view that area."
+      redirect_to "/login"
+    end
+  end
+
+protected
+
+  def load_block
+    @block = Block.find_by_label(params[:action])
   end
 
 end

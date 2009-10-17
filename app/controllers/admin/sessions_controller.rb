@@ -30,13 +30,5 @@ class Admin::SessionsController < ApplicationController
   def logout
     destroy
   end
-  
-  # def edit
-  #   # Change password?
-  # end
-  # 
-  # def update
-  #   # Change password?
-  # end
 
 end

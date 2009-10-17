@@ -9,7 +9,7 @@
       %th Actions      
     - forms.forms.each do |form|
       %tr
-        %td= h form.name
+        %td= link_to form.name, admin_category_subcategory_form_path(form.category, form.subcategory, form)
         %td= h form.description
         %td= form.active?
         %td

@@ -12,8 +12,13 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'about_joanna', :controller => 'blocks', :action => 'about_joanna'
   map.connect 'about_stoneboat', :controller => 'blocks', :action => 'about_stoneboat'
   map.connect 'contact', :controller => 'blocks', :action => 'contact'
+  map.connect 'wholesale', :controller => 'blocks', :action => 'wholesale'
 
   map.resources :links, :only => [:index]
+
+  map.resources :sessions, :only => [:index, :new, :create, :destroy], :collection => [:logout]
+  map.connect 'login', :controller => 'sessions', :action => 'new'
+  map.connect 'logout', :controller => 'sessions', :action => 'logout'
 
   map.namespace :admin do |admin|
     admin.resources :sessions, :only => [:index, :new, :create, :destroy], :collection => [:logout]
