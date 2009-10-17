@@ -1,0 +1,26 @@
+%p
+  = f.label :name
+  = f.text_field :name
+
+%p
+  = f.label :description
+  = f.text_field :description
+
+- if f.object.permalink
+  %p
+    = f.label :permalink
+    = ": "
+    = f.object.permalink
+
+%p
+  = f.label :active
+  = f.check_box :active
+
+%p
+  = f.label :wholesale_price
+  = f.text_field :wholesale_price
+
+%p
+  = f.label :retail_price
+  = f.text_field :retail_price
+

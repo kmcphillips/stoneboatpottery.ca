@@ -1,0 +1,22 @@
+%h2 Show Form
+
+%h3= h @form.name
+
+%p= h @category.name + " - " + @subcategory.name
+
+%p= h @form.description
+
+%p
+  permalink:
+  = h @form.permalink
+
+%p
+  Active:
+  = @form.active?
+
+%p
+  Parent Subcategory :
+  = link_to @subcategory.name, admin_category_subcategory_path(@category, @subcategory)
+
+
+

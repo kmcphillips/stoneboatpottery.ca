@@ -18,5 +18,8 @@
 
 %h3 Forms
 
+%p
+  = link_to "Create new form", new_admin_category_subcategory_form_path(@subcategory.category, @subcategory)
+
 = render :partial => "admin/forms/forms", :object => @subcategory
 

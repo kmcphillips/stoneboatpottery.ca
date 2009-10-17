@@ -14,7 +14,8 @@
 
 %h3 Subcategories
 
-= link_to "Create new subcategory", new_admin_category_subcategory_path(@category)
+%p
+  = link_to "Create new subcategory", new_admin_category_subcategory_path(@category)
 
 = render :partial => "admin/subcategories/subcategories", :object => @category
 

@@ -21,7 +21,7 @@ class Admin::SubcategoriesController < ApplicationController
       redirect_to admin_category_path(@category)
     else
       flash[:error] = @subcategory.errors.full_messages.to_sentence
-      render 'admin/subcaategories/edit'
+      render 'admin/subcategories/edit'
     end      
   end
 

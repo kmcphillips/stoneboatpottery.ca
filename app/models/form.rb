@@ -12,6 +12,8 @@ class Form < ActiveRecord::Base
   include Permalink
   before_validation_on_create :update_permalink
 
+  delegate :category, :to => :subcategory
+
 protected
 
   def update_permalink
