@@ -12,7 +12,7 @@ class Admin::SessionsController < ApplicationController
     user = User.authenticate(params[:username], params[:password])
     
     if user
-      session[:admin_user] = user
+      session[:admin_user] = user.id
       flash[:notice] = "Logged in successfully."
       redirect_to admin_posts_path
     else

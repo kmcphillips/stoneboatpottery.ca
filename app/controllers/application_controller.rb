@@ -14,5 +14,9 @@ class ApplicationController < ActionController::Base
       redirect_to "/admin/login"
     end
   end
+
+  def current_user
+    User.find(session[:admin_user]) if session[:admin_user]
+  end
   
 end

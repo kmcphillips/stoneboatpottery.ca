@@ -1,0 +1,16 @@
+%h2 Change Password
+
+- form_tag admin_user_path(@user), :method => :put do
+  %table
+    %tr
+      %td Username
+      %td.bold= h @user.username
+    %tr
+      %td Password
+      %td= password_field_tag :password
+    %tr
+      %td Confirm Password
+      %td= password_field_tag :password_confirm
+    %tr
+      %td &nbsp;
+      %td= submit_tag "Change Password"

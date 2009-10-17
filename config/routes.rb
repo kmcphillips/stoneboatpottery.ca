@@ -22,6 +22,8 @@ ActionController::Routing::Routes.draw do |map|
 
     admin.resources :pieces
 
+    admin.resources :users, :only => [:edit, :update]
+
     admin.resources :categories do |categories|
       categories.resources :subcategories, :only => [:new, :show, :create, :update, :edit, :destroy] do |subcategories|
         subcategories.resources :forms, :only => [:new, :show, :create, :update, :edit, :destroy]
