@@ -7,4 +7,9 @@ class BlocksController < ApplicationController
   def about_stoneboat
     @block = Block.find_by_label('about_stoneboat')
   end
+
+  def contact
+    @block = Block.find_by_label('contact')
+  end
+
 end
