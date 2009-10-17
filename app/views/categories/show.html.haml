@@ -5,7 +5,7 @@
 %h3 Subcategories
 
 %ul
-  - @category.subcategories.each do |subcategory|
+  - @subcategories.each do |subcategory|
     %li
       = link_to subcategory.name, category_subcategory_path(subcategory.category, subcategory)
       = h subcategory.description

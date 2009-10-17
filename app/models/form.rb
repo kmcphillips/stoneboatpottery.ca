@@ -14,7 +14,7 @@ class Form < ActiveRecord::Base
 
   delegate :category, :to => :subcategory
 
-  named_scope :all_active, :conditions => ["active = ?", true]
+  named_scope :all_active, :conditions => ["active = ?", true], :order => "updated_at DESC"
 
 protected
 

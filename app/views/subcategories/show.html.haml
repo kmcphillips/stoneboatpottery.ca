@@ -7,7 +7,7 @@
   = h @subcategory.name
 
 %ul
-  - @subcategory.forms.each do |form|
+  - @forms.each do |form|
     %li
       = link_to form.name, category_subcategory_form_path(@category, @subcategory, form)
       = h form.description
