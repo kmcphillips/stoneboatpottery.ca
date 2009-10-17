@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091015021549) do
+ActiveRecord::Schema.define(:version => 20091017045553) do
 
   create_table "blocks", :force => true do |t|
     t.text     "body"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(:version => 20091015021549) do
   create_table "links", :force => true do |t|
     t.string   "title"
     t.string   "url"
-    t.text     "description"
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

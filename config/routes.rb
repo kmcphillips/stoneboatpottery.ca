@@ -8,9 +8,12 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :posts, :only => [:index, :show]
 
-  map.resources :blocks, :only => [], :collection => [:about_stoneboat, :about_joanna]
+  map.resources :blocks, :only => [], :collection => [:about_stoneboat, :about_joanna, :contact]
   map.connect 'about_joanna', :controller => 'blocks', :action => 'about_joanna'
   map.connect 'about_stoneboat', :controller => 'blocks', :action => 'about_stoneboat'
+  map.connect 'contact', :controller => 'blocks', :action => 'contact'
+
+  map.resources :links, :only => [:index]
 
   map.namespace :admin do |admin|
     admin.resources :sessions, :only => [:index, :new, :create, :destroy], :collection => [:logout]

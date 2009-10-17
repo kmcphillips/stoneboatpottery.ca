@@ -6,6 +6,8 @@ class Link < ActiveRecord::Base
   
   attr_protected :id
 
+protected
+
   def url_begins_with_protocol
     errors.add(:url, "must begin with 'http://' or 'https://'") unless url =~ /http(s)?:\/\/.+/
   end
