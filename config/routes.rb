@@ -1,6 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
   
-  map.resources :categories, :only => [:index, :show]
+  map.resources :categories, :only => [:index, :show] do |categories|
+    categories.resources :subcategories, :only => [:show] do |subcategories|
+      subcategories.resources :forms, :only => [:show]
+    end  
+  end
   
   map.resources :posts, :only => [:index, :show]
 

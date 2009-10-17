@@ -1,19 +1,11 @@
 class CategoriesController < ApplicationController
   
   def index
-    @categories = Category.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-    end
+    @categories = Category.all_active
   end
 
   def show
-    @category = Category.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-    end
+    @category = Category.all_active.find_by_permalink(params[:id])
   end
 
 end

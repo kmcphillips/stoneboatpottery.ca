@@ -1,0 +1,16 @@
+%h2
+  Category :
+  = h @category.name
+
+%h3 
+  Subcategory :
+  = h @subcategory.name
+
+%h4= h @form.name
+
+%p
+  = h @form.description
+
+%p
+  Price:
+  = @form.retail_price
