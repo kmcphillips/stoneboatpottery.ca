@@ -1,1 +1,9 @@
-%h3 Admin
+%p Admin
+
+%ul.nav
+  %li= link_to "News", admin_posts_path
+  %li= link_to "Forms", admin_categories_path
+  %li= link_to "Pieces", admin_pieces_path
+  %li= link_to "Blocks", admin_blocks_path
+  %li= link_to "Links", admin_links_path
+  %li= link_to "logout", "/admin/logout"

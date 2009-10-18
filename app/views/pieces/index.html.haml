@@ -1,0 +1,20 @@
+%h2 Pieces
+
+- if @pieces.blank?
+  %p None
+- else
+  - @pieces.each do |piece|
+    %h3= h piece.name
+    
+    %p= h piece.description
+
+    %p
+      For Sale: 
+      = piece.for_sale?
+    - if piece.for_sale? && ! piece.price.blank?
+      %p
+        Price: 
+        = piece.price
+    
+    %p= link_to "View", piece_path(piece)
+

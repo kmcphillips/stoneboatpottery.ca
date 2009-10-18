@@ -10,6 +10,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :posts, :only => [:index, :show]
 
+  map.resources :pieces, :only => [:index, :show]
+
   map.resources :blocks, :only => [], :collection => [:about_stoneboat, :about_joanna, :contact]
   map.connect 'about_joanna', :controller => 'blocks', :action => 'about_joanna'
   map.connect 'about_stoneboat', :controller => 'blocks', :action => 'about_stoneboat'
