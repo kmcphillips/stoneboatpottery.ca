@@ -3,18 +3,22 @@ class Admin::LinksController < ApplicationController
   
   def index
     @links = Link.all(:order => "updated_at DESC")
+    @title = "Links"
   end
 
   def new
     @link = Link.new
+    @title = "New Link"
   end
   
   def show
     @link = Link.find(params[:id])
+    @title = (@link.title.blank? ? "Link" : @link.title)
   end
   
   def edit
     @link = Link.find(params[:id])
+    @title = "Edit #{(@link.title.blank? ? "Link" : @link.title)}"
   end
   
   def update

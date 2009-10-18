@@ -5,7 +5,7 @@ class Admin::SessionsController < ApplicationController
   end
 
   def new
-    # just render
+    @title = "Admin Login"
   end
 
   def create

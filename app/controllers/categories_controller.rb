@@ -7,6 +7,7 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.all_active.find_by_permalink(params[:id])
     @subcategories = @category.subcategories.all_active
+    @title = @category.name
   end
 
 end

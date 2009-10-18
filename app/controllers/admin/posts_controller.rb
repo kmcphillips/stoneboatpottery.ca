@@ -3,18 +3,22 @@ class Admin::PostsController < ApplicationController
   
   def index
     @posts = Post.all(:order => "updated_at DESC")
+    @title = "Posts"
   end
   
   def show
     @post = Post.find(params[:id])
+    @title = @post.title
   end
   
   def new
     @post = Post.new
+    @title = "New Post"
   end
   
   def edit
     @post = Post.find(params[:id])
+    @title = "Edit Post"
   end
   
   def create

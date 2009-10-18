@@ -3,18 +3,22 @@ class Admin::PiecesController < ApplicationController
   
   def index
     @pieces = Piece.all(:order => "active DESC, updated_at DESC")
+    @title = "Pieces"
   end
 
   def new
     @piece = Piece.new
+    @title = "New Piece"
   end
   
   def show
     @piece = Piece.find(params[:id])
+    @title = @piece.name
   end
   
   def edit
     @piece = Piece.find(params[:id])
+    @title = "Edit #{@piece.name}"
   end
   
   def update

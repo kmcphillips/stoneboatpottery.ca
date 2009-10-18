@@ -3,18 +3,22 @@ class Admin::CategoriesController < ApplicationController
   
   def index
     @categories = Category.all(:order => "name DESC")
+    @title = "Categories"
   end
 
   def new
     @category = Category.new
+    @title = "New Category"
   end
   
   def show
     @category = Category.find_by_permalink(params[:id])
+    @title = @category.name
   end
   
   def edit
     @category = Category.find_by_permalink(params[:id])
+    @title = "Edit #{@category.name}"
   end
   
   def update

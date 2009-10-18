@@ -6,4 +6,18 @@ module ApplicationHelper
   def wholesale?
     !! session[:wholesale_permitted]
   end
+
+  def page_title
+    prefix = "Stoneboat Pottery"
+    prefix = "#{prefix} - Admin" if params[:controller] =~ /^admin\//
+
+    if @title
+      "#{prefix} - #{@title}"
+    elsif params[:controller] == "blocks"
+      "#{prefix} - #{params[:action].humanize}"
+    else
+      prefix
+    end
+  end
+
 end

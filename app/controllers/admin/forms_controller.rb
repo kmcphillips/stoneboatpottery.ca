@@ -3,14 +3,17 @@ class Admin::FormsController < ApplicationController
   
   def new
     @form = @subcategory.forms.new
+    @title = "New Form"
   end
   
   def show
     @form = @subcategory.forms.find_by_permalink(params[:id])
+    @title = @form.name
   end
   
   def edit
     @form = @subcategory.forms.find_by_permalink(params[:id])
+    @title = "Edit #{@form.name}"
   end
   
   def update

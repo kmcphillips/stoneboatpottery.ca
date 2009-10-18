@@ -1,8 +1,6 @@
 class BlocksController < ApplicationController
   before_filter :load_block  
 
-  include ApplicationHelper  # I don't know why this is needed
-
   def about_joanna
   end
   

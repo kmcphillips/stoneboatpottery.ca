@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   end
 
   def new
-    # just render
+    @title = "Wholesale Login"
   end
 
   def create

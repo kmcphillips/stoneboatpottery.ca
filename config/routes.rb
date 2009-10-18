@@ -1,5 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   
+  map.root :controller => 'posts', :action => 'index'
+
   map.resources :categories, :only => [:index, :show] do |categories|
     categories.resources :subcategories, :only => [:show] do |subcategories|
       subcategories.resources :forms, :only => [:show]

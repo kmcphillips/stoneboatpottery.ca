@@ -3,14 +3,17 @@ class Admin::SubcategoriesController < ApplicationController
   
   def new
     @subcategory = @category.subcategories.new
+    @title = "New Subcategory"
   end
   
   def show
     @subcategory = @category.subcategories.find_by_permalink(params[:id])
+    @title = @subcategory.name
   end
   
   def edit
     @subcategory = @category.subcategories.find_by_permalink(params[:id])
+    @title = "Edit #{@subcategory.name}"
   end
   
   def update

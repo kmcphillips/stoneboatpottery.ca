@@ -3,6 +3,7 @@ class Admin::UsersController < ApplicationController
   
   def edit
     @user = User.find(params[:id])
+    @title = "Change Password"
     render 'admin/users/edit'
   end
   
