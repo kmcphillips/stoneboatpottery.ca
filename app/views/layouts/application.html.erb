@@ -33,7 +33,13 @@
 	<div id="page-bgbtm">
 
 		<div id="content">
+      <div id="flash">
+        <p class="notice"><%= flash[:notice] %></p>
+        <p class="error"><%= flash[:error] %></p>
+      </div>
+
 <%= yield %>
+
 		</div>
 		
 		<div id="sidebar">

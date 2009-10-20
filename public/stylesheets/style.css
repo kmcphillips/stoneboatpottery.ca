@@ -105,41 +105,6 @@ a:hover {
 	color: #464646;
 }
 
-/* Search */
-
-#search {
-	float: right;
-	width: 279px;
-	height: 110px;
-	padding: 0;
-}
-
-#search form {
-	height: 41px;
-	margin: 0;
-	padding: 10px 0 0 30px;
-}
-
-#search fieldset {
-	margin: 0;
-	padding: 0;
-	border: none;
-}
-
-#search-text {
-	width: 195px;
-	padding: 6px 10px;
-	border: 1px #4C4842 solid;
-	background: none;
-	text-transform: lowercase;
-	font: normal 11px Arial, Helvetica, sans-serif;
-	color: #808080;
-}
-
-#search-submit {
-	display: none;
-}
-
 /* Menu */
 
 #menu {
@@ -200,6 +165,16 @@ a:hover {
 
 #page-bgbtm {
 	padding: 30px 20px 0px 20px;
+}
+
+#flash p.notice {
+  color: green;
+  font-weight: bold;
+}
+
+#flash p.error {
+  color: red;
+  font-weight: bold;
 }
 
 /* Content */
