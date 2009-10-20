@@ -1,5 +1,8 @@
 %div.post
-  %h4.post-title= h post.title
-  %div.post-date= h post.updated_at
-  %div.post-permalink= link_to "permalink", post_path(post.permalink)
-  %p.post-body= h post.body
+  %h2.title= h post.title
+
+  %div.meta
+    = h post.updated_at
+    = link_to "permalink", post_path(post.permalink)
+
+  %div.entry= h post.body

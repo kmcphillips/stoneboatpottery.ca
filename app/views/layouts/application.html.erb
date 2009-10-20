@@ -25,7 +25,7 @@
 	</div>
 	</div>
 	<div id="menu">
-<%= render :partial => 'shared/nav' %>
+<%= render :partial => 'shared/menu' %>
 	</div>
 
 	<div id="page">
@@ -40,10 +40,18 @@
 
 <%= yield %>
 
+      <div style="clear: both;">&nbsp;</div>
 		</div>
 		
 		<div id="sidebar">
-<%= render :partial => 'shared/admin_nav' if current_user %>
+      <ul>
+<% if current_user %>
+        <li>
+          <h2>Admin</h2>
+<%= render :partial => 'shared/admin_nav' %>
+        </li>
+<% end %>
+      </ul>
 		</div>
 
 		<div style="clear: both;">&nbsp;</div>
