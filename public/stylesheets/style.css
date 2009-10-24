@@ -48,6 +48,14 @@ a img {
   border:0;
 }
 
+.center {
+  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
 #wrapper {
 	margin: 0 auto;
 	padding: 0;
@@ -336,10 +344,15 @@ div.post-footer {
   
 }
 
+ul h3.archive-year {
+  padding: 8px;
+}
+
 
 /* Links */
 
 ul.links {
+  padding-left: 8px;
   list-style: none;
 }
 

@@ -1,8 +1,15 @@
 %div.post
-  %h2.title Post Archive
+  %h2.title News Archive
 
   %div.entry
-    - year = nil
-    - @posts.each do |post|
-      post
+    %ul
+      - year = nil
+      - @posts.each do |post|
+        - unless post.updated_at.year == year
+          - year = post.updated_at.year
+          %h3.archive-year= year
+        %li
+          = h post.updated_at
+          = " : "
+          = link_to post.title, post_path(post.permalink)
       
