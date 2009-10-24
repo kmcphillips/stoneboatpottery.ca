@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
     end  
   end
   
-  map.resources :posts, :only => [:index, :show]
+  map.resources :posts, :only => [:index, :show], :collection => [:archive]
 
   map.resources :pieces, :only => [:index, :show]
 

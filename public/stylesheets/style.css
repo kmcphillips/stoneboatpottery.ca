@@ -41,12 +41,16 @@ a {
 }
 
 a:hover {
+  text-decoration: underline;
+}
+
+a img {
+  border:0;
 }
 
 #wrapper {
 	margin: 0 auto;
 	padding: 0;
-	background: url(../images/img05.jpg) repeat-x left top;
 }
 
 /* Header */
@@ -81,7 +85,6 @@ a:hover {
 	padding-top: 110px;
 	padding-left: 10px;
 	letter-spacing: -1px;
-	text-transform: lowercase;
 	font-size: 4.6em;
 	color: #E3295B;
 }
@@ -189,7 +192,6 @@ a:hover {
 }
 
 .post .title {
-	height: 38px;
 	padding: 12px 0 0 20px;
 	letter-spacing: -.5px;
 	color: #E3295B;
@@ -201,10 +203,10 @@ a:hover {
 }
 
 .post .meta {
-	margin-top: -10px;
+	margin-top: 4px;
+  margin-left: 20px;
 	padding-bottom: 5px;
-	margin-left: 20px;
-	padding-left: 15px;
+  padding-top: 3px;	padding-left: 15px;
 	background: url(../images/img04.jpg) no-repeat left 6px;
 	text-align: left;
 	font-family: Arial, Helvetica, sans-serif;
@@ -221,18 +223,6 @@ a:hover {
 	text-align: justify;
 	margin-bottom: 25px;
 	padding: 30px 20px 10px 20px;
-}
-
-.links {
-	display: block;
-	width: 100px;
-	margin: 20px 0px;
-	padding: 3px;
-	background: #E3295B;
-	text-align: center;
-	text-transform: uppercase;
-	font-size: 10px;
-	color: #FFFFFF;
 }
 
 /* Sidebar */
@@ -336,4 +326,27 @@ a:hover {
 
 #footer a {
 	color: #E3295B;
+}
+
+/*** Sections ***/
+
+/* Posts */
+
+div.post-footer {
+  
+}
+
+
+/* Links */
+
+ul.links {
+  list-style: none;
+}
+
+ul.links li {
+  padding-bottom: 20px;
+}
+
+ul.links li span.description {
+  margin-left: 10px;
 }

@@ -1,12 +1,14 @@
-%h2 Links
+%div.post
+  %h2.title Links
 
-- if @links.blank?
-  %p none
-- else
-  %ul
-    - @links.each do |link|
-      %li
-        = link_to((link.title.blank? ? link.url : link.title), link.url)
-        - unless link.description.blank?
-          = " : "
-          = h link.description
+  %div.entry
+    - if @links.blank?
+      %p none
+    - else
+      %ul.links
+        - @links.each do |link|
+          %li
+            %em= link_to((link.title.blank? ? link.url : link.title), link.url)
+            - unless link.description.blank?
+              %br              
+              %span.description= h link.description

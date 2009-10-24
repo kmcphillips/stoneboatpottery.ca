@@ -16,4 +16,8 @@ class PostsController < ApplicationController
     @title = @post.title
   end
 
+  def archive
+    @posts = Post.all(:order => "updated_at DESC")
+  end
+
 end
