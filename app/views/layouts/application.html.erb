@@ -6,6 +6,8 @@
 
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
+  <%= auto_discovery_link_tag(:rss, 'rss.xml') %>
+
   <title><%= page_title %></title>
   
   <%= stylesheet_link_tag 'style' %>
@@ -63,7 +65,7 @@
 
 <div id="footer-wrapper">
 	<div id="footer">
-		<p><a href="TODO">RSS  <%= image_tag "/images/rss.gif", :alt => "RSS Feed" %></a> | &copy; <a href="TODO">JoAnna Lange</a> | Site by <a href="TODO">Kevin McPhillips</a> / <a href="http://gleep.ca">gleep.ca</a></p>
+		<p><a href="rss.xml">RSS  <%= image_tag "/images/rss.gif", :alt => "RSS Feed" %></a> | &copy; <a href="TODO">JoAnna Lange</a> | Site by <a href="TODO">Kevin McPhillips</a> / <a href="http://gleep.ca">gleep.ca</a></p>
 	</div>
 </div>
 

@@ -20,4 +20,14 @@ class PostsController < ApplicationController
     @posts = Post.all(:order => "updated_at DESC")
   end
 
+  def rss
+    @posts = Post.all(:order => "updated_at DESC")
+    
+    respond_to do |wants|
+      wants.xml do
+        render :layout => false
+      end
+    end
+  end
+
 end

@@ -9,6 +9,7 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.resources :posts, :only => [:index, :show], :collection => [:archive]
+  map.connect 'rss.:format', :controller => 'posts', :action => 'rss'
 
   map.resources :pieces, :only => [:index, :show]
 
