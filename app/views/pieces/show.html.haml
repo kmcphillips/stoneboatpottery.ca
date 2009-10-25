@@ -1,13 +1,1 @@
-%h2 Show Piece
-
-%h3= h @piece.name
-
-%p= h @piece.description
-
-%p
-  For Sale: 
-  = @piece.for_sale?
-- if @piece.for_sale? && ! @piece.price.blank?
-  %p
-    Price: 
-    = @piece.price
+= render :partial => 'pieces/piece', :object => @piece

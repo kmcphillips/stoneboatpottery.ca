@@ -345,7 +345,13 @@ div.post-footer {
 }
 
 ul h3.archive-year {
-  padding: 8px;
+  padding: 16px;
+}
+
+div.meta p {
+  margin: 0;
+  padding: 0;
+  line-height: 100%;
 }
 
 

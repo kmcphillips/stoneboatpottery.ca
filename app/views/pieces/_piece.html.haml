@@ -1,0 +1,14 @@
+%div.post
+  %h2.title= h piece.name
+
+  %div.entry
+    %p= h piece.description
+
+    %p
+      For Sale: 
+      = piece.for_sale?
+    - if piece.for_sale? && ! piece.price.blank?
+      %p
+        Price: 
+        = piece.price
+

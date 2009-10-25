@@ -2,7 +2,9 @@
   %h2.title= h post.title
 
   %div.meta
-    = h post.updated_at
-    = link_to "permalink", post_path(post.permalink)
+    %p
+      = h post.updated_at
+      = link_to "permalink", post_path(post.permalink)
 
-  %div.entry= h post.body
+  %div.entry
+    %p= h post.body

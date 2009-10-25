@@ -1,20 +1,11 @@
-%h2 Pieces
-
 - if @pieces.blank?
-  %p None
+  %div.post
+    %h2.title Pieces
+
+    %div.entry
+    %p None
 - else
   - @pieces.each do |piece|
-    %h3= h piece.name
-    
-    %p= h piece.description
-
-    %p
-      For Sale: 
-      = piece.for_sale?
-    - if piece.for_sale? && ! piece.price.blank?
-      %p
-        Price: 
-        = piece.price
-    
+    = render :partial => 'pieces/piece', :object => piece
     %p= link_to "View", piece_path(piece)
 

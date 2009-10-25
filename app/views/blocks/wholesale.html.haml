@@ -2,8 +2,9 @@
   %h2.title Wholesale
 
   %div.entry
-    = h @block.body
-    = link_to "Logout of Wholesale", "/logout"
+    %p
+      = h @block.body
+      = link_to "Logout of Wholesale", "/logout"
 
 
 %div.post
@@ -13,9 +14,10 @@
     - if @categories.blank?
       %p None
     - else
-      - @categories.each do |category|
-        - unless category.subcategories.blank?    
-          %h4= h category.name
-          - category.subcategories.all_active.each do |subcategory|
-            = render :partial => 'blocks/subcategory', :object => subcategory
+      %p
+        - @categories.each do |category|
+          - unless category.subcategories.blank?    
+            %h4= h category.name
+            - category.subcategories.all_active.each do |subcategory|
+              = render :partial => 'blocks/subcategory', :object => subcategory
     
