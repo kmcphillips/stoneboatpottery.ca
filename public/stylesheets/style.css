@@ -142,7 +142,6 @@ a img {
 	height: 18px;
 	margin-right: 3px;
 	padding: 12px 20px 0px 20px;
-	background: url(../images/img06.jpg) no-repeat right 10px;
 	text-decoration: none;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
@@ -369,3 +368,19 @@ ul.links li {
 ul.links li span.description {
   margin-left: 10px;
 }
+
+/* Forms */
+
+#breadcrumbs {
+  padding: 2px 8px 20px 24px;
+  font-size: 1.2em;
+}
+
+div.entry ul.menu {
+
+}
+
+div.entry ul.menu li {
+  
+}
+

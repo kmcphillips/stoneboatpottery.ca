@@ -1,22 +1,17 @@
 = render :partial => "forms/breadcrumbs"
 
-%h2
-  Category :
-  = h @category.name
+%div.post
+  %h2.title= h @form.name
 
-%h3 
-  Subcategory :
-  = h @subcategory.name
+  %div.entry
+    %p
+      = h @form.description
 
-%h4= h @form.name
+    %p
+      Price:
+      = @form.retail_price
+      - if wholesale?
+        %br
+        Wholesale Price:
+        = @form.wholesale_price
 
-%p
-  = h @form.description
-
-%p
-  Price:
-  = @form.retail_price
-  - if wholesale?
-    %br
-    Wholesale Price:
-    = @form.wholesale_price

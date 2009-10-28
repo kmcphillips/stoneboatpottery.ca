@@ -1,13 +1,17 @@
-%h2 Login
+%div.post
+  %h2.title Admin Login
 
-- form_tag admin_sessions_path, :method => :post do
-  %table
-    %tr
-      %td Username
-      %td= text_field_tag :username
-    %tr
-      %td Password
-      %td= password_field_tag :password
-    %tr
-      %td &nbsp;
-      %td= submit_tag "Login"
+  %div.entry
+    %p
+      - form_tag admin_sessions_path, :method => :post do
+        %table
+          %tr
+            %td Username
+            %td= text_field_tag :username
+          %tr
+            %td Password
+            %td= password_field_tag :password
+          %tr
+            %td &nbsp;
+            %td= submit_tag "Login"
+

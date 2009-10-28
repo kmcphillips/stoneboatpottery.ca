@@ -1,10 +1,13 @@
-- if @category
-  #breadcrumbs
-    > 
+- spacer = "&nbsp;&gt;&nbsp;"
+
+#breadcrumbs
+  = link_to "All Categories", categories_path
+  - if @category
+    = spacer
     = link_to @category.name, category_path(@category)
     - if @subcategory
-      = " - "
+      = spacer
       = link_to @subcategory.name, category_subcategory_path(@category, @subcategory)
       - if @form
-        = " - "
+        = spacer
         = link_to @form.name, category_subcategory_form_path(@category, @subcategory, @form)

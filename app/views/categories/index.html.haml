@@ -1,9 +1,13 @@
 = render :partial => "forms/breadcrumbs"
 
-%h2 Categories
+%div.post
+  %h2.title Categories
 
-%ul
-  - @categories.each do |category|
-    %li
-      = link_to category.name, category_path(category)
-      = h category.description
+  %div.entry
+    %ul.menu
+      - @categories.each do |category|
+        %li
+          = link_to category.name, category_path(category)
+          = ":"
+          = h category.description
+
