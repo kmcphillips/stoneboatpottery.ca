@@ -56,10 +56,13 @@ a img {
   font-weight: bold;
 }
 
-
 #wrapper {
 	margin: 0 auto;
 	padding: 0;
+}
+
+img.action-image {
+  padding: 2px;
 }
 
 /* Table */

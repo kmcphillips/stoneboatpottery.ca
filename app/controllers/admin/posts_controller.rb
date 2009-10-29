@@ -7,7 +7,7 @@ class Admin::PostsController < ApplicationController
   end
   
   def show
-    @post = Post.find(params[:id])
+    @post = Post.find_by_permalink(params[:id])
     @title = @post.title
   end
   
@@ -17,7 +17,7 @@ class Admin::PostsController < ApplicationController
   end
   
   def edit
-    @post = Post.find(params[:id])
+    @post = Post.find_by_permalink(params[:id])
     @title = "Edit Post"
   end
   
@@ -34,7 +34,7 @@ class Admin::PostsController < ApplicationController
   end
   
   def update
-    @post = Post.find(params[:id])
+    @post = Post.find_by_permalink(params[:id])
     
     if @post.update_attributes(params[:post])
       flash[:notice] = "Post successfully updated."
@@ -46,7 +46,7 @@ class Admin::PostsController < ApplicationController
   end
   
   def destroy
-    @post = Post.find(params[:id])
+    @post = Post.find_by_permalink(params[:id])
     
     if @post.delete
       flash[:notice] = "Post deleted."
