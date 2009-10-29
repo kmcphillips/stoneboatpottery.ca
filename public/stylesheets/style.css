@@ -56,9 +56,37 @@ a img {
   font-weight: bold;
 }
 
+
 #wrapper {
 	margin: 0 auto;
 	padding: 0;
+}
+
+/* Table */
+
+table, tbody, th, tr, td {
+  margin: 0
+  padding: 0
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+th {
+  border-bottom: 1px solid black;
+  padding: 4px;
+  font-size: 1.1em;
+}
+
+tr.odd {
+  background-color: #EEEEEE;
+}
+
+tr.even {
+  background-color: #CCCCCC;
+}
+
+td {
+  padding: 8px;
 }
 
 /* Header */
@@ -285,27 +313,6 @@ a img {
 
 #sidebar a:hover {
 	text-decoration: underline;
-}
-
-/* Calendar */
-
-#calendar {
-}
-
-#calendar_wrap {
-	padding: 20px;
-}
-
-#calendar table {
-	width: 100%;
-}
-
-#calendar tbody td {
-	text-align: center;
-}
-
-#calendar #next {
-	text-align: right;
 }
 
 /* Footer */
