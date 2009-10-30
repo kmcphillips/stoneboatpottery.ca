@@ -8,9 +8,8 @@ class Admin::PostsController < ApplicationController
   
   def show
     @post = Post.find_by_permalink(params[:id])
-    @title = @post.title
 
-    render 'admin/posts/show'
+    redirect_to post_path(@post)
   end
   
   def new
