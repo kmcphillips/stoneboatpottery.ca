@@ -22,21 +22,27 @@ module ApplicationHelper
   end
 
   # Action image helpers
+
+  def index_entity_image(path, args={})
+    link_to path, :title => "Index" do
+      image_tag "/images/icons/index.png", :alt => "Index"
+    end
+  end
   
   def new_entity_image(path, args={})
-    link_to path do
+    link_to path, :title => "New" do
       image_tag "/images/icons/new.png", :alt => "New"
     end
   end
 
   def delete_entity_image(path, args={})
-    link_to path, :method => :post, :confirm => "Are you sure you want to delete this?" do
+    link_to path, :method => :delete, :confirm => "Are you sure you want to delete this?", :title => "Delete" do
       image_tag "/images/icons/delete.png", :alt => "Delete", :class => "action-image"
     end
   end
 
   def edit_entity_image(path, args={})
-    link_to path do
+    link_to path, :title => "Edit" do
       image_tag "/images/icons/edit.png", :alt => "Edit", :class => "action-image"
     end
   end

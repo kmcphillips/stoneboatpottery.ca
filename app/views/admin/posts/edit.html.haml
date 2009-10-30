@@ -1,5 +1,11 @@
-%h2 Edit Post
+%div.post
+  %h2.title Edit Post
 
-- form_for [:admin, @post] do |f| 
-  = render :partial => 'admin/posts/form', :locals => {:f => f}
-  = f.submit "Save Post"
+  %div.entry
+    - form_for [:admin, @post] do |f| 
+      = render :partial => 'admin/posts/form', :locals => {:f => f}
+      = f.submit "Save"
+
+  %div.actions
+    - index_entity_image(admin_posts_path)
+    = link_to "Back to all posts", admin_posts_path

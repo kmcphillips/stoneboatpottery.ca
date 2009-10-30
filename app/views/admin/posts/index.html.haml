@@ -19,7 +19,7 @@
           %tr{:class => cycle("odd","even")}
             %td= h post.updated_at.to_s(:long)
             %td= link_to post.title, admin_post_path(post)
-            %td= h truncate(post.body, :length => 120, :omission => " (more..)")
+            %td= link_to truncate(post.body, :length => 120, :omission => " (more..)"), admin_post_path(post)
             %td{:width => 40}
               - edit_entity_image(edit_admin_post_path(post))
               - delete_entity_image(admin_post_path(post))

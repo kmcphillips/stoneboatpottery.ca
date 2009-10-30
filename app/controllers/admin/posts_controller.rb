@@ -9,6 +9,8 @@ class Admin::PostsController < ApplicationController
   def show
     @post = Post.find_by_permalink(params[:id])
     @title = @post.title
+
+    render 'admin/posts/show'
   end
   
   def new
@@ -29,7 +31,7 @@ class Admin::PostsController < ApplicationController
       redirect_to admin_posts_path
     else
       flash[:error] = @post.errors.full_messages.to_sentence
-      render 'admin/posts/edit'
+      render 'admin/posts/new'
     end
   end
   
