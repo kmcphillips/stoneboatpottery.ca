@@ -7,5 +7,5 @@
   %li= link_to "Links", links_path
   %li= link_to "Wholesale", "/wholesale"
   %li= link_to "Contact", "/contact"
-  - if RAILS_ENV == "development"
-    %li= link_to "Admin", "/admin/login"
+  - if RAILS_ENV == "development" && !current_user
+    %li= link_to "Admin Login", "/admin/login"
