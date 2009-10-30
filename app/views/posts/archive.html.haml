@@ -10,7 +10,7 @@
             - year = post.updated_at.year
             %h3.archive-year= year
           %li
-            = h post.updated_at
+            %span.bold= h post.updated_at.to_s(:long)
             = " : "
             = link_to post.title, post_path(post.permalink)
       
