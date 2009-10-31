@@ -46,6 +46,8 @@ ActionController::Routing::Routes.draw do |map|
         subcategories.resources :forms, :only => [:new, :show, :create, :update, :edit, :destroy]
       end
     end
+
+    admin.resources :images
   end
 
 end

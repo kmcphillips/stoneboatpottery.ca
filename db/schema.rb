@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091031011131) do
+ActiveRecord::Schema.define(:version => 20091031133037) do
 
   create_table "blocks", :force => true do |t|
     t.text     "body"
@@ -42,8 +42,14 @@ ActiveRecord::Schema.define(:version => 20091031011131) do
   end
 
   create_table "images", :force => true do |t|
-    t.string   "path"
+    t.string   "filename"
     t.boolean  "primary",        :default => false
+    t.string   "content_type"
+    t.integer  "size"
+    t.integer  "height"
+    t.integer  "width"
+    t.integer  "parent_id"
+    t.string   "thumbnail"
     t.integer  "imageable_id"
     t.string   "imageable_type"
     t.datetime "created_at"
