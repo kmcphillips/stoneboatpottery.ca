@@ -1,0 +1,30 @@
+- content_for :js do
+  :javascript
+    function upload_before()
+    {
+      $('#upload img.throbber').show();
+      $('#upload input[type=submit]').attr("disabled", "true");
+    }
+
+    function upload_after()
+    {
+      $('#upload').overlay().close();
+    }
+
+#image-container
+  Image container
+
+  = button_to_function "Upload Image", "show_upload()"
+    
+
+#upload
+  %div
+    %h2 Upload Image
+
+    - form_remote_tag :url => "/admin/images", :before => "upload_before();", :complete => "upload_after();" do
+      = file_field_tag :uploaded_data
+      %br
+      = submit_tag "Upload"
+      = submit_tag "Cancel", :class => "close", :onclick => "return false;"
+      = image_tag "/images/template/throbber.gif", :class => "throbber", :alt => "Loading..."
+
