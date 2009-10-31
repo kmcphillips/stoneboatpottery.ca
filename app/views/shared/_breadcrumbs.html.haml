@@ -1,0 +1,31 @@
+- spacer = "&nbsp;&gt;&nbsp;"
+
+- if ["forms", "categories", "subcategories"].include?(params[:controller])
+  #breadcrumbs
+    = link_to "All Categories", categories_path
+    - if @category
+      = spacer
+      = link_to @category.name, category_path(@category)
+      - if @subcategory
+        = spacer
+        = link_to @subcategory.name, category_subcategory_path(@category, @subcategory)
+        - if @form
+          = spacer
+          = link_to @form.name, category_subcategory_form_path(@category, @subcategory, @form)
+
+- elsif ["admin/forms", "admin/categories", "admin/subcategories"].include?(params[:controller])
+  #breadcrumbs
+    = link_to "Admin All Categories", admin_categories_path
+    - if @category && ! @category.new_record?
+      = spacer
+      = link_to @category.name, admin_category_path(@category)
+      - if @subcategory && ! @subcategory.new_record?
+        = spacer
+        = link_to @subcategory.name, admin_category_subcategory_path(@category, @subcategory)
+        - if @form && ! @form.new_record?
+          = spacer
+          = link_to @form.name, admin_category_subcategory_form_path(@category, @subcategory, @form)
+
+- else
+  #breadcrumbs-blank
+    &nbsp;

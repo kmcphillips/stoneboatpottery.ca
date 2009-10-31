@@ -237,17 +237,23 @@ textarea {
 }
 
 #page-bgbtm {
-	padding: 30px 20px 0px 20px;
+	padding: 0px 20px 0px 20px;
 }
 
 #flash p.notice {
-  color: green;
+  background: green;
   font-weight: bold;
+  padding-left: 26px;
+  font-size: 1.4em;
+  color: #FFFFFF;
 }
 
 #flash p.error {
-  color: red;
+  background: red;
   font-weight: bold;
+  padding-left: 26px;
+  font-size: 1.4em;
+  color: #FFFFFF;
 }
 
 /* Content */
@@ -307,6 +313,7 @@ textarea {
 #sidebar {
 	float: left;
 	width: 230px;
+  margin-top: 30px;
 }
 
 #sidebar ul {
@@ -422,7 +429,16 @@ ul.links li span.description {
 /* Forms */
 
 #breadcrumbs {
-  padding: 2px 8px 20px 24px;
+  margin: 2px 8px 2px 12px;
+  padding: 6px;
+  font-size: 1.2em;
+  border-bottom: 1px dashed #C8B032;
+  border-left: 4px solid #C8B032;
+}
+
+#breadcrumbs-blank {
+  margin: 2px 8px 3px 12px;
+  padding: 6px;
   font-size: 1.2em;
 }
 
