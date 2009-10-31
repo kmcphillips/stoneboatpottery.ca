@@ -12,17 +12,17 @@ class Admin::PiecesController < ApplicationController
   end
   
   def show
-    @piece = Piece.find(params[:id])
-    @title = @piece.name
+    @piece = Piece.find_by_permalink(params[:id])
+    redirect_to piece_path(@piece)
   end
   
   def edit
-    @piece = Piece.find(params[:id])
+    @piece = Piece.find_by_permalink(params[:id])
     @title = "Edit #{@piece.name}"
   end
   
   def update
-    @piece = Piece.find(params[:id])
+    @piece = Piece.find_by_permalink(params[:id])
     
     if @piece.update_attributes(params[:piece])
       flash[:notice] = "Piece successfully updated."
@@ -46,7 +46,7 @@ class Admin::PiecesController < ApplicationController
   end
 
   def destroy
-    piece = Piece.find(params[:id])
+    piece = Piece.find_by_permalink(params[:id])
 
     if piece.delete
       flash[:notice] = "Piece successfully deleted."

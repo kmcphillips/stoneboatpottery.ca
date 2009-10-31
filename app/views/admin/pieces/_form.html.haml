@@ -4,14 +4,13 @@
 
 %p
   = f.label :description
-  %br
+  %div.clear
   = f.text_area :description, :rows => 15, :cols => 70
 
 - if f.object.permalink
   %p
     = f.label :permalink
-    = ": "
-    = f.object.permalink
+    %span.bold= f.object.permalink
 
 %p
   = f.label :price
