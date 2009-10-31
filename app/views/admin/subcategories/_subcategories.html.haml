@@ -1,4 +1,5 @@
-- if subcategories.subcategories.blank?
+- category = subcategories # object name is awkward
+- if category.subcategories.blank?
   None
 - else
   %table.data
@@ -8,13 +9,13 @@
       %th Number of Forms
       %th Active?
       %th Actions      
-    - subcategories.subcategories.each do |sub|
-      %tr
-        %td= link_to sub.name, admin_category_subcategory_path(subcategories, sub)
-        %td= truncate(sub.description, :length => 120, :omission => " (more..)")
+    - category.subcategories.each do |sub|
+      %tr{:class => cycle("odd","even")}
+        %td= link_to sub.name, admin_category_subcategory_path(category, sub)
+        %td= link_to truncate(sub.description, :length => 120, :omission => " (more..)"), admin_category_subcategory_path(category, sub)
         %td= sub.forms.size
         %td= sub.active?
-        %td
-          = link_to "Show", admin_category_subcategory_path(subcategories, sub)
-          = link_to "Edit", edit_admin_category_subcategory_path(subcategories, sub)
-          = button_to "Delete", admin_category_subcategory_path(subcategories, sub), :method => :delete, :confirm => "A subcategory may only be deleted if it is empty. Are you sure you want to delete this category?"
+        %td{:width => 40}
+          - edit_entity_image(edit_admin_category_subcategory_path(category, sub))
+          - delete_entity_image(admin_category_subcategory_path(category, sub))
+

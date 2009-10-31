@@ -1,7 +1,13 @@
-%h2 New Subcategory
+%div.post
+  %h2.title
+    New Subategory under
+    = h @category.name
 
-%h3= h @category.name
+  %div.entry
+    - form_for [:admin, @category, @subcategory], :method => :post do |f| 
+      = render :partial => 'admin/subcategories/form', :locals => {:f => f}
+      = f.submit "Create New Subategory"
 
-- form_for [:admin, @category, @subcategory], :method => :post do |f| 
-  = render :partial => 'admin/subcategories/form', :locals => {:f => f}
-  = f.submit "Create New Subategory"
+  %div.actions
+    - index_entity_image(admin_category_path(@category))
+    = link_to "Back to all subcategories under #{@category.name}", admin_category_path(@category)

@@ -1,5 +1,11 @@
-%h2 Edit Subcategory
+%div.post
+  %h2.title Edit Subategory
 
-- form_for [:admin, @category, @subcategory, @form] do |f| 
-  = render :partial => 'admin/subcategories/form', :locals => {:f => f}
-  = f.submit "Save Subategory"
+  %div.entry
+    - form_for [:admin, @category, @subcategory] do |f| 
+      = render :partial => 'admin/subcategories/form', :locals => {:f => f}
+      = f.submit "Save"
+
+  %div.actions
+    - index_entity_image(admin_category_path(@category))
+    = link_to "Back to all subcategories", admin_category_path(@category)

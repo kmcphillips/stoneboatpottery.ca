@@ -1,23 +1,29 @@
-%h2 Show Category
+%div.post
+  %h2.title= h @category.name
 
-%h3= h @category.name
+  %div.entry
+    %p= h @category.description
 
-%p= h @category.description
+    %p
+      %label permalink
+      %span.bold= h @category.permalink
 
-%p
-  permalink:
-  = h @category.permalink
+    %p
+      %label Active:
+      = @category.active?
 
-%p
-  Active:
-  = @category.active?
+%div.post
+  %h2.title
+    Subcategories under
+    = h @category.name
 
-%p= link_to "View all categories", admin_categories_path
+  %div.entry
+    %p
+      - new_entity_image(new_admin_category_subcategory_path(@category))
+      = link_to "Create new category under #{@category.name}", new_admin_category_subcategory_path(@category)
 
-%h3 Subcategories
+    = render :partial => "admin/subcategories/subcategories", :object => @category
 
-%p
-  = link_to "Create new subcategory", new_admin_category_subcategory_path(@category)
-
-= render :partial => "admin/subcategories/subcategories", :object => @category
-
+  %div.actions
+    - index_entity_image(admin_categories_path)
+    = link_to "Back to all categories", admin_categories_path
