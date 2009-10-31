@@ -1,22 +1,25 @@
-%h2 Links
+%div.post
+  %h2.title Links
 
-%p= link_to "Create new link", new_admin_link_path
+  %div.entry
+    %p
+      - new_entity_image(new_admin_link_path)
+      = link_to "Create new link", new_admin_link_path
 
-- if @links.blank?
-  %h3 None here
-- else
-  %table.data
-    %tr
-      %th Title
-      %th URL
-      %th Description
-      %th Actions
-    - @links.each do |link| 
-      %tr
-        %td= h link.title
-        %td= link_to link.url, link.url
-        %td= h truncate(link.description, :length => 120, :omission => " (more..)")
-        %td
-          = link_to "Show", admin_link_path(link)
-          = link_to "Edit", edit_admin_link_path(link)
-          = button_to "Delete", admin_link_path(link), :method => :delete, :confirm => "Are you sure you want to delete this link?"
+    - if @links.blank?
+      %h3 None here
+    - else
+      %table.data
+        %tr
+          %th Title
+          %th URL
+          %th Description
+          %th Actions
+        - @links.each do |link| 
+          %tr{:class => cycle("odd","even")}
+            %td= h link.title
+            %td= link_to link.url, link.url
+            %td= h truncate(link.description, :length => 120, :omission => " (more..)")
+            %td
+              - edit_entity_image(edit_admin_link_path(link))
+              - delete_entity_image(admin_link_path(link))
