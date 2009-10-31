@@ -264,7 +264,8 @@ textarea {
 .post .title {
 	padding: 12px 0 0 20px;
 	letter-spacing: -.5px;
-	color: #E3295B;
+	/* color: #E3295B; */
+  color: #3E574F;
 }
 
 .post .title a {
@@ -282,11 +283,13 @@ textarea {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 11px;
 	font-style: italic;
-	color: #EB5982;
+	/* color: #EB5982; */
+  color: #6A9E8D;
 }
 
 .post .meta a {
-	color: #EB5982;
+	/* color: #EB5982; */
+  color: #6A9E8D;
 }
 
 .post .entry {
