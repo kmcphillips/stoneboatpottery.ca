@@ -1,25 +1,35 @@
-%h2 Show Subategory
+%div.post
+  %h2.title
+    Subcategory 
+    = h @subcategory.name
+    under
+    = h @subcategory.category.name
 
-%h3= h @subcategory.name
+  %div.entry
+    %p= h @subcategory.description
 
-%p= h @subcategory.description
+    %p
+      %label permalink
+      %span.bold= h @subcategory.permalink
 
-%p
-  permalink:
-  = h @subcategory.permalink
+    %p
+      %label Active:
+      = @subcategory.active?
 
-%p
-  Active:
-  = @subcategory.active?
+%div.post
+  %h2.title
+    Forms under
+    = h @subcategory.name
 
-%p
-  Parent Category :
-  = link_to @subcategory.category.name, admin_category_path(@subcategory.category)
+  %div.entry
+    %p
+      - new_entity_image(new_admin_category_subcategory_form_path(@subcategory.category, @subcategory))
+      = link_to "Create new form under #{@subcategory.name}", new_admin_category_subcategory_form_path(@subcategory.category, @subcategory)
 
-%h3 Forms
+    = render :partial => "admin/forms/forms", :object => @subcategory
 
-%p
-  = link_to "Create new form", new_admin_category_subcategory_form_path(@subcategory.category, @subcategory)
+  %div.actions
+    - index_entity_image(admin_category_subcategories_path(@subcategory.category))
+    = link_to "Back to category #{@subcategory.category.name}", admin_category_path(@subcategory.category)
 
-= render :partial => "admin/forms/forms", :object => @subcategory
 

@@ -20,7 +20,7 @@
   %div.entry
     %p
       - new_entity_image(new_admin_category_subcategory_path(@category))
-      = link_to "Create new category under #{@category.name}", new_admin_category_subcategory_path(@category)
+      = link_to "Create new subcategory under #{@category.name}", new_admin_category_subcategory_path(@category)
 
     = render :partial => "admin/subcategories/subcategories", :object => @category
 

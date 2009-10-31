@@ -1,22 +1,22 @@
-%h2 Show Form
+%div.post
+  %h2.title
+    = h @form.name
+    under 
+    = h @form.subcategory.name
+    and
+    = h @form.category.name
 
-%h3= h @form.name
+  %div.entry
+    %p= h @form.description
 
-%p= h @category.name + " - " + @subcategory.name
+    %p
+      %label permalink
+      %span.bold= h @form.permalink
 
-%p= h @form.description
+    %p
+      %label Active:
+      = @form.active?
 
-%p
-  permalink:
-  = h @form.permalink
-
-%p
-  Active:
-  = @form.active?
-
-%p
-  Parent Subcategory :
-  = link_to @subcategory.name, admin_category_subcategory_path(@category, @subcategory)
-
-
-
+  %div.actions
+    - index_entity_image(admin_category_subcategory_path(@form.category, @form.subcategory))
+    = link_to "Back to subcategory #{@form.subcategory.name}", admin_category_subcategory_path(@form.category, @form.subcategory)

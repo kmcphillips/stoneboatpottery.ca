@@ -1,4 +1,5 @@
-- if forms.forms.blank?
+- sub = forms
+- if sub.forms.blank?
   None
 - else
   %table.data
@@ -7,12 +8,12 @@
       %th Description
       %th Active?
       %th Actions      
-    - forms.forms.each do |form|
-      %tr
+    - sub.forms.each do |form|
+      %tr{:class => cycle("odd","even")}
         %td= link_to form.name, admin_category_subcategory_form_path(form.category, form.subcategory, form)
-        %td= h form.description
+        %td= link_to form.description, admin_category_subcategory_form_path(form.category, form.subcategory, form)
         %td= form.active?
-        %td
-          = link_to "Show", admin_category_subcategory_form_path(form.category, form.subcategory, form)
-          = link_to "Edit", edit_admin_category_subcategory_form_path(form.category, form.subcategory, form)
-          = button_to "Delete", admin_category_subcategory_form_path(form.category, form.subcategory, form), :method => :delete, :confirm => "Are you sure you want to delete this form?"
+        %td{:width => 40}
+          - edit_entity_image(edit_admin_category_subcategory_form_path(form.category, form.subcategory, form))
+          - delete_entity_image(admin_category_subcategory_form_path(form.category, form.subcategory, form))
+
