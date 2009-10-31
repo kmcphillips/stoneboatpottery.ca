@@ -1,1 +1,1 @@
-WholesalePassword.create(:password => "wholesale")
+WholesalePassword.create!(:password => "wholesale")

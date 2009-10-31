@@ -1,13 +1,19 @@
-%h2 
-  Edit
-  = h @block.label_display
+%div.post
+  %h2.title 
+    Edit
+    = h @block.label_display
 
-- form_for [:admin, @block] do |f| 
-  %p
-    = f.label :title
-    = f.text_field :title
+  %div.entry
+    - form_for [:admin, @block] do |f| 
+      %p
+        = f.label :title
+        = f.text_field :title
 
-  %p
-    = f.text_area :body, :rows => 15, :cols => 70
-  
-  = f.submit "Save #{@block.label_display}"
+      %p
+        = f.text_area :body, :rows => 15, :cols => 70
+      
+      = f.submit "Save #{@block.label_display}"
+
+  %div.actions
+    - index_entity_image(admin_blocks_path)
+    = link_to "Back to all blocks", admin_blocks_path

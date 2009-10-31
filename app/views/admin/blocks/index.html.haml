@@ -1,21 +1,22 @@
-%h2 Blocks
+%div.post
+  %h2.title Blocks
 
-- if @blocks.blank?
-  %h3 None here
-- else
-  %table.data
-    %tr
-      %th Section Name
-      %th Last Updated
-      %th Title
-      %th Body
-      %th Actions
-    - @blocks.each do |block| 
-      %tr
-        %td= h block.label_display
-        %td= h block.updated_at
-        %td= h block.title
-        %td= h truncate(block.body, :length => 120, :omission => " (more..)")
-        %td
-          = link_to "Show", admin_block_path(block)
-          = link_to "Edit", edit_admin_block_path(block)
+  %div.entry
+    - if @blocks.blank?
+      %h3 None here
+    - else
+      %table.data
+        %tr
+          %th Section Name
+          %th Last Updated
+          %th Title
+          %th Body
+          %th Actions
+        - @blocks.each do |block| 
+          %tr{:class => cycle("odd","even")}
+            %td= link_to block.label_display, block.section_path
+            %td= h block.updated_at.to_s(:long)
+            %td= link_to block.title, block.section_path
+            %td= link_to truncate(block.body, :length => 120, :omission => " (more..)"), block.section_path
+            %td{:width => 40}
+              - edit_entity_image(edit_admin_block_path(block))

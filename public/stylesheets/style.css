@@ -133,7 +133,7 @@ textarea {
 	width: 960px;
 	height: 240px;
 	margin: 0 auto;
-	background: url(../images/header4.jpg) no-repeat right bottom;
+	background: url(../images/header6.jpg) no-repeat right bottom;
 }
 
 /* Logo */
@@ -181,10 +181,11 @@ textarea {
 /* Menu */
 
 #menu {
-	width: 959px;
+	width: 960px;
 	height: 40px;
 	margin: 0 auto;
 	padding: 0;
+  padding-bottom: 6px;
 	background: #000000;
 }
 
@@ -206,7 +207,7 @@ textarea {
 	padding: 12px 20px 0px 20px;
 	text-decoration: none;
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
+	font-size: 13px;
 	font-weight: normal;
 	color: #FFFFFF;
 	border: none;
@@ -276,7 +277,7 @@ textarea {
   margin-left: 20px;
 	padding-bottom: 5px;
   padding-top: 3px;	padding-left: 15px;
-	background: url(../images/img04.jpg) no-repeat left 6px;
+	background: url(../images/bullet.jpg) no-repeat left 6px;
 	text-align: left;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 11px;
@@ -289,7 +290,6 @@ textarea {
 }
 
 .post .entry {
-	text-align: justify;
 	margin-bottom: 25px;
 	padding: 30px 20px 10px 20px;
 }

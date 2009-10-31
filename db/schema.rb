@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091017142712) do
+ActiveRecord::Schema.define(:version => 20091031011131) do
 
   create_table "blocks", :force => true do |t|
     t.text     "body"
@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20091017142712) do
     t.string   "label"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "section_path", :default => ""
   end
 
   create_table "categories", :force => true do |t|
