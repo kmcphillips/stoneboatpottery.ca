@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   
   def index
     # TODO: pagination
-    @posts = Post.all(:order => "updated_at DESC")
+    @posts = Post.paginate(:order => "updated_at DESC", :per_page => 2, :page => params[:page] || 1)
   end
 
   def show

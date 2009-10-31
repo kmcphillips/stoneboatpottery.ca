@@ -2,6 +2,5 @@
   = render :partial => 'posts/post', :locals => {:post => post}
 
 %div.post-footer.center
-  Newer
+  = will_paginate @posts
   = link_to "Archive", archive_posts_path
-  Older
