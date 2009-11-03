@@ -3,8 +3,7 @@
 
   %div.entry
     %p
-      - new_entity_image(new_admin_link_path)
-      = link_to "Create new link", new_admin_link_path
+      = new_entity_image(new_admin_link_path, "Create new link")
 
     - if @links.blank?
       %h3 None here
@@ -21,5 +20,5 @@
             %td= link_to link.url, link.url
             %td= h truncate(link.description, :length => 120, :omission => " (more..)")
             %td
-              - edit_entity_image(edit_admin_link_path(link))
-              - delete_entity_image(admin_link_path(link))
+              = edit_entity_image(edit_admin_link_path(link))
+              = delete_entity_image(admin_link_path(link))

@@ -16,6 +16,6 @@
         %td= sub.forms.size
         %td= sub.active?
         %td{:width => 40}
-          - edit_entity_image(edit_admin_category_subcategory_path(category, sub))
-          - delete_entity_image(admin_category_subcategory_path(category, sub))
+          = edit_entity_image(edit_admin_category_subcategory_path(category, sub))
+          = delete_entity_image(admin_category_subcategory_path(category, sub))
 

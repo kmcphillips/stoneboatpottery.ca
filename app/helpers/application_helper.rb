@@ -23,28 +23,28 @@ module ApplicationHelper
 
   # Action image helpers
 
-  def index_entity_image(path, args={})
-    link_to path, :title => "Index" do
-      image_tag "/images/icons/index.png", :alt => "Index"
-    end
+  def index_entity_image(path, label=nil, args={})
+    html = link_to(image_tag("/images/icons/index.png", :alt => "Index"), path, :title => "Index")
+    html += " " + link_to(label, path) if label
+    html
   end
   
-  def new_entity_image(path, args={})
-    link_to path, :title => "New" do
-      image_tag "/images/icons/new.png", :alt => "New"
-    end
+  def new_entity_image(path, label=nil, args={})
+    html = link_to image_tag("/images/icons/new.png", :alt => "New"), path, :title => "New"
+    html += " " + link_to(label, path) if label
+    html
   end
 
-  def delete_entity_image(path, args={})
-    link_to path, :method => :delete, :confirm => "Are you sure you want to delete this?", :title => "Delete" do
-      image_tag "/images/icons/delete.png", :alt => "Delete", :class => "action-image"
-    end
+  def delete_entity_image(path, label=nil, args={})
+    html = link_to image_tag("/images/icons/delete.png", :alt => "Delete", :class => "action-image"), path, :method => :delete, :confirm => "Are you sure you want to delete this?", :title => "Delete"
+    html += " " + link_to(label, path, :method => :delete, :confirm => "Are you sure you want to delete this?") if label
+    html
   end
 
-  def edit_entity_image(path, args={})
-    link_to path, :title => "Edit" do
-      image_tag "/images/icons/edit.png", :alt => "Edit", :class => "action-image"
-    end
+  def edit_entity_image(path, label=nil, args={})
+    html = link_to image_tag("/images/icons/edit.png", :alt => "Edit", :class => "action-image"), path, :title => "Edit"
+    html += " " + link_to(label, path) if label
+    html
   end
 
 end

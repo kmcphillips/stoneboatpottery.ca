@@ -248,7 +248,7 @@ textarea {
 	padding: 0px 20px 0px 20px;
 }
 
-#flash p.notice {
+#flashes p.notice {
   background: green;
   font-weight: bold;
   padding-left: 26px;
@@ -256,7 +256,7 @@ textarea {
   color: #FFFFFF;
 }
 
-#flash p.error {
+#flashes p.error {
   background: red;
   font-weight: bold;
   padding-left: 26px;

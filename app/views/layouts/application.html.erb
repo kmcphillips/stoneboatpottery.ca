@@ -39,10 +39,7 @@
 
 <%= render :partial => "shared/breadcrumbs" %>
 
-      <div id="flash">
-        <p class="notice"><%= flash[:notice] %></p>
-        <p class="error"><%= flash[:error] %></p>
-      </div>
+<%= render :partial => "shared/flashes" %>
 
 <%= yield %>
 

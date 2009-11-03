@@ -3,8 +3,7 @@
 
   %div.entry
     %p
-      - new_entity_image(new_admin_category_path)
-      = link_to "Create new category", new_admin_category_path
+      = new_entity_image(new_admin_category_path, "Create new category")
 
     - if @categories.blank?
       %h3 None here
@@ -26,5 +25,5 @@
               = category.subcategories.map{|subcategory| link_to(subcategory.name, admin_category_subcategory_path(category, subcategory))}.join(", ")
             %td= category.count_forms
             %td{:width => 40}
-              - edit_entity_image(edit_admin_category_path(category))
-              - delete_entity_image(admin_category_path(category))
+              = edit_entity_image(edit_admin_category_path(category))
+              = delete_entity_image(admin_category_path(category))

@@ -3,8 +3,7 @@
 
   %div.entry
     %p
-      - new_entity_image(new_admin_piece_path)
-      = link_to "Create new piece", new_admin_piece_path
+      = new_entity_image(new_admin_piece_path, "Create new piece")
 
     - if @pieces.blank?
       %h3 None here
@@ -25,5 +24,5 @@
             %td= h piece.for_sale?
             %td= h piece.active?
             %td{:width => 40}
-              - edit_entity_image(edit_admin_piece_path(piece))
-              - delete_entity_image(admin_piece_path(piece))
+              = edit_entity_image(edit_admin_piece_path(piece))
+              = delete_entity_image(admin_piece_path(piece))

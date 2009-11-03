@@ -7,5 +7,5 @@
       = f.submit "Save"
 
   %div.actions
-    - index_entity_image(admin_category_path(@category))
-    = link_to "Back to all subcategories under #{@category.name}", admin_category_path(@category)
+    = index_entity_image(admin_category_path(@category), "Back to all subcategories under #{@category.name}")
+

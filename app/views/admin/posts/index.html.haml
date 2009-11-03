@@ -3,8 +3,7 @@
 
   %div.entry
     %p
-      - new_entity_image(new_admin_post_path)
-      = link_to "Create new post", new_admin_post_path
+      = new_entity_image(new_admin_post_path, "Create new post")
 
     - if @posts.blank?
       %h3 No posts
@@ -21,5 +20,5 @@
             %td= link_to post.title, post_path(post)
             %td= link_to truncate(post.body, :length => 120, :omission => " (more..)"), post_path(post)
             %td{:width => 40}
-              - edit_entity_image(edit_admin_post_path(post))
-              - delete_entity_image(admin_post_path(post))
+              = edit_entity_image(edit_admin_post_path(post))
+              = delete_entity_image(admin_post_path(post))

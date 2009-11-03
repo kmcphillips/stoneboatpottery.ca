@@ -12,12 +12,19 @@ class Admin::ImagesController < ApplicationController
   def create
     @image = Image.new(params[:image])
 
-    if @image.save
-      flash[:notice] = 'Image successfully created.'
-      redirect_to admin_images_path     
-    else
-      flash[:errors] = @image.errors.full_messages.to_sentence
-      render :action => :new
+    respond_to do |wants|
+      wants.js do
+        if @image.save
+          flash.now[:notice] = 'Image successfully added.'
+        else
+          flash.now[:errors] = @image.errors.full_messages.to_sentence
+        end
+
+        render :update do |page|
+          page.replace_html :image_container, :partial => "shared/image_container"
+          page.replace_html :flashes, :partial => "shared/flashes"
+        end
+      end
     end
   end
 

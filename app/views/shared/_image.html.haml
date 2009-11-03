@@ -3,19 +3,17 @@
     function upload_before()
     {
       $('#upload img.throbber').show();
-      $('#upload input.submit').attr("disabled", "true");
+      $('#upload input.submit').attr("disabled", true);
     }
 
     function upload_after()
     {
       $('#upload').overlay().close();
+      $('#upload img.throbber').hide();
+      $('#upload input.submit').attr("disabled", false);
     }
 
-#image-container
-  Image container
-
-  = button_to_function "Upload Image", "show_upload()"
-    
+= render :partial => "shared/image_container"  
 
 #upload
   %div
