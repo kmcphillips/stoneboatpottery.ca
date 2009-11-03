@@ -11,6 +11,7 @@
       $('#upload').overlay().close();
       $('#upload img.throbber').hide();
       $('#upload input.submit').attr("disabled", false);
+      $('#uploaded_data').val("");
     }
 
 = render :partial => "shared/image_container"  
@@ -19,7 +20,7 @@
   %div
     %h2 Upload Image
 
-    - form_remote_tag :url => "/admin/images", :before => "upload_before();", :complete => "upload_after();" do
+    - form_remote_tag :url => "/admin/images", :before => "upload_before();", :complete => "upload_after();", :html => { :multipart => true } do
       = file_field_tag :uploaded_data
       %br
       = submit_tag "Upload", :class => "submit"

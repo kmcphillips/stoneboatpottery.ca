@@ -17,7 +17,7 @@ class Admin::ImagesController < ApplicationController
         if @image.save
           flash.now[:notice] = 'Image successfully added.'
         else
-          flash.now[:errors] = @image.errors.full_messages.to_sentence
+          flash.now[:error] = @image.errors.full_messages.to_sentence
         end
 
         render :update do |page|
