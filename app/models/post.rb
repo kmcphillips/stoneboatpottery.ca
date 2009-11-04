@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+  has_one :image, :as => :imageable
+
   validates_uniqueness_of :permalink
   validates_presence_of :body, :title
   

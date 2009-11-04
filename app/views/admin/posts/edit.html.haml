@@ -7,7 +7,7 @@
       = f.submit "Save"
  
     %br 
-    = render :partial => "shared/image"
+    = render :partial => "shared/image", :locals => { :imageable => @post }
 
   %div.actions
     = index_entity_image(admin_posts_path, "Back to all posts")

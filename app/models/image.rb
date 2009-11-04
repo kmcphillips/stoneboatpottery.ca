@@ -7,9 +7,8 @@ class Image < ActiveRecord::Base
                  :storage => :file_system,
                  :path_prefix => "public/images/attachment/",
                  :resize_to => '700x700>',
-                 :thumbnails => { :thumb => '250x250>' }
+                 :thumbnails => { :small => '120x120>' , :large => "300x300>"}
   
-#  validates_presence_of :imageable
   validates_presence_of :filename, :content_type, :size
 #  validates_as_attachment
   
@@ -25,11 +24,17 @@ class Image < ActiveRecord::Base
     self.update_attiribute(:primary, true)
   end
 
+  def thumb(name)
+    self.thumbnails.find_by_thumbnail(name.to_s)
+  end
+
 protected
 
   def delete_images
-    Image.all(:conditions => ["parent_id = ?", self.id]).each {|img| img.destroy }
-    
+    unless self.parent_id
+      Image.all(:conditions => ["parent_id = ?", self.id]).each {|img| img.destroy }
+    end
+      
     FileUtils.rm(self.full_filename)
   end
   

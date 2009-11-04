@@ -3,4 +3,6 @@
 
   = button_to_function "Upload Image", "show_upload()"
 
-  = "Rendered at #{Time.now}"  
+  %br
+
+  = image_tag imageable.image.public_filename(:small) if imageable.image
