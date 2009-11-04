@@ -11,7 +11,7 @@
       $('#upload').overlay().close();
       $('#upload img.throbber').hide();
       $('#upload input.submit').attr("disabled", false);
-      $('#uploaded_data').val("");
+      $('#image_uploaded_data').val("");
     }
 
 = render :partial => "shared/image_container"  
@@ -20,10 +20,12 @@
   %div
     %h2 Upload Image
 
-    - form_remote_tag :url => "/admin/images", :before => "upload_before();", :complete => "upload_after();", :html => { :multipart => true } do
-      = file_field_tag :uploaded_data
+    - form_for :image, :url => admin_images_path(:format => "js"), :html => { :multipart => true, :target => "upload_iframe", :onsubmit => "upload_before();" } do |f|
+      = f.file_field :uploaded_data
       %br
       = submit_tag "Upload", :class => "submit"
       = submit_tag "Cancel", :class => "close", :onclick => "return false;"
       = image_tag "/images/template/throbber.gif", :class => "throbber", :alt => "Loading..."
+
+%iframe{:id => "upload_iframe", :name => "upload_iframe", :height => 1, :width => 1, :style => "display: none"}
 
