@@ -27,3 +27,7 @@
   display: none;
   padding-left: 40px;
 }
+
+table.image td{
+  border: 2px dashed black;
+}
