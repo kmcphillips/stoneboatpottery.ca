@@ -41,13 +41,14 @@ ActionController::Routing::Routes.draw do |map|
 
     admin.resources :users, :only => [:edit, :update]
 
+    admin.resources :images, :only => [:create, :new, :destroy], :member => [:make_primary]
+
     admin.resources :categories do |categories|
       categories.resources :subcategories, :only => [:new, :show, :create, :update, :edit, :destroy] do |subcategories|
         subcategories.resources :forms, :only => [:new, :show, :create, :update, :edit, :destroy]
       end
     end
 
-    admin.resources :images
   end
 
 end

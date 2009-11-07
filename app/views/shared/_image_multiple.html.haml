@@ -1,0 +1,18 @@
+- images = imageable.images
+#images_container
+  %table.image
+    %tr
+      %td
+        - if images.any?
+          - images.each do |image|
+            = image_tag image.public_filename(:small)
+            = button_to_remote "Remove Image", :url => admin_image_path(image, :imageable_type => image.imageable_type, :imageable_id => image.imageable_id), :method => :delete
+            = button_to_remote "Make Primary", :url => make_primary_admin_image_path(image, :imageable_type => image.imageable_type, :imageable_id => image.imageable_id), :method => :put
+        - else
+          ?
+
+    %tr
+      %td
+        = button_to_function "Add Image", "show_upload()"
+
+  

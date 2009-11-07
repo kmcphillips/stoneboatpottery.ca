@@ -1,7 +1,11 @@
 class Image < ActiveRecord::Base
   belongs_to :imageable, :polymorphic => true
 
-  before_destroy :delete_images
+  before_destroy :delete_images, :manage_primary
+
+  after_create :manage_primary
+
+  after_update :manage_primary
 
   has_attachment :content_type => :image,
                  :storage => :file_system,
@@ -18,7 +22,7 @@ class Image < ActiveRecord::Base
 
   def make_primary
     raise StandardError, "Must be associated to an object to make it the default" unless self.imageable
-    Image.all(:conditions => ["imageable_type = ? AND imageable_id = ? AND primary = ? AND NOT id = ?", self.imageable_type, self.imageable_id, 1, self.id]) do |img|
+    Image.all(:conditions => ["imageable_type = ? AND imageable_id = ? AND primary = ? AND id != ?", self.imageable_type, self.imageable_id, 1, self.id]) do |img|
       img.update_attribute(:primary, false)
     end
     self.update_attiribute(:primary, true)
@@ -28,14 +32,28 @@ class Image < ActiveRecord::Base
     self.thumbnails.find_by_thumbnail(name.to_s)
   end
 
+  def is_full_image?
+    return ! parent_id
+  end
+
 protected
 
   def delete_images
-    unless self.parent_id
+    if is_full_image?
       Image.all(:conditions => ["parent_id = ?", self.id]).each {|img| img.destroy }
     end
-      
-    FileUtils.rm(self.full_filename)
+    
+    begin  
+      FileUtils.rm(self.full_filename)
+    rescue
+      # TODO log failed delete
+    end
+  end
+
+  def manage_primary
+    if is_full_image? && imageable.respond_to?(:images) && ! imageable.images.primary
+      imageable.images.first(:conditions => {:primary => false}, :order => "updated_at DESC").andand.make_primary
+    end
   end
   
 end

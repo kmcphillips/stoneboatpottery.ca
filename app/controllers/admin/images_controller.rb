@@ -1,5 +1,5 @@
 class Admin::ImagesController < ApplicationController
-  before_filter :require_login, :lookup_imageable
+  before_filter :require_login
 
   def new
     @image = Image.new
@@ -9,6 +9,7 @@ class Admin::ImagesController < ApplicationController
     respond_to do |wants|
       wants.js do
         @image = Image.new(params[:image])
+        @imageable = params[:imageable_type].constantize.find(params[:imageable_id]) rescue nil
 
         responds_to_parent do
           if @image.save
@@ -33,7 +34,8 @@ class Admin::ImagesController < ApplicationController
 
           render :update do |page|
             page.call "upload_after"
-            page.replace_html :image_container, :partial => "shared/image_container", :locals => {:imageable => @imageable}
+            page.replace_html :image_container, :partial => "shared/image_single", :locals => {:imageable => @imageable} if @imageable.respond_to?(:image)
+            page.replace_html :images_container, :partial => "shared/image_multiple", :locals => {:imageable => @imageable} if @imageable.respond_to?(:images)
             page.replace_html :flashes, :partial => "shared/flashes"
           end
         end
@@ -56,9 +58,16 @@ class Admin::ImagesController < ApplicationController
             end
 
             imageable.reload
-            page.replace_html :image_container, :partial => "shared/image_container", :locals => {:imageable => imageable}
+            page.replace_html :image_container, :partial => "shared/image_single", :locals => {:imageable => imageable}
           elsif imageable.respond_to?(:images)
+            if @image.destroy
+              flash.now[:notice] = "Image removed successfully."
+            else
+              flash.now[:error] = @image.errors.full_messages.to_sentence
+            end
 
+            imageable.reload
+            page.replace_html :images_container, :partial => "shared/image_multiple", :locals => {:imageable => imageable}
           else
             flash.now[:error] = "Unable to find image. Contact administrator."
             # TODO log weird error here
@@ -73,14 +82,18 @@ class Admin::ImagesController < ApplicationController
   def make_primary
     respond_to do |wants|
       wants.js do
-        
+        @image = Image.find_by_id(params[:id])
+
+        if @image.imageable.respond_to(:images)
+          @image.make_primary
+          flash.now[:notice] = "Changed primary image."
+
+          imageable.reload
+          page.replace_html :images_container, :partial => "shared/image_multiple", :locals => {:imageable => imageable}
+          page.replace_html :flashes, :partial => "shared/flashes"
+        end
       end
     end
   end
 
-protected
-
-  def lookup_imageable
-    @imageable = params[:imageable_type].constantize.find(params[:imageable_id]) rescue nil
-  end
 end

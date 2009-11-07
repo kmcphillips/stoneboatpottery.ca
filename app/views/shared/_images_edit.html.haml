@@ -14,7 +14,12 @@
       $('#image_uploaded_data').val("");
     }
 
-= render :partial => "shared/image_container", :locals => { :imageable => imageable }
+- if imageable.respond_to?(:image)
+  = render :partial => "shared/image_single", :locals => { :imageable => imageable }
+- elsif imageable.respond_to?(:images)
+  = render :partial => "shared/image_multiple", :locals => { :imageable => imageable }
+- else
+  - raise StandardError, "Invalid imageable #{imageable.inspect}"
 
 #upload
   %div

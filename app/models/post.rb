@@ -1,5 +1,10 @@
 class Post < ActiveRecord::Base
-  has_one :image, :as => :imageable
+  # has_one :image, :as => :imageable
+  has_many :images, :as => :imageable do
+    def primary
+      first(:conditions => {:primary => true})
+    end
+  end
 
   validates_uniqueness_of :permalink
   validates_presence_of :body, :title
