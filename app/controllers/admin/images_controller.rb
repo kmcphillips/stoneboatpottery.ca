@@ -83,14 +83,18 @@ class Admin::ImagesController < ApplicationController
     respond_to do |wants|
       wants.js do
         @image = Image.find_by_id(params[:id])
+        imageable = @image.imageable
 
-        if @image.imageable.respond_to(:images)
+        if imageable.respond_to?(:images)
           @image.make_primary
           flash.now[:notice] = "Changed primary image."
 
           imageable.reload
-          page.replace_html :images_container, :partial => "shared/image_multiple", :locals => {:imageable => imageable}
-          page.replace_html :flashes, :partial => "shared/flashes"
+
+          render :update do |page|
+            page.replace_html :images_container, :partial => "shared/image_multiple", :locals => {:imageable => imageable}
+            page.replace_html :flashes, :partial => "shared/flashes"
+          end
         end
       end
     end

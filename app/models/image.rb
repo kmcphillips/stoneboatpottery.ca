@@ -22,10 +22,10 @@ class Image < ActiveRecord::Base
 
   def make_primary
     raise StandardError, "Must be associated to an object to make it the default" unless self.imageable
-    Image.all(:conditions => ["imageable_type = ? AND imageable_id = ? AND primary = ? AND id != ?", self.imageable_type, self.imageable_id, 1, self.id]) do |img|
+    self.update_attribute(:primary, true)
+    Image.full.all(:conditions => ["imageable_type = ? AND imageable_id = ? AND id != ?", self.imageable_type, self.imageable_id, self.id]).each do |img|
       img.update_attribute(:primary, false)
     end
-    self.update_attiribute(:primary, true)
   end
 
   def thumb(name)
@@ -52,7 +52,7 @@ protected
 
   def manage_primary
     if is_full_image? && imageable.respond_to?(:images) && ! imageable.images.primary
-      imageable.images.first(:conditions => {:primary => false}, :order => "updated_at DESC").andand.make_primary
+      imageable.images.first(:conditions => {:primary => false}, :order => "updated_at DESC").andand.update_attribute(:primary, true)
     end
   end
   
