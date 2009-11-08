@@ -6,12 +6,11 @@
   %div.entry
     - form_for [:admin, @block] do |f| 
       %p
-        = f.label :title
-        = f.text_field :title
-
-      %p
         = f.text_area :body, :rows => 15, :cols => 70
       
+      - if f.object.accepts_image?
+        %p TODO image upload
+
       = f.submit "Save #{@block.label_display}"
 
   %div.actions

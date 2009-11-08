@@ -28,6 +28,32 @@
   padding-left: 40px;
 }
 
-table.image td{
-  border: 2px dashed black;
+#images_add {
+  padding-top: 12px;
+  font-style: italic;
 }
+
+#images_add span.count {
+  padding-left: 10px;
+}
+
+#images_container div.hscroll_images {
+  width: 636px;
+  height: 196px;
+  background-color: #97B39F;
+  overflow:auto;
+  white-space: nowrap;
+  border: 4px solid black;
+}
+
+#image_container div.single_image {
+  width: 636px;
+  height: 196px;
+  background-color: #97B39F;
+  border: 4px solid black;
+}
+
+table.image td{
+  
+}
+

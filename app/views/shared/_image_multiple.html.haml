@@ -1,22 +1,29 @@
 - images = imageable.images.primary_first
 #images_container
-  %table.image
-    %tr
-      %td
+  .hscroll_images
+    %table.image
+      %tr
         - if images.any?
           - images.each do |image|
-            - if image.primary?
-              %span{:style => "border: 4px solid red"}= image_tag image.public_filename(:small)
-            - else
-              = image_tag image.public_filename(:small)
-
-            = button_to_remote "Remove Image", :url => admin_image_path(image, :imageable_type => image.imageable_type, :imageable_id => image.imageable_id), :method => :delete
-            = button_to_remote "Make Primary", :url => make_primary_admin_image_path(image), :method => :put
+            %td
+              - if image.primary?
+                %span{:style => "border: 4px solid red"}= image_tag image.public_filename(:small)
+              - else
+                = image_tag image.public_filename(:small)
+              %br
+              = button_to_remote "Remove Image", :url => admin_image_path(image, :imageable_type => image.imageable_type, :imageable_id => image.imageable_id), :method => :delete
+              
+              - unless image.primary?
+                %br
+                = button_to_remote "Make Primary", :url => make_primary_admin_image_path(image), :method => :put
         - else
-          ?
-
-    %tr
-      %td
-        = button_to_function "Add Image", "show_upload()"
-
+          TODO no images
   
+  #images_add
+    = button_to_function "Add Image", "show_upload()"
+    - if imageable.respond_to?(:images)
+      %span.count
+        = imageable.images.size
+        = imageable.images.size == 1 ? "image" : "images"
+        attached to this
+        = imageable.class.to_s.humanize.downcase + "."

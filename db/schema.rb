@@ -9,15 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091031133037) do
+ActiveRecord::Schema.define(:version => 20091108215211) do
 
   create_table "blocks", :force => true do |t|
     t.text     "body"
-    t.string   "title"
     t.string   "label"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "section_path", :default => ""
+    t.string   "section_path",  :default => ""
+    t.boolean  "accepts_image", :default => false
   end
 
   create_table "categories", :force => true do |t|

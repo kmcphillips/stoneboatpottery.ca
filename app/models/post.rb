@@ -1,13 +1,13 @@
 class Post < ActiveRecord::Base
-  # has_one :image, :as => :imageable
-  has_many :images, :as => :imageable do
-    def primary
-      first(:conditions => {:primary => true})
-    end
-    def primary_first
-      all(:order => "`primary` DESC, updated_at DESC")
-    end
-  end
+   has_one :image, :as => :imageable
+#  has_many :images, :as => :imageable do
+#    def primary
+#      first(:conditions => {:primary => true})
+#    end
+#    def primary_first
+#      all(:order => "`primary` DESC, updated_at DESC")
+#    end
+#  end
 
   validates_uniqueness_of :permalink
   validates_presence_of :body, :title

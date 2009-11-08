@@ -34,9 +34,9 @@ class Admin::ImagesController < ApplicationController
 
           render :update do |page|
             page.call "upload_after"
-            page.replace_html :image_container, :partial => "shared/image_single", :locals => {:imageable => @imageable} if @imageable.respond_to?(:image)
-            page.replace_html :images_container, :partial => "shared/image_multiple", :locals => {:imageable => @imageable} if @imageable.respond_to?(:images)
-            page.replace_html :flashes, :partial => "shared/flashes"
+            page.replace :image_container, :partial => "shared/image_single", :locals => {:imageable => @imageable} if @imageable.respond_to?(:image)
+            page.replace :images_container, :partial => "shared/image_multiple", :locals => {:imageable => @imageable} if @imageable.respond_to?(:images)
+            page.replace_html :flashes_now, :partial => "shared/flashes"
           end
         end
       end
@@ -58,7 +58,7 @@ class Admin::ImagesController < ApplicationController
             end
 
             imageable.reload
-            page.replace_html :image_container, :partial => "shared/image_single", :locals => {:imageable => imageable}
+            page.replace :image_container, :partial => "shared/image_single", :locals => {:imageable => imageable}
           elsif imageable.respond_to?(:images)
             if @image.destroy
               flash.now[:notice] = "Image removed successfully."
@@ -67,13 +67,13 @@ class Admin::ImagesController < ApplicationController
             end
 
             imageable.reload
-            page.replace_html :images_container, :partial => "shared/image_multiple", :locals => {:imageable => imageable}
+            page.replace :images_container, :partial => "shared/image_multiple", :locals => {:imageable => imageable}
           else
             flash.now[:error] = "Unable to find image. Contact administrator."
             # TODO log weird error here
           end
 
-          page.replace_html :flashes, :partial => "shared/flashes"
+          page.replace_html :flashes_now, :partial => "shared/flashes"
         end
       end
     end
@@ -92,8 +92,8 @@ class Admin::ImagesController < ApplicationController
           imageable.reload
 
           render :update do |page|
-            page.replace_html :images_container, :partial => "shared/image_multiple", :locals => {:imageable => imageable}
-            page.replace_html :flashes, :partial => "shared/flashes"
+            page.replace :images_container, :partial => "shared/image_multiple", :locals => {:imageable => imageable}
+            page.replace_html :flashes_now, :partial => "shared/flashes"
           end
         end
       end

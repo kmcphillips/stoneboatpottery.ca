@@ -2,7 +2,7 @@
   %h2.title= h @category.name
 
   %div.entry
-    %p= h @category.description
+    = simple_format @category.description
 
     %p
       %label permalink

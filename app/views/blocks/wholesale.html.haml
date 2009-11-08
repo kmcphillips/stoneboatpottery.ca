@@ -2,8 +2,9 @@
   %h2.title Wholesale
 
   %div.entry
+    = simple_format @block.body
+
     %p
-      = h @block.body
       = link_to "Logout of Wholesale", "/logout"
 
 

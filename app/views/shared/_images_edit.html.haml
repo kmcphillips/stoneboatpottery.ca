@@ -14,6 +14,8 @@
       $('#image_uploaded_data').val("");
     }
 
+#flashes_now
+
 - if imageable.respond_to?(:image)
   = render :partial => "shared/image_single", :locals => { :imageable => imageable }
 - elsif imageable.respond_to?(:images)
