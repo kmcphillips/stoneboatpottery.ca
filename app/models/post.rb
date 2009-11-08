@@ -4,6 +4,9 @@ class Post < ActiveRecord::Base
     def primary
       first(:conditions => {:primary => true})
     end
+    def primary_first
+      all(:order => "`primary` DESC, updated_at DESC")
+    end
   end
 
   validates_uniqueness_of :permalink

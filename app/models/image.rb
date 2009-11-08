@@ -51,7 +51,7 @@ protected
   end
 
   def manage_primary
-    if is_full_image? && imageable.respond_to?(:images) && ! imageable.images.primary
+    if is_full_image? && imageable.respond_to?(:images) && ! Image.full.first(:conditions => ["imageable_type = ? AND imageable_id = ? AND id != ? AND `primary` = ?", self.imageable_type, self.imageable_id, self.id, true])
       imageable.images.first(:conditions => {:primary => false}, :order => "updated_at DESC").andand.update_attribute(:primary, true)
     end
   end
