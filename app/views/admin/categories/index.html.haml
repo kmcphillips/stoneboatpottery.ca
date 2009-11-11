@@ -24,6 +24,6 @@
             %td
               = category.subcategories.map{|subcategory| link_to(subcategory.name, admin_category_subcategory_path(category, subcategory))}.join(", ")
             %td= category.count_forms
-            %td{:width => 40}
+            %td{:width => 46}
               = edit_entity_image(edit_admin_category_path(category))
               = delete_entity_image(admin_category_path(category))

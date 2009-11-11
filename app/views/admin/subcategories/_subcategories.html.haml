@@ -15,7 +15,7 @@
         %td= link_to truncate(sub.description, :length => 120, :omission => " (more..)"), admin_category_subcategory_path(category, sub)
         %td= sub.forms.size
         %td= sub.active?
-        %td{:width => 40}
+        %td{:width => 46}
           = edit_entity_image(edit_admin_category_subcategory_path(category, sub))
           = delete_entity_image(admin_category_subcategory_path(category, sub))
 

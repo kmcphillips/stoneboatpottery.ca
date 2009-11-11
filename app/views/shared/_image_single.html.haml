@@ -2,8 +2,6 @@
 #image_container
   - if image
     = link_to image_tag(image.public_filename(:small)), image.public_filename, :rel => :facebox, :class => :thumb
-            
-    .clear
 
   #images_add
     = button_to_function "#{image ? "Change" : "Set"} Image", "show_upload()"

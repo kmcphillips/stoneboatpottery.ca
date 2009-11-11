@@ -13,7 +13,7 @@
         %td= link_to form.name, admin_category_subcategory_form_path(form.category, form.subcategory, form)
         %td= link_to form.description, admin_category_subcategory_form_path(form.category, form.subcategory, form)
         %td= form.active?
-        %td{:width => 40}
-          - edit_entity_image(edit_admin_category_subcategory_form_path(form.category, form.subcategory, form))
-          - delete_entity_image(admin_category_subcategory_form_path(form.category, form.subcategory, form))
+        %td{:width => 46}
+          = edit_entity_image(edit_admin_category_subcategory_form_path(form.category, form.subcategory, form))
+          = delete_entity_image(admin_category_subcategory_form_path(form.category, form.subcategory, form))
 
