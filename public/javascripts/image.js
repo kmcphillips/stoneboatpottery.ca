@@ -9,3 +9,7 @@ function show_upload() {
     api: true
   }).load();
 }
+
+$(document).ready(function($) {
+  $('a[rel*=facebox]').facebox()
+}) 

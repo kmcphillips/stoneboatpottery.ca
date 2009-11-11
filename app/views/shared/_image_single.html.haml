@@ -1,19 +1,11 @@
 - image = imageable.image
 #image_container
-  .single_image
-    %table.image
-      - if image
-        %tr
-          %td
-            = image_tag image.public_filename(:small) if image
-          %td
-            = button_to_function "Change Image", "show_upload()"
-            %br
-            = button_to_remote "Remove Image", :url => admin_image_path(image, :imageable_type => image.imageable_type, :imageable_id => image.imageable_id), :method => :delete
-      - else
-        %tr
-          %td
-            TODO no image
+  - if image
+    = link_to image_tag(image.public_filename(:small)), image.public_filename, :rel => :facebox, :class => :thumb
+            
+    .clear
 
   #images_add
-    = button_to_function "Add Image", "show_upload()"
+    = button_to_function "#{image ? "Change" : "Set"} Image", "show_upload()"
+    - if image
+      = button_to_remote "Remove Image", :url => admin_image_path(image, :imageable_type => image.imageable_type, :imageable_id => image.imageable_id), :method => :delete
