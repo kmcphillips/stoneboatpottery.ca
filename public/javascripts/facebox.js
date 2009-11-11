@@ -95,7 +95,7 @@
               <div class="footer"> \
                 <div class="navigation"></div> \
                 <a href="#" class="close"> \
-                  <img src="/facebox/loading.gif" title="close" class="close_image" /> \
+                  <img src="/images/template/throbber.gif" title="close" class="close_image" /> \
                 </a> \
               </div> \
             </td> \

@@ -9,11 +9,11 @@
               %td
                 = link_to image_tag(image.public_filename(:small)), image.public_filename, :rel => :facebox, :class => (image.primary? ? :thumb_primary : :thumb)
                 %br
-                = button_to_remote "Remove Image", :url => admin_image_path(image, :imageable_type => image.imageable_type, :imageable_id => image.imageable_id), :method => :delete
+                = button_to_remote "Remove Image", :url => admin_image_path(image, :imageable_type => image.imageable_type, :imageable_id => image.imageable_id), :method => :delete, :failure => "alert('There was an error removing this image. Please try again or contact administrator.')"
                 
                 - unless image.primary?
                   %br
-                  = button_to_remote "Make Primary", :url => make_primary_admin_image_path(image), :method => :put
+                  = button_to_remote "Make Primary", :url => make_primary_admin_image_path(image), :method => :put, :failure => "alert('There was an error making this image primary. Please try again or contact administrator.')"
 
   
   #images_add
@@ -24,3 +24,8 @@
         = imageable.images.size == 1 ? "image" : "images"
         attached to this
         = imageable.class.to_s.humanize.downcase + "."
+
+:javascript
+  $(document).ready(function($) {
+    $('a[rel*=facebox]').facebox()
+  }) 

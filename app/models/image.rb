@@ -21,6 +21,7 @@ class Image < ActiveRecord::Base
   named_scope :full, :conditions => "thumbnail IS NULL"
 
   def make_primary
+    # TODO this is broken
     raise StandardError, "Must be associated to an object to make it the default" unless self.imageable
     self.update_attribute(:primary, true)
     Image.full.all(:conditions => ["imageable_type = ? AND imageable_id = ? AND id != ?", self.imageable_type, self.imageable_id, self.id]).each do |img|
@@ -51,8 +52,9 @@ protected
   end
 
   def manage_primary
-    if is_full_image? && imageable.respond_to?(:images) && ! Image.full.first(:conditions => ["imageable_type = ? AND imageable_id = ? AND id != ? AND `primary` = ?", self.imageable_type, self.imageable_id, self.id, true])
-      imageable.images.first(:conditions => {:primary => false}, :order => "updated_at DESC").andand.update_attribute(:primary, true)
+    # TODO this is broken
+    if is_full_image? && self.imageable.respond_to?(:images) && self.imageable.images.first(:conditions => ["id != ? AND `primary` = ?", self.id, true]).nil?
+      self.imageable.images.first(:conditions => {:primary => false}, :order => "updated_at DESC").andand.update_attribute(:primary, true)
     end
   end
   

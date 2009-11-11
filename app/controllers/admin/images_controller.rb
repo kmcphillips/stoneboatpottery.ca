@@ -8,34 +8,39 @@ class Admin::ImagesController < ApplicationController
   def create
     respond_to do |wants|
       wants.js do
-        @image = Image.new(params[:image])
-        @imageable = params[:imageable_type].constantize.find(params[:imageable_id]) rescue nil
-
         responds_to_parent do
-          if @image.save
-            begin
-              if @imageable.respond_to?(:image)
-                @imageable.image.andand.destroy   # This puts exceptions in the logs but works so i'm just going to leave it as is
-                @imageable.image = @image
-              elsif @imageable.respond_to?(:images)
-                @imageable.images << @image
-              else
-                raise StandardError, "does not respond to image or images"
-              end
+          begin
+            @image = Image.new(params[:image])
+            @imageable = params[:imageable_type].constantize.find(params[:imageable_id]) rescue nil
 
-              flash.now[:notice] = 'Image successfully added.'
-            rescue => e
-              flash.now[:error] = 'Unable to associate image to object. Contact administrator.'
-              # TODO log this exception
+            if @image.save
+              begin
+                if @imageable.respond_to?(:image)
+                  @imageable.image.andand.destroy   # This puts exceptions in the logs but works so i'm just going to leave it as is
+                  @imageable.image = @image
+                elsif @imageable.respond_to?(:images)
+                  @imageable.images << @image
+                else
+                  raise StandardError, "does not respond to image or images"
+                end
+
+                flash.now[:notice] = 'Image successfully added.'
+              rescue => e
+                flash.now[:error] = 'Unable to associate image to object. Contact administrator.'
+                # TODO log this exception
+              end
+            else
+              flash.now[:error] = @image.errors.full_messages.to_sentence
             end
-          else
-            flash.now[:error] = @image.errors.full_messages.to_sentence
+          rescue => e
+            # TODO log e
+            flash.now[:error] = "There was an error uploading image. Please try again or contact administrator."
           end
 
           render :update do |page|
             page.call "upload_after"
-            page.replace :image_container, :partial => "shared/image_single", :locals => {:imageable => @imageable} if @imageable.respond_to?(:image)
-            page.replace :images_container, :partial => "shared/image_multiple", :locals => {:imageable => @imageable} if @imageable.respond_to?(:images)
+            page.replace :image_container, :partial => "shared/image_single", :locals => {:imageable => @imageable} if @imageable.andand.respond_to?(:image)
+            page.replace :images_container, :partial => "shared/image_multiple", :locals => {:imageable => @imageable} if @imageable.andand.respond_to?(:images)
             page.replace_html :flashes_now, :partial => "shared/flashes"
           end
         end
