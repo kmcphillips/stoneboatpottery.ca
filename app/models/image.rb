@@ -58,7 +58,7 @@ protected
 
   def make_another_primary
     if is_full_image? && self.imageable.andand.respond_to?(:images) && self.primary?
-      self.imageable.images.first(:conditions => ["id != ?", self.id], :order => "created_at ASC")
+      self.imageable.images.first(:conditions => ["id != ?", self.id], :order => "created_at ASC").andand.update_attribute(:primary, true)
     end
   end
   
