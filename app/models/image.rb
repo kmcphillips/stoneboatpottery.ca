@@ -37,8 +37,9 @@ protected
     
     begin  
       FileUtils.rm(self.full_filename)
-    rescue
-      # TODO log failed delete
+    rescue => e
+      logger.error "Error deleting image from disk"
+      logger.error e, e.backtrace     
     end
   end
 

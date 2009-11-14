@@ -9,7 +9,7 @@ class Admin::ImagesController < ApplicationController
     respond_to do |wants|
       wants.js do
         responds_to_parent do
-#          begin
+          begin
             @imageable = params[:imageable_type].constantize.find(params[:imageable_id]) rescue nil
             old_img = nil
 
@@ -29,12 +29,14 @@ class Admin::ImagesController < ApplicationController
               end
             else
               flash.now[:error] = 'Unable to associate image to object. Contact administrator.'
-              # TODO log this exception
+              logger.error "Error associating image to object with params: #{params.inspect}"
             end
-#          rescue => e
-#            # TODO log e
-#            flash.now[:error] = "There was an error uploading image. Please try again or contact administrator. "
-#          end
+          rescue => e
+            logger.error "Error responding to image upload"
+            logger.error e, e.backtrace
+    
+            flash.now[:error] = "There was an error uploading image. Please try again or contact administrator. "
+          end
 
           render :update do |page|
             page.call "upload_after"
@@ -74,7 +76,7 @@ class Admin::ImagesController < ApplicationController
             page.replace :images_container, :partial => "shared/image_multiple", :locals => {:imageable => imageable}
           else
             flash.now[:error] = "Unable to find image. Contact administrator."
-            # TODO log weird error here
+            logger.error "Error deleting image with params: #{params.inspect}"
           end
 
           page.replace_html :flashes_now, :partial => "shared/flashes"
