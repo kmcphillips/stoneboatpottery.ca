@@ -9,33 +9,32 @@ class Admin::ImagesController < ApplicationController
     respond_to do |wants|
       wants.js do
         responds_to_parent do
-          begin
-            @image = Image.new(params[:image])
+#          begin
             @imageable = params[:imageable_type].constantize.find(params[:imageable_id]) rescue nil
+            old_img = nil
 
-            if @image.save
-              begin
-                if @imageable.respond_to?(:image)
-                  @imageable.image.andand.destroy   # This puts exceptions in the logs but works so i'm just going to leave it as is
-                  @imageable.image = @image
-                elsif @imageable.respond_to?(:images)
-                  @imageable.images << @image
-                else
-                  raise StandardError, "does not respond to image or images"
-                end
+            if @imageable && (@imageable.respond_to?(:image) || @imageable.respond_to?(:images))
+              if @imageable.respond_to?(:image)
+                old_img = @imageable.image
+                @image = Image.new(params[:image].merge(:imageable => @imageable))
+              elsif @imageable.respond_to?(:images)
+                @image = @imageable.images.new(params[:image])
+              end
 
+              if @image.save
                 flash.now[:notice] = 'Image successfully added.'
-              rescue => e
-                flash.now[:error] = 'Unable to associate image to object. Contact administrator.'
-                # TODO log this exception
+                old_img.destroy rescue nil
+              else
+                flash.now[:error] = @image.errors.full_messages.to_sentence
               end
             else
-              flash.now[:error] = @image.errors.full_messages.to_sentence
+              flash.now[:error] = 'Unable to associate image to object. Contact administrator.'
+              # TODO log this exception
             end
-          rescue => e
-            # TODO log e
-            flash.now[:error] = "There was an error uploading image. Please try again or contact administrator."
-          end
+#          rescue => e
+#            # TODO log e
+#            flash.now[:error] = "There was an error uploading image. Please try again or contact administrator. "
+#          end
 
           render :update do |page|
             page.call "upload_after"
@@ -91,8 +90,13 @@ class Admin::ImagesController < ApplicationController
         imageable = @image.imageable
 
         if imageable.respond_to?(:images)
-          @image.make_primary
-          flash.now[:notice] = "Changed primary image."
+          @image.primary = true
+
+          if @image.save
+            flash.now[:notice] = "Changed primary image."
+          else
+            flash.now[:error] = @image.errors.full_messages.to_sentence
+          end
 
           imageable.reload
 
