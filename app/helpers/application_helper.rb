@@ -5,7 +5,7 @@ module ApplicationHelper
   end
 
   def wholesale?
-    !! session[:wholesale_permitted]
+    !! (session[:wholesale_permitted] || current_user)
   end
 
   def page_title
