@@ -27,6 +27,8 @@ class Admin::ImagesController < ApplicationController
               else
                 flash.now[:error] = @image.errors.full_messages.to_sentence
               end
+              
+              @imageable.reload
             else
               flash.now[:error] = 'Unable to associate image to object. Contact administrator.'
               logger.error "Error associating image to object with params: #{params.inspect}"
