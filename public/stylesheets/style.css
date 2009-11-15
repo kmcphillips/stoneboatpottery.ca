@@ -273,6 +273,11 @@ textarea {
 }
 
 .post {
+	padding-bottom: 10px;
+	margin-bottom: 15px;
+	background-image: url(../images/template/post_bg.gif);
+	background-repeat: no-repeat;
+	background-position: bottom center;
 }
 
 .post .title {
@@ -288,28 +293,26 @@ textarea {
 }
 
 .post .meta {
-	margin-top: 4px;
-  margin-left: 20px;
-	padding-bottom: 2px;
-  padding-top: 8px;
-	padding-left: 15px;
-	background: url(../images/template/bullet.jpg) no-repeat left 6px;
-	text-align: left;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	font-style: italic;
-	/* color: #EB5982; */
-  color: #6A9E8D;
+	padding: 8px 15px;
+	margin: 11px 18px;
+	/* background: url(../images/template/bullet.jpg) no-repeat left 6px; */
+	background: #6A9E8D;
 }
 
 .post .meta a {
-	/* color: #EB5982; */
-  color: #6A9E8D;
+	color: #DDDDDD;
+}
+
+.post .meta p {
+  margin: 0;
+  padding: 0;
+  line-height: 100%;
+	font-size: 11px;
+	color: #EEEEEE;
 }
 
 .post .entry {
-	margin-bottom: 25px;
-	padding: 30px 20px 10px 20px;
+	padding: 20px;
 }
 
 .actions {
@@ -410,15 +413,8 @@ div.post-footer {
 }
 
 ul h3.archive-year {
-  padding: 16px;
+  padding: 10px;
 }
-
-div.meta p {
-  margin: 0;
-  padding: 0;
-  line-height: 100%;
-}
-
 
 /* Links */
 

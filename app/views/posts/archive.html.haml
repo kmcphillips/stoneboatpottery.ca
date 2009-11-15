@@ -2,15 +2,14 @@
   %h2.title News Archive
 
   %div.entry
-    %p
-      %ul
-        - year = nil
-        - @posts.each do |post|
-          - unless post.updated_at.year == year
-            - year = post.updated_at.year
-            %h3.archive-year= year
-          %li
-            %span.bold= h post.updated_at.to_s(:long)
-            = " : "
-            = link_to post.title, post_path(post.permalink)
+    %ul
+      - year = nil
+      - @posts.each do |post|
+        - unless post.updated_at.year == year
+          - year = post.updated_at.year
+          %h3.archive-year= year
+        %li
+          %span.bold= h post.updated_at.to_s(:long)
+          = " : "
+          = link_to post.title, post_path(post.permalink)
       
