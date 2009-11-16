@@ -49,14 +49,12 @@ module ApplicationHelper
 
   # Shortcuts for images in posts
   
-  def image_for(imageable)
+  def images_for(imageable)
     if imageable && imageable.respond_to?(:image) && imageable.image
       link_to(image_tag(imageable.image.public_filename(:small), :alt => ALT_TAG_DEFAULT) + "<br />" + enlarge_button, imageable.image.public_filename, :rel => :facebox, :class => "float-left")
+    elsif imageable && imageable.respond_to?(:images) && imageable.images.any?
+      raise 'images_for not yet implemented'
     end
-  end
-  
-  def images_for(imageable)
-    raise 'images_for not yet implemented'
   end
   
   def enlarge_button
