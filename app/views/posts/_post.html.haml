@@ -8,4 +8,7 @@
       = link_to "permalink", post_path(post.permalink)
 
   %div.entry
+    = image_for post
     = simple_format post.body
+
+  %div.clear

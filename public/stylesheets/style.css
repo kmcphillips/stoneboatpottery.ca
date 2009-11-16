@@ -315,6 +315,25 @@ textarea {
 	padding: 20px;
 }
 
+.post .entry a.float-left {
+	float: left;
+	margin: 0 12px 12px 2px;
+	font-size: 0.8em;
+	font-weight: bold;
+}
+
+.post .entry a.float-left:hover {
+	text-decoration: none;
+}
+
+.post .entry a.float-left img {
+	border: 5px solid #878787;
+}
+
+.post .entry a.float-left img.magnify {
+	border: none;
+}
+
 .actions {
 	margin-bottom: 10px;
 	padding: 2px 20px 10px 20px;
@@ -453,5 +472,64 @@ div.entry ul.menu {
 
 div.entry ul.menu li {
   
+}
+
+/***** Images ******/
+
+#upload {
+	display:none;
+	width:400px;	
+	border:10px solid #666;
+	border:10px solid rgba(82, 82, 82, 0.698);
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+}
+
+#upload div {
+	padding:10px;
+	background-color:#fff;
+	font-family:"lucida grande",tahoma,verdana,arial,sans-serif
+}
+
+#upload h2 {
+  padding-bottom: 5px;
+  padding: 5px 10px;
+  font-size: 20px;
+}
+
+#upload div p {
+  padding:10px;
+}
+
+#upload .throbber {
+  display: none;
+  padding-left: 40px;
+}
+
+#images_add {
+  padding-top: 12px;
+  font-style: italic;
+}
+
+#images_add span.count {
+  padding-left: 10px;
+}
+
+#images_container div.hscroll_images {
+  width: 636px;
+  overflow:auto;
+  white-space: nowrap;
+}
+
+table.image td{
+  
+}
+
+a.thumb img {
+  border: 5px solid #878787;
+}
+
+a.thumb_primary img {
+  border: 5px solid red;
 }
 

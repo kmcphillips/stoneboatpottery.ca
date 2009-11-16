@@ -47,4 +47,15 @@ module ApplicationHelper
     html
   end
 
+  # Shortcuts for images in posts
+  
+  def image_for(imageable)
+    if imageable && imageable.respond_to?(:image) && imageable.image
+      link_to(image_tag(imageable.image.public_filename(:small), :alt => ALT_TAG_DEFAULT) + "<br />" + enlarge_button, imageable.image.public_filename, :rel => :facebox, :class => "float-left")
+    end
+  end
+  
+  def enlarge_button
+    "Enlarge" + image_tag("/images/icons/magnify.png", :alt => "Enlarge", :class => :magnify)
+  end
 end
