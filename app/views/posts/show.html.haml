@@ -1,9 +1,1 @@
 = render :partial => 'posts/post', :locals => {:post => @post}
-
-- if current_user
-  %div.actions
-    = index_entity_image(admin_posts_path, "Back to all posts")
-    %br
-    = edit_entity_image(edit_admin_post_path(@post), "Edit this post")
-    %br
-    = delete_entity_image(admin_post_path(@post), "Delete this post")

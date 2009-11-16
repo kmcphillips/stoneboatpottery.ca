@@ -55,6 +55,10 @@ module ApplicationHelper
     end
   end
   
+  def images_for(imageable)
+    raise 'images_for not yet implemented'
+  end
+  
   def enlarge_button
     "Enlarge" + image_tag("/images/icons/magnify.png", :alt => "Enlarge", :class => :magnify)
   end

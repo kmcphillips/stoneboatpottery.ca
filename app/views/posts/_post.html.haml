@@ -10,5 +10,8 @@
   %div.entry
     = image_for post
     = simple_format post.body
+    
+    = edit_entity_image(edit_admin_post_path(post), "Edit this post") if current_user
 
   %div.clear
+    
