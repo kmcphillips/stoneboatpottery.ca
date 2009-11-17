@@ -1,3 +1,18 @@
+- content_for :js do
+  :javascript
+    $(document).ready(function($) {
+      manage_price_field();
+    });
+
+    function manage_price_field()
+    {
+      if($('#piece_for_sale').attr('checked'))
+        $('#piece_price').removeAttr("disabled");
+      else
+        $('#piece_price').attr("disabled", true);
+
+    }
+
 %p
   = f.label :name
   = f.text_field :name
@@ -11,14 +26,13 @@
   %p
     = f.label :permalink
     %span.bold= f.object.permalink
+%p
+  = f.label :for_sale
+  = f.check_box :for_sale, :onclick => "manage_price_field()"
 
 %p
   = f.label :price
   = f.text_field :price, :size => 6, :maxlength => 6
-
-%p
-  = f.label :for_sale
-  = f.check_box :for_sale
 
 %p
   = f.label :active
