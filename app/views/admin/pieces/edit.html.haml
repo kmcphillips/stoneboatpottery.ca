@@ -6,6 +6,11 @@
       = render :partial => 'admin/pieces/form', :locals => {:f => f}
       = f.submit "Save Piece"
 
+    %br 
+    = render :partial => "shared/images_edit", :locals => { :imageable => @piece }
+
   %div.actions
     = index_entity_image(admin_pieces_path, "Back to all pieces")
+    %br
+    = delete_entity_image(admin_pieces_path(@piece), "Delete this piece")
 

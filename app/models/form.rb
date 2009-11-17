@@ -8,7 +8,6 @@ class Form < ActiveRecord::Base
       all(:order => "`primary` DESC, updated_at DESC")
     end
   end
-
   
   validates_presence_of :subcategory, :name, :description
   validates_uniqueness_of :permalink

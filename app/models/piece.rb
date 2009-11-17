@@ -1,5 +1,12 @@
 class Piece < ActiveRecord::Base
-  has_many :images, :as => :imageable
+  has_many :images, :as => :imageable do
+    def primary
+      first(:conditions => {:primary => true})
+    end
+    def primary_first
+      all(:order => "`primary` DESC, updated_at DESC")
+    end
+  end
 
   validates_presence_of :name, :description, :permalink
   validate :price_if_for_sale  
