@@ -9,15 +9,11 @@
 
 
   %div.entry
-    %p
-      For Sale: 
-      = piece.for_sale?
-    - if piece.for_sale? && ! piece.price.blank?
-      %p
-        Price: 
-        = piece.price
-
     = simple_format piece.description
+
+    - if piece.for_sale?
+      %p 
+        = "This piece is for sale for #{number_to_currency(piece.price)}"
 
     = edit_entity_image(edit_admin_piece_path(piece), "Edit this piece") if current_user
 

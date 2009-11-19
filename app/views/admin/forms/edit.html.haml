@@ -10,5 +10,9 @@
     = render :partial => "shared/images_edit", :locals => { :imageable => @form }
 
   %div.actions
-    - index_entity_image(admin_category_path(@category))
-    = link_to "Back to all forms under #{@subcategory.name}", admin_category_subcategory_path(@category, @subcategory)
+    = index_entity_image(admin_category_subcategory_path(@category, @subcategory), "Back to subcategory #{@subcategory.name}")
+    %br
+    = show_entity_image(admin_category_subcategory_form_path(@category, @subcategory, @form), "View this form")
+    %br
+    = delete_entity_image(admin_category_subcategory_form_path(@category, @subcategory, @form), "Delete this form")
+

@@ -47,6 +47,12 @@ module ApplicationHelper
     html
   end
 
+  def show_entity_image(path, label=nil, args={})
+    html = link_to image_tag("/images/icons/show.png", :alt => "Show", :class => "action-image"), path, :title => "Show"
+    html += " " + link_to(label, path) if label
+    html
+  end  
+
   # Shortcuts for images in posts
   
   def images_for(imageable)

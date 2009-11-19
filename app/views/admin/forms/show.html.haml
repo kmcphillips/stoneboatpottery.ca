@@ -10,13 +10,24 @@
     = simple_format @form.description
 
     %p
-      %label permalink
+      %label Permalink
       %span.bold= h @form.permalink
 
     %p
       %label Active:
       = @form.active?
 
+    %p
+      %label Retail Price:
+      = number_to_currency @form.retail_price
+
+    %p
+      %label Wholesale Price:
+      = number_to_currency @form.wholesale_price
+
   %div.actions
-    - index_entity_image(admin_category_subcategory_path(@form.category, @form.subcategory))
-    = link_to "Back to subcategory #{@form.subcategory.name}", admin_category_subcategory_path(@form.category, @form.subcategory)
+    = index_entity_image(admin_category_subcategory_path(@form.category, @form.subcategory), "Back to subcategory #{@form.subcategory.name}")
+    %br
+    = edit_entity_image(edit_admin_category_subcategory_form_path(@form.category, @form.subcategory, @form), "Edit this form")
+    %br
+    = delete_entity_image(admin_category_subcategory_form_path(@form.category, @form.subcategory, @form), "Delete this form")

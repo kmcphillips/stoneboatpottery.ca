@@ -20,7 +20,7 @@
           %tr{:class => cycle("odd","even")}
             %td= link_to piece.name, piece_path(piece)
             %td= link_to truncate(piece.description, :length => 120, :omission => " (more..)"), piece_path(piece)
-            %td= h piece.price
+            %td= number_to_currency(piece.price)
             %td= h piece.for_sale?
             %td= h piece.active?
             %td{:width => 46}
