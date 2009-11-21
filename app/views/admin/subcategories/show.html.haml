@@ -16,6 +16,11 @@
       %label Active:
       = @subcategory.active?
 
+  %div.actions
+    = index_entity_image(admin_category_subcategories_path(@subcategory.category), "Back to category #{@subcategory.category.name}")
+    %br
+    = edit_entity_image(edit_admin_category_subcategory_path(@subcategory.category, @subcategory), "Edit this subcategory")
+
 %div.post
   %h2.title
     Forms under
@@ -26,7 +31,4 @@
       = new_entity_image(new_admin_category_subcategory_form_path(@subcategory.category, @subcategory), "Create new form under #{@subcategory.name}")
 
     = render :partial => "admin/forms/forms", :object => @subcategory
-
-  %div.actions
-    = index_entity_image(admin_category_subcategories_path(@subcategory.category), "Back to category #{@subcategory.category.name}")
 

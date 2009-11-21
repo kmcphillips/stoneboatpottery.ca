@@ -5,7 +5,14 @@
     - form_for [:admin, @category, @subcategory] do |f| 
       = render :partial => 'admin/subcategories/form', :locals => {:f => f}
       = f.submit "Save"
+ 
+    %br 
+    = render :partial => "shared/images_edit", :locals => { :imageable => @subcategory }
 
   %div.actions
     = index_entity_image(admin_category_path(@category), "Back to all subcategories under #{@category.name}")
+    %br
+    = show_entity_image(admin_category_subcategory_path(@category, @subcategory), "Show this subcategory")
+    %br
+    = delete_entity_image(admin_category_subcategory_path(@category, @subcategory), "Delete this subcategory")
 

@@ -1,5 +1,7 @@
 %div.post
-  %h2.title= h @category.name
+  %h2.title
+    Category
+    = h @category.name
 
   %div.entry
     = simple_format @category.description
@@ -12,6 +14,11 @@
       %label Active:
       = @category.active?
 
+  %div.actions
+    = index_entity_image(admin_categories_path, "Back to all categories")
+    %br
+    = edit_entity_image(edit_admin_category_path(@category), "Edit this category")
+
 %div.post
   %h2.title
     Subcategories under
@@ -22,7 +29,4 @@
       = new_entity_image(new_admin_category_subcategory_path(@category), "Create new subcategory under #{@category.name}")
 
     = render :partial => "admin/subcategories/subcategories", :object => @category
-
-  %div.actions
-    - index_entity_image(admin_categories_path, "Back to all categories")
 

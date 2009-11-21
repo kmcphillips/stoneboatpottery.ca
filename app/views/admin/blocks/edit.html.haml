@@ -7,12 +7,15 @@
     - form_for [:admin, @block] do |f| 
       %p
         = f.text_area :body, :rows => 15, :cols => 70
-      
-      - if f.object.accepts_image?
-        %p TODO image upload
 
       = f.submit "Save #{@block.label_display}"
 
+    - if @block.accepts_image? 
+      %br 
+      = render :partial => "shared/images_edit", :locals => { :imageable => @block }
+
   %div.actions
     = index_entity_image(admin_blocks_path, "Back to all blocks")
+    %br
+    = show_entity_image(@block.section_path, "Show this block")
 
