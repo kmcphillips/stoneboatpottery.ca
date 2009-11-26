@@ -57,9 +57,9 @@ module ApplicationHelper
   
   def images_for(imageable)
     if imageable && imageable.respond_to?(:image) && imageable.image
-      link_to(image_tag(imageable.image.public_filename(:small), :alt => ALT_TAG_DEFAULT) + "<br />" + enlarge_button, imageable.image.public_filename, :rel => :facebox, :class => "float-left")
+      link_to(image_tag(imageable.image.public_filename(:inline), :alt => ALT_TAG_DEFAULT) + "<br />" + enlarge_button, imageable.image.public_filename, :rel => :facebox, :class => "float-left")
     elsif imageable && imageable.respond_to?(:images) && imageable.images.any?
-      raise 'images_for not yet implemented'
+      render :partial => 'shared/show_images'
     end
   end
   

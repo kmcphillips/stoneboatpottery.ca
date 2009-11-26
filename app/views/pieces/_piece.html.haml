@@ -7,8 +7,9 @@
       = " - "
       = link_to "permalink", piece_path(piece.permalink)
 
-
   %div.entry
+    = images_for piece
+
     = simple_format piece.description
 
     - if piece.for_sale?

@@ -1,10 +1,13 @@
-- if @pieces.blank?
-  %div.post
-    %h2.title Pieces
+%div.post_header
+  %h2.title Pieces
 
-    %div.entry
+- if @pieces.blank?
+  %div.entry
     %p None
 - else
   - @pieces.each do |piece|
-    = render :partial => 'pieces/piece', :object => piece
+    %div{:class => cycle("preview_row_odd","preview_row_even")}
+      .image= link_to(image_tag(piece.images.primary_first.first.public_filename(:thumb), :alt => ALT_TAG_DEFAULT), piece_path(piece))
+      .body
+        = piece.name
 

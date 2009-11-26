@@ -9,8 +9,8 @@ class Image < ActiveRecord::Base
   has_attachment :content_type => :image,
                  :storage => :file_system,
                  :path_prefix => "public/images/attachment/",
-                 :resize_to => '700x700>',
-                 :thumbnails => { :small => '120x120>' , :large => "300x300>"}
+                 :resize_to => '750x750>',
+                 :thumbnails => { :thumb => '120x120>' , :inline => "280x280>"}
   
   validates_presence_of :filename, :content_type, :size
   validates_presence_of :imageable_type, :imageable_id, :if => Proc.new {|image| image.is_full_image? }
