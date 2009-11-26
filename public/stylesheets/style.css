@@ -338,6 +338,37 @@ textarea {
 	padding: 2px 20px 10px 20px;
 }
 
+div.preview_row_odd , div.preview_row_even {
+  padding: 10px 20px;  
+}
+
+div.preview_row_odd h3 , div.preview_row_even h3 {
+  padding-bottom: 16px;  
+}
+
+div.preview_row_odd div.image { 
+  float: left;
+  width: 150px;
+  text-align: center;
+}
+
+div.preview_row_odd div.body { 
+  float: right;
+  width: 470px;
+}
+
+div.preview_row_even div.image { 
+  float: right;
+  width: 150px;
+  text-align: center;
+}
+
+div.preview_row_even div.body { 
+  float: left;
+  width: 470px;
+  text-align: right;
+}
+
 /* Sidebar */
 
 #sidebar {

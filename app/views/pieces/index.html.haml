@@ -9,5 +9,10 @@
     %div{:class => cycle("preview_row_odd","preview_row_even")}
       .image= link_to(image_tag(piece.images.primary_first.first.public_filename(:thumb), :alt => ALT_TAG_DEFAULT), piece_path(piece))
       .body
-        = piece.name
+        %h3= link_to(piece.name, piece_path(piece))
+        %p
+          Description of piece
+          %br
+          Maybe the price
+      .clear
 
