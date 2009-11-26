@@ -59,7 +59,7 @@ module ApplicationHelper
     if imageable && imageable.respond_to?(:image) && imageable.image
       link_to(image_tag(imageable.image.public_filename(:inline), :alt => ALT_TAG_DEFAULT) + "<br />" + enlarge_button, imageable.image.public_filename, :rel => :facebox, :class => (options[:align] && options[:align].to_s == "right"? "float-right" : "float-left"))
     elsif imageable && imageable.respond_to?(:images) && imageable.images.any?
-      render :partial => 'shared/show_images'
+      render :partial => 'shared/show_images', :object => imageable
     end
   end
   

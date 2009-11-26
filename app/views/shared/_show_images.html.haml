@@ -1,1 +1,12 @@
-TODO Show images for multiple
+- obj = show_images
+- images = show_images.images.primary_first
+
+= link_to image_tag(images[0].public_filename(:inline)), images[0].public_filename, :rel => :facebox
+
+- if images[1..-1].any?
+  .hscroll_images
+    %table.image
+      %tr
+        - images[1..-1].each do |image|
+          %td
+            = link_to image_tag(image.public_filename(:thumb)), image.public_filename, :rel => :facebox
