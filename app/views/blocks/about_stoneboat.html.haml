@@ -2,6 +2,8 @@
   %h2.title About Stoneboat Pottery
 
   %div.entry
+    = images_for @block
+
     = simple_format @block.body
 
     = edit_entity_image(edit_admin_block_path(@block), "Edit this block") if current_user

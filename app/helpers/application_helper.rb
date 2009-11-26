@@ -55,9 +55,9 @@ module ApplicationHelper
 
   # Shortcuts for images in posts
   
-  def images_for(imageable)
+  def images_for(imageable, options={})
     if imageable && imageable.respond_to?(:image) && imageable.image
-      link_to(image_tag(imageable.image.public_filename(:inline), :alt => ALT_TAG_DEFAULT) + "<br />" + enlarge_button, imageable.image.public_filename, :rel => :facebox, :class => "float-left")
+      link_to(image_tag(imageable.image.public_filename(:inline), :alt => ALT_TAG_DEFAULT) + "<br />" + enlarge_button, imageable.image.public_filename, :rel => :facebox, :class => (options[:align] && options[:align].to_s == "right"? "float-right" : "float-left"))
     elsif imageable && imageable.respond_to?(:images) && imageable.images.any?
       render :partial => 'shared/show_images'
     end

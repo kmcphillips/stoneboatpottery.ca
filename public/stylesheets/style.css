@@ -321,15 +321,22 @@ textarea {
 	font-weight: bold;
 }
 
-.post .entry a.float-left:hover {
+.post .entry a.float-right {
+	float: right;
+	margin: 0 12px 12px 2px;
+	font-size: 0.8em;
+	font-weight: bold;
+}
+
+.post .entry a.float-left:hover, .post .entry a.float-right:hover {
 	text-decoration: none;
 }
 
-.post .entry a.float-left img {
+.post .entry a.float-left img, .post .entry a.float-right img {
 	border: 5px solid #878787;
 }
 
-.post .entry a.float-left img.magnify {
+.post .entry a.float-left img.magnify, .post .entry a.float-right img.magnify {
 	border: none;
 }
 
@@ -339,7 +346,11 @@ textarea {
 }
 
 div.preview_row_odd , div.preview_row_even {
-  padding: 10px 20px;  
+  padding: 8px 20px 20px 20px;
+	margin-bottom: 15px;
+	background-image: url(../images/template/post_bg.gif);
+	background-repeat: no-repeat;
+	background-position: bottom center;  
 }
 
 div.preview_row_odd h3 , div.preview_row_even h3 {
@@ -369,6 +380,9 @@ div.preview_row_even div.body {
   text-align: right;
 }
 
+div.preview_row_odd div.image img , div.preview_row_even div.image img {
+  border: 5px solid #878787;
+}
 /* Sidebar */
 
 #sidebar {
