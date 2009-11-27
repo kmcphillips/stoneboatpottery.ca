@@ -1,6 +1,6 @@
 /*
  * Facebox (for jQuery)
- * version: 1.1 (01/20/2007)
+ * version: 1.3 (26/11/2009)
  * @requires jQuery v1.2 or later
  *
  * Examples at http://famspam.com/facebox/
@@ -8,12 +8,13 @@
  * Licensed under the MIT:
  *   http://www.opensource.org/licenses/mit-license.php
  *
- * Copyright 2007 Chris Wanstrath { chris@ozmm.org }
+ * Copyright 2007, 2008 Chris Wanstrath [ chris@ozmm.org ]
+ *   Updated by Kevin McPhillips
  *
  * Usage:
  *  
- *  jQuery(document).ready(function($) {
- *    $('a[rel*=facebox]').facebox() 
+ *  jQuery(document).ready(function() {
+ *    jQuery('a[rel*=facebox]').facebox() 
  *  })
  *
  *  <a href="#terms" rel="facebox">Terms</a>
@@ -29,283 +30,223 @@
  *  You can also use it programmatically:
  * 
  *    jQuery.facebox('some html')
+ *    jQuery.facebox('some html', 'my-groovy-style')
  *
- *  This will open a facebox with "some html" as the content.
+ *  The above will open a facebox with "some html" as the content.
  *    
- *    jQuery.facebox(function($) { $.ajaxes() })
+ *    jQuery.facebox(function($) { 
+ *      $.get('blah.html', function(data) { $.facebox(data) })
+ *    })
  *
- *  This will show a loading screen before the passed function is called,
- *  allowing for a better ajax experience.
+ *  The above will show a loading screen before the passed function is called,
+ *  allowing for a better ajaxy experience.
+ *
+ *  The facebox function can also display an ajax page, an image, or the contents of a div:
+ *  
+ *    jQuery.facebox({ ajax: 'remote.html' })
+ *    jQuery.facebox({ ajax: 'remote.html' }, 'my-groovy-style')
+ *    jQuery.facebox({ image: 'stairs.jpg' })
+ *    jQuery.facebox({ image: 'stairs.jpg' }, 'my-groovy-style')
+ *    jQuery.facebox({ div: '#box' })
+ *    jQuery.facebox({ div: '#box' }, 'my-groovy-style')
+ *
+ *  Want to close the facebox?  Trigger the 'close.facebox' document event:
+ *
+ *    jQuery(document).trigger('close.facebox')
+ *
+ *  Facebox also has a bunch of other hooks:
+ *
+ *    loading.facebox
+ *    beforeReveal.facebox
+ *    reveal.facebox (aliased as 'afterReveal.facebox')
+ *    init.facebox
+ *
+ *  Simply bind a function to any of these hooks:
+ *
+ *   $(document).bind('reveal.facebox', function() { ...stuff to do after the facebox and contents are revealed... })
  *
  */
 (function($) {
- /**
-   *  The static facebox() function, can be passed a string or
-   *  function.
-   *
-   *  You can also use it programmatically:
-   * 
-   *    jQuery.facebox('some html')
-   *
-   *  This will open a facebox with "some html" as the content.
-   *    
-   *    jQuery.facebox(function($) { $.ajaxes() })
-   *
-   *  This will show a loading screen before the passed function is called,
-   *  allowing for a better ajax experience.
-   */
-  $.facebox = function(data) {
-    facebox_init()
-    facebox_loading()
-    $.isFunction(data) ? data.call(this, $) : facebox_reveal(data)
-    return $
+  $.facebox = function(data, klass) {
+    $.facebox.loading()
+
+    if (data.ajax) fillFaceboxFromAjax(data.ajax, klass)
+    else if (data.image) fillFaceboxFromImage(data.image, klass)
+    else if (data.div) fillFaceboxFromHref(data.div, klass)
+    else if ($.isFunction(data)) data.call($)
+    else $.facebox.reveal(data, klass)
   }
 
- /**
-   * Facebox settings, which can be modified through the facebox() method 
-   * or directly.
-   *
-   *    jQuery('a[rel*=facebox]').facebox({ loading_image: '/images/spinner.gif' })
-   *
-   *    jQuery.facebox.settings.loading_image = '/images/spinner.gif'
+  /*
+   * Public, $.facebox methods
    */
-  $.facebox.settings = {
-    loading_image : '/images/template/throbber.gif',
-    close_image   : '/images/template/closelabel.gif',
-    image_types   : [ 'png', 'jpg', 'jpeg', 'gif' ],
-    next_image    : '/images/template/next.png',
-    prev_image    : '/images/template/prev.png',
-    play_image    : '/images/template/play.png',
-    pause_image   : '/images/template/pause.png',
-    slide_duration: 6,
-    facebox_html  : '\
-  <div id="facebox" style="display:none;"> \
-    <div class="popup"> \
-      <table> \
-        <tbody> \
-          <tr> \
-            <td class="tl"/><td class="b"/><td class="tr"/> \
-          </tr> \
-          <tr> \
-            <td class="b"/> \
-            <td class="body"> \
-              <div class="content"> \
-              </div> \
-              <div class="info"></div> \
-              <div class="footer"> \
-                <div class="navigation"></div> \
-                <a href="#" class="close"> \
-                  <img src="/images/template/throbber.gif" title="close" class="close_image" /> \
-                </a> \
-              </div> \
-            </td> \
-            <td class="b"/> \
-          </tr> \
-          <tr> \
-            <td class="bl"/><td class="b"/><td class="br"/> \
-          </tr> \
-        </tbody> \
-      </table> \
-    </div> \
-  </div>'
-  }
-  var $s = $.facebox.settings
+
+  $.extend($.facebox, {
+    settings: {
+      opacity       : 0,
+      overlay       : true,
+      loadingImage  : '/facebox/loading.gif',
+      closeImage    : '/facebox/closelabel.gif',
+      nextImage     : '/facebox/next.gif',
+      previousImage : '/facebox/prev.gif',
+      imageTypes    : [ 'png', 'jpg', 'jpeg', 'gif' ],
+      faceboxHtml   : '\
+    <div id="facebox" style="display:none;"> \
+      <div class="popup"> \
+        <table> \
+          <tbody> \
+            <tr> \
+              <td class="tl"/><td class="b"/><td class="tr"/> \
+            </tr> \
+            <tr> \
+              <td class="b"/> \
+              <td class="body"> \
+                <div class="content"> \
+                </div> \
+                <div class="footer"> \
+                  <table> \
+                    <tr> \
+                      <td class="tableLeft"><div class="navigation"></div></td> \
+                      <td class="tableCenter"><div class="info"></div></td> \
+                      <td class="tableRight"><a href="#" class="close"><img src="/facebox/closelabel.gif" title="close" class="close_image" /></a></td> \
+                    </tr> \
+                  </table> \
+                </div> \
+              </td> \
+              <td class="b"/> \
+            </tr> \
+            <tr> \
+              <td class="bl"/><td class="b"/><td class="br"/> \
+            </tr> \
+          </tbody> \
+        </table> \
+      </div> \
+    </div>'
+    },
+
+    loading: function() {
+      init()
+      if ($('#facebox .loading').length == 1) return true
+      showOverlay()
+
+      $('#facebox .content').empty()
+      $('#facebox .body').children().hide().end().
+        append('<div class="loading"><img src="'+$.facebox.settings.loadingImage+'"/></div>')
+
+      $('#facebox').css({
+        top:	getPageScroll()[1] + (getPageHeight() / 20),
+        left:	$(window).width() / 2 - 205 
+      }).show()
+
+      $(document).bind('keydown.facebox', function(e) {
+        if (e.keyCode == 27) $.facebox.close()
+        return true
+      })
+      $(document).trigger('loading.facebox')
+    },
+
+    reveal: function(data, klass, extra_setup) {
+      $(document).trigger('beforeReveal.facebox')
+      if (klass) $('#facebox .content').addClass(klass)
+      $('#facebox .content').append(data)
+      $('#facebox .loading').remove()
+      $('#facebox .body').children().fadeIn('normal')
+      $('#facebox').css('left', $(window).width() / 2 - ($('#facebox table').width() / 2))
+      $(document).trigger('reveal.facebox').trigger('afterReveal.facebox')
+      if($.isFunction(extra_setup)) {
+        extra_setup.call(this)
+      }
+
+
+    },
+
+    close: function() {
+      $(document).trigger('close.facebox')
+      return false
+    }
+  })
+
+  /*
+   * Public, $.fn methods
+   */
 
   $.fn.facebox = function(settings) {
-    facebox_init(settings)
-
-    var image_types = $s.image_types.join('|')
-    image_types = new RegExp('\.' + image_types + '$', 'i')
+    init(settings)
 
     // suck out the images
+    var image_types = $.facebox.settings.imageTypes.join('|')
+    image_types = new RegExp('\.' + image_types + '$', 'i')
+
     var images = []
     $(this).each(function() {
       if (this.href.match(image_types) && $.inArray(this.href, images) == -1) 
         images.push(this.href)
     })
-    if (images.length == 1) images = null 
+    if (images.length == 1) images = null
 
-    function click_handler() {
-      if ($('#facebox .loading').length == 1) return false
-      facebox_loading()
+    function clickHandler() {
+      $.facebox.loading(true)
 
-      // support for rel="facebox[.inline_popup]" syntax, to add a class
-      var klass = this.rel.match(/facebox\[\.(\w+)\]/)
+      // support for rel="facebox.inline_popup" syntax, to add a class
+      // also supports deprecated "facebox[.inline_popup]" syntax
+      var klass = this.rel.match(/facebox\[?\.(\w+)\]?/)
       if (klass) klass = klass[1]
 
-      // div
-      if (this.href.match(/#/)) {
-        var url    = window.location.href.split('#')[0]
-        var target = this.href.replace(url,'')
-        facebox_reveal($(target).clone().show(), klass)
-
-      // image
-      } else if (this.href.match(image_types)) {
-        facebox_reveal_image(this.href, images, klass)
-
-      // ajax
-      } else {
-        $.get(this.href, function(data) { facebox_reveal(data, klass) })
-      }
-
+      fillFaceboxFromHref(this.href, klass, images)
       return false
     }
 
-    return this.click(click_handler)
+    return this.bind('click.facebox', clickHandler)
   }
 
-/**
-  * The init function is a one-time setup which preloads vital images
-  * and other niceities.
-  */
-  function facebox_init(settings) {
-    if ($s.inited && typeof settings == 'undefined')
-      return true
-    else 
-      $s.inited = true
+  /*
+   * Private methods
+   */
 
-    if (settings) $.extend($s, settings)
+  // called one time to setup facebox on this page
+  function init(settings) {
+    if ($.facebox.settings.inited) return true
+    else $.facebox.settings.inited = true
 
-    $('body').append($s.facebox_html)
+    $(document).trigger('init.facebox')
+    makeCompatible()
+
+    var imageTypes = $.facebox.settings.imageTypes.join('|')
+    $.facebox.settings.imageTypesRegexp = new RegExp('\.(' + imageTypes + ')$', 'i')
+
+    if (settings) $.extend($.facebox.settings, settings)
+    $('body').append($.facebox.settings.faceboxHtml)
 
     var preload = [ new Image(), new Image() ]
-    preload[0].src = $s.close_image
-    preload[1].src = $s.loading_image
+    preload[0].src = $.facebox.settings.closeImage
+    preload[1].src = $.facebox.settings.loadingImage
 
     $('#facebox').find('.b:first, .bl, .br, .tl, .tr').each(function() {
       preload.push(new Image())
       preload.slice(-1).src = $(this).css('background-image').replace(/url\((.+)\)/, '$1')
     })
 
-    $('#facebox .close').click(facebox_close)
-    $('#facebox .close_image').attr('src', $s.close_image)
+    $('#facebox .close').click($.facebox.close)
+    $('#facebox .close_image').attr('src', $.facebox.settings.closeImage)
   }
-
-/**
-  * The loading function prepares the facebox by displaying it
-  * in the proper spot, cleaning its contents, attaching keybindings 
-  * and showing the loading image.
-  */
-  function facebox_loading() {
-    if ($('#facebox .loading').length == 1) return true
-
-    $(document).unbind('.facebox')
-    $('#facebox .content, #facebox .info, #facebox .navigation').empty()
-    $('#facebox .body').children().hide().end().
-      append('<div class="loading"><img src="'+$s.loading_image+'"/></div>')
-
-    var pageScroll = getPageScroll()
-    $('#facebox').css({
-      top:	pageScroll[1] + (getPageHeight() / 10),
-      left:	pageScroll[0]
-    }).show()
-
-    $(document).bind('keydown.facebox', function(e) {
-      if (e.keyCode == 27) facebox_close()
-    })
-  }
-
-/**
-  * The facebox_reveal function sets the user-defined class (if any)
-  * on the .content div, removes the loading image, and displays
-  * the data.  If an extra_setup functino is provided, it will be run
-  * right before the data is displayed but after it is added.
-  */
-  function facebox_reveal(data, klass, extra_setup) {
-    $('#facebox .content').addClass(klass).append(data)
-    $('#facebox .loading').remove()
-    if ($.isFunction(extra_setup)) extra_setup.call(this)
-    $('#facebox .body > *').fadeIn('normal')
-  }
-
-/**
-  * Used to load and show an image in the facebox.  Involved in the slideshow business.
-  */
-  function facebox_reveal_image(href, images, klass) {
-    if (images) var extra_setup = facebox_setup_gallery(href, images, klass)
-    var image    = new Image()
-    image.onload = function() {
-      facebox_reveal('<div class="image"><img src="' + image.src + '" /></div>', klass, extra_setup)
-      // load the next image in the background
-      if (images) {
-        var position = $.inArray(href, images)
-        var next = new Image()
-        next.src = images[position+1] ? images[position+1] : images[0]
-      }
-    }
-    image.src = href
-  }
-
-/**
-  * Unbinds all listeners and closes the facebox.
-  */
-  function facebox_close() {
-    facebox_stop_slideshow()
-    $(document).unbind('.facebox')
-    $('#facebox').fadeOut(function() {
-      $('#facebox .content').removeClass().addClass('content')
-    })
-    return false
-  }
-
-  function facebox_setup_gallery(href, images, klass) {
-    var position = $.inArray(href, images)
-
-    var jump = function(where) {
-      facebox_loading()
-      if (where >= images.length) where = 0
-      if (where < 0) where = images.length - 1
-      facebox_reveal_image(images[where], images, klass)
-    }
-
-    return function() {
-      $('#facebox .image').click(function() { jump(position + 1) }).css('cursor', 'pointer')
-      $('#facebox .info').append('Image ' + (position + 1) + ' of ' + images.length)
-      $('#facebox .navigation').
-        append('<img class="prev" src="' + $s.prev_image + '"/>' +
-          '<img class="play" src="' + ($s.playing ? $s.pause_image : $s.play_image) + '"/>' +
-          '<img class="next" src="' + $s.next_image + '"/>').
-        find('img').css('cursor', 'pointer').end().
-        find('.prev').click(function() { jump(position - 1); return false }).end().
-        find('.next').click(function() { jump(position + 1); return false }).end()
-
-      $('#facebox .play').bind('click.facebox', function() {
-        $s.playing ? facebox_stop_slideshow() : facebox_start_slideshow()
-        return false
-      })
-
-      $(document).bind('keydown.facebox', function(e) {
-        if (e.keyCode == 39) jump(position + 1) // right
-        if (e.keyCode == 37) jump(position - 1) // left
-      })
-    }
-  }
-
-  function facebox_start_slideshow() {
-    $('#facebox .play').attr('src', $s.pause_image)
-    $s.playing = setInterval(function() { $('#facebox .next').click() }, $s.slide_duration * 1000)
-  }
-
-  function facebox_stop_slideshow() {
-    $('#facebox .play').attr('src', $s.play_image)
-    clearInterval($s.playing)
-    $s.playing = false
-  }
-
+  
   // getPageScroll() by quirksmode.com
   function getPageScroll() {
     var xScroll, yScroll;
     if (self.pageYOffset) {
-      yScroll = self.pageYOffset; xScroll = self.pageXOffset;
+      yScroll = self.pageYOffset;
+      xScroll = self.pageXOffset;
     } else if (document.documentElement && document.documentElement.scrollTop) {	 // Explorer 6 Strict
-      yScroll = document.documentElement.scrollTop; xScroll = document.documentElement.scrollLeft;
+      yScroll = document.documentElement.scrollTop;
+      xScroll = document.documentElement.scrollLeft;
     } else if (document.body) {// all other Explorers
-      yScroll = document.body.scrollTop; xScroll = document.body.scrollLeft;	
+      yScroll = document.body.scrollTop;
+      xScroll = document.body.scrollLeft;	
     }
     return new Array(xScroll,yScroll) 
   }
 
-  // adapter from getPageSize() by quirksmode.com
+  // Adapted from getPageSize() by quirksmode.com
   function getPageHeight() {
     var windowHeight
     if (self.innerHeight) {	// all except Explorer
@@ -317,5 +258,118 @@
     }	
     return windowHeight
   }
-})(jQuery);
 
+  // Backwards compatibility
+  function makeCompatible() {
+    var $s = $.facebox.settings
+
+    $s.loadingImage = $s.loading_image || $s.loadingImage
+    $s.closeImage = $s.close_image || $s.closeImage
+    $s.imageTypes = $s.image_types || $s.imageTypes
+    $s.faceboxHtml = $s.facebox_html || $s.faceboxHtml
+  }
+
+  // Figures out what you want to display and displays it
+  // formats are:
+  //     div: #id
+  //   image: blah.extension
+  //    ajax: anything else
+  function fillFaceboxFromHref(href, klass, images) {
+    // div
+    if (href.match(/#/)) {
+      var url    = window.location.href.split('#')[0]
+      var target = href.replace(url,'')
+      $.facebox.reveal($(target).show().replaceWith("<div id='facebox_moved'></div>"), klass)
+
+    // image
+    } else if (href.match($.facebox.settings.imageTypesRegexp)) {
+      fillFaceboxFromImage(href, klass, images)
+    // ajax
+    } else {
+      fillFaceboxFromAjax(href, klass)
+    }
+  }
+
+  function fillFaceboxFromImage(href, klass, images) {
+    if (images){
+      var extra_setup = faceboxSetupGallery(href, klass, images)
+    }
+
+    var image = new Image()
+    image.onload = function() {
+      $.facebox.reveal('<div class="image"><img src="' + image.src + '" /></div>', klass, extra_setup)
+
+      if (images) {
+        var position = $.inArray(href, images)
+        var next = new Image()
+        next.src = images[position+1] ? images[position+1] : images[0]
+      }
+    }
+    image.src = href
+  }
+
+  function fillFaceboxFromAjax(href, klass) {
+    $.get(href, function(data) { $.facebox.reveal(data, klass) })
+  }
+
+  function faceboxSetupGallery(href, klass, images) {
+    var position = $.inArray(href, images)
+
+    var jump = function(where) {
+      $.facebox.loading()
+      if (where >= images.length) where = 0
+      if (where < 0) where = images.length - 1
+      fillFaceboxFromHref(images[where], klass, images)
+    }
+    
+    return function() {
+      $('#facebox .image').click(function() { jump(position + 1) }).css('cursor', 'pointer');
+      $('#facebox .info').html('' + (position + 1) + ' of ' + images.length);
+      $('#facebox .navigation').html('<img class="prev" src="' + $.facebox.settings.previousImage + '"/><img class="next" src="' + $.facebox.settings.nextImage + '"/>').find('img').css('cursor', 'pointer').end().find('.prev').click(function() { jump(position - 1); return false }).end().find('.next').click(function() { jump(position + 1); return false }).end();
+    }
+  }
+
+  function skipOverlay() {
+    return $.facebox.settings.overlay == false || $.facebox.settings.opacity === null 
+  }
+
+  function showOverlay() {
+    if (skipOverlay()) return
+
+    if ($('#facebox_overlay').length == 0) 
+      $("body").append('<div id="facebox_overlay" class="facebox_hide"></div>')
+
+    $('#facebox_overlay').hide().addClass("facebox_overlayBG")
+      .css('opacity', $.facebox.settings.opacity)
+      .click(function() { $(document).trigger('close.facebox') })
+      .fadeIn(200)
+    return false
+  }
+
+  function hideOverlay() {
+    if (skipOverlay()) return
+
+    $('#facebox_overlay').fadeOut(200, function(){
+      $("#facebox_overlay").removeClass("facebox_overlayBG")
+      $("#facebox_overlay").addClass("facebox_hide") 
+      $("#facebox_overlay").remove()
+    })
+    
+    return false
+  }
+
+  /*
+   * Bindings
+   */
+
+  $(document).bind('close.facebox', function() {
+    $(document).unbind('keydown.facebox')
+    $('#facebox').fadeOut(function() {
+      if ($('#facebox_moved').length == 0) $('#facebox .content').removeClass().addClass('content')
+      else $('#facebox_moved').replaceWith($('#facebox .content').children().hide())
+      hideOverlay()
+      $('#facebox .loading').remove()
+    })
+  })
+
+})(jQuery);

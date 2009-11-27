@@ -1,26 +1,46 @@
+/*
 #facebox .b {
-  background:url(../images/template/b.png);
+  background:url(/facebox/b.png);
 }
 
 #facebox .tl {
-  background:url(../images/template/tl.png);
+  background:url(/facebox/tl.png);
 }
 
 #facebox .tr {
-  background:url(../images/template/tr.png);
+  background:url(/facebox/tr.png);
 }
 
 #facebox .bl {
-  background:url(../images/template/bl.png);
+  background:url(/facebox/bl.png);
 }
 
 #facebox .br {
-  background:url(../images/template/br.png);
+  background:url(/facebox/br.png);
+}
+*/
+#facebox .b {
+  background:url(/images/template/b.png);
+}
+
+#facebox .tl {
+  background:url(/images/template/tl.png);
+}
+
+#facebox .tr {
+  background:url(/images/template/tr.png);
+}
+
+#facebox .bl {
+  background:url(/images/template/bl.png);
+}
+
+#facebox .br {
+  background:url(/images/template/br.png);
 }
 
 #facebox {
   position: absolute;
-  width: 100%;
   top: 0;
   left: 0;
   z-index: 100;
@@ -32,8 +52,15 @@
 }
 
 #facebox table {
-  margin: auto;
   border-collapse: collapse;
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
+}
+
+#facebox td {
+  border-bottom: 0;
+  padding: 0;
 }
 
 #facebox .body {
@@ -52,33 +79,43 @@
 
 #facebox img {
   border: 0;
+  margin: 0;
 }
 
 #facebox .footer {
   border-top: 1px solid #DDDDDD;
   padding-top: 5px;
-  margin-top: 3px;
+  margin-top: 10px;
+  text-align: right;
+}
+
+#facebox .footer img {
+  vertical-align: middle;
+}
+
+#facebox .footer table {
+  width: 100%;
+}
+
+#facebox .footer table .tableLeft {
+  text-align: left;
+}
+
+#facebox .footer table .tableRight {
+  text-align: right;
+}
+
+#facebox .footer table .tableCenter {
   text-align: center;
 }
 
+#facebox .navigation img {
+  padding-right: 10px; 
+}
+
 #facebox .info {
-  margin-top: 5px;
-  font-family: "lucida grande",tahoma,verdana,arial,sans-serif; 
-  color: #777;
-  line-height: 16px;
-  font-size: 11px;
-}
-
-#facebox .navigation {
-  float: left;
-}
-
-#facebox .close {
-  float: right;
-}
-
-#facebox .next, #facebox .prev {
-  font-size: 170%;
+  color: #595959;
+  font-size: 13px;
 }
 
 #facebox .tl, #facebox .tr, #facebox .bl, #facebox .br {
@@ -88,3 +125,24 @@
   padding: 0;
 }
 
+#facebox_overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height:100%;
+  width:100%;
+}
+
+.facebox_hide {
+  z-index:-100;
+}
+
+.facebox_overlayBG {
+  background-color: #000;
+  z-index: 99;
+}
+
+* html #facebox_overlay { /* ie6 hack */
+  position: absolute;
+  height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
+}

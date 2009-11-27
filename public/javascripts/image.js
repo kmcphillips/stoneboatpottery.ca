@@ -11,5 +11,10 @@ function show_upload() {
 }
 
 $(document).ready(function($) {
-  $('a[rel*=facebox]').facebox()
+  $('a[rel=facebox]').facebox({
+    closeImage    : '/images/template/closelabel.gif',
+    loadingImage  : '/images/template/throbber.gif',
+    nextImage     : '/images/template/next.png',
+    previousImage : '/images/template/prev.png'
+  });
 }) 

@@ -9,7 +9,7 @@ class Image < ActiveRecord::Base
   has_attachment :content_type => :image,
                  :storage => :file_system,
                  :path_prefix => "public/images/attachment/",
-                 :resize_to => '750x750>',
+                 :resize_to => '700x560>',
                  :thumbnails => { :thumb => '120x120>' , :inline => "280x280>"}
   
   validates_presence_of :filename, :content_type, :size
