@@ -1,11 +1,16 @@
 %div.post
-  %h2.title Categories
+  %h2.title All Categories
 
+- if @categories.blank?
   %div.entry
-    %ul.menu
-      - @categories.each do |category|
-        %li
-          = link_to category.name, category_path(category)
-          = ":"
-          = simple_format category.description
+    %p None
+- else
+  - @categories.each do |category|
+    %div{:class => cycle("preview_row_odd","preview_row_even")}
+      .image= link_to(image_tag(category.image.public_filename(:thumb), :alt => ALT_TAG_DEFAULT), category_path(category)) if category.image
+      .body
+        %h3= link_to(category.name, category_path(category))
+        %p
+          TODO
+      .clear
 

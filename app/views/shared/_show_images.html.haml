@@ -1,12 +1,23 @@
 - obj = show_images
 - images = show_images.images.primary_first
 
-= link_to image_tag(images[0].public_filename(:inline)), images[0].public_filename, :rel => :facebox
+.multi_image
+  .float_left  
+    = link_to image_tag(images[0].public_filename(:inline)), images[0].public_filename, :rel => :facebox
+  .float_right
+    - images[1..-1].each do |image|
+      = link_to image_tag(image.public_filename(:thumb)), image.public_filename, :rel => :facebox, :class => "thumb"
+  
+  .clear
 
-- if images[1..-1].any?
-  .hscroll_images
-    %table.image
-      %tr
-        - images[1..-1].each do |image|
-          %td
-            = link_to image_tag(image.public_filename(:thumb)), image.public_filename, :rel => :facebox
+%div{:style => "display:none"}
+  .primary_image
+    = link_to image_tag(images[0].public_filename(:inline)), images[0].public_filename, :rel => :facebox
+
+  - if images[1..-1].any?
+    .hscroll_images
+      %table.image
+        %tr
+          - images[1..-1].each do |image|
+            %td
+              = link_to image_tag(image.public_filename(:thumb)), image.public_filename, :rel => :facebox, :class => "thumb"

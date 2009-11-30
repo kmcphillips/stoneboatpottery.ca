@@ -8,6 +8,8 @@ class Piece < ActiveRecord::Base
     end
   end
 
+  named_scope :active, :conditions => ["`active` = ?", true], :order => "updated_at DESC"
+
   validates_presence_of :name, :description, :permalink
   validate :price_if_for_sale  
 

@@ -1,7 +1,7 @@
 class PiecesController < ApplicationController
   
   def index
-    @pieces = Piece.all(:order => "updated_at DESC")
+    @pieces = Piece.active.paginate(:per_page => 10, :page => params[:page] || 1)
     @title = "Pieces"
   end
 

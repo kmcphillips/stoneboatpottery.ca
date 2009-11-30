@@ -11,8 +11,9 @@
       .body
         %h3= link_to(piece.name, piece_path(piece))
         %p
-          This is the description of the piece. A place holder for real text or content.
+          TODO
           %br
           This piece is for sale for $90.
       .clear
-
+  %div.post-footer.center
+    = will_paginate @pieces

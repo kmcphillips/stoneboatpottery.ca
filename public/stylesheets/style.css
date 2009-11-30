@@ -58,6 +58,14 @@ a img {
   font-weight: bold;
 }
 
+.float_left {
+  float: left;
+}
+
+.float_right {
+  float: right;
+}
+
 .clear {
   clear:both;
 }
@@ -559,7 +567,7 @@ div.entry ul.menu li {
   padding-left: 10px;
 }
 
-#images_container div.hscroll_images {
+div.hscroll_images {
   width: 636px;
   overflow:auto;
   white-space: nowrap;
@@ -575,5 +583,10 @@ a.thumb img {
 
 a.thumb_primary img {
   border: 5px solid red;
+}
+
+div.primary_image {
+  text-align: center;
+  padding-bottom: 20px;
 }
 
