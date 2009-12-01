@@ -3,6 +3,11 @@
     Error: 
     = flash[:error]
 
+- unless flash[:warning].blank?
+  %p.warning
+    Warning: 
+    = flash[:warning]
+
 - unless flash[:notice].blank?
   %p.notice 
     = flash[:notice]

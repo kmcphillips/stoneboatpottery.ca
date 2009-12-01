@@ -130,6 +130,10 @@ textarea {
   margin: 13px 2px;
 }
 
+.fieldWithErrors {
+  margin-bottom: 12px;
+}
+
 .fieldWithErrors input, .fieldWithErrors textarea {
   background: #FFEEDD;
 }
@@ -137,6 +141,7 @@ textarea {
 .fieldWithErrors label {
   border-bottom: 1px solid red;
   border-left: 4px solid red;
+  line-height:180%;
 }
 
 /* Header */
@@ -270,6 +275,14 @@ textarea {
   padding-left: 26px;
   font-size: 1.4em;
   color: #FFFFFF;
+}
+
+#flashes p.warning , #flashes_now p.warning{
+  background: yellow;
+  font-weight: bold;
+  padding-left: 26px;
+  font-size: 1.4em;
+  color: #000000;
 }
 
 /* Content */

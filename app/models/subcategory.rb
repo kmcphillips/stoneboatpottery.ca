@@ -14,9 +14,19 @@ class Subcategory < ActiveRecord::Base
   include Permalink
   before_validation_on_create :update_permalink
 
+  before_save :deactivate_children
+
 protected
 
   def update_permalink
     self.permalink = generate_permalink_for(self, self.name)
+  end
+
+  def deactivate_children
+    if self.active_changed? && ! self.active?
+      self.forms.each do |form|
+        form.update_attribute(:active, false) if form.active?
+      end
+    end
   end
 end
