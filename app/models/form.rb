@@ -22,6 +22,11 @@ class Form < ActiveRecord::Base
   delegate :category, :to => :subcategory
 
   named_scope :active, :conditions => ["active = ?", true], :order => "updated_at DESC"
+  named_scope :inactive, :conditions => ["active = ?", false], :order => "updated_at DESC"
+
+  def inherited_active?
+    self.active? && self.subcategory.inherited_active?
+  end
 
 protected
 

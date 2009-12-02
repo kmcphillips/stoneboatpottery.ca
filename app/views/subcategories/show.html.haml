@@ -9,4 +9,14 @@
           = ":"
           = simple_format form.description
 
-    = edit_entity_image(edit_admin_category_subcategory_path(@category, @subcategory), "Edit this subcategory") if current_user
+- if current_user
+  %div.post
+    %div.footer
+      %p
+        - if @inactive_forms.any?
+          * Plus #{@inactive_forms.size} #{@inactive_forms.size == 1 ? "form that is" : "forms that are"} not active.
+      %p
+        = edit_entity_image(edit_admin_category_subcategory_path(@category, @subcategory), "Edit this subcategory")
+        %br
+        = show_entity_image(admin_category_subcategory_path(@category, @subcategory), "Show this subcategory")
+

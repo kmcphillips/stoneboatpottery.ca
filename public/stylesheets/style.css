@@ -335,6 +335,10 @@ textarea {
 	padding: 20px;
 }
 
+.post .footer {
+	padding: 2px 20px;
+}
+
 .post .entry a.float-left {
 	float: left;
 	margin: 0 12px 12px 2px;

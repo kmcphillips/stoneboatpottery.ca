@@ -12,4 +12,11 @@
         Wholesale Price:
         = @form.wholesale_price
 
-    = edit_entity_image(edit_admin_category_subcategory_form_path(@category, @subcategory, @form), "Edit this form") if current_user
+- if current_user
+  %div.post
+    %div.footer
+      %p
+        = edit_entity_image(edit_admin_category_subcategory_form_path(@category, @subcategory, @form), "Edit this form")
+        %br
+        = show_entity_image(admin_category_subcategory_form_path(@category, @subcategory, @form), "Show this form")
+    

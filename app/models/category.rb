@@ -8,7 +8,8 @@ class Category < ActiveRecord::Base
   attr_protected :id
   attr_readonly :permalink
   
-  named_scope :active, :conditions => ["active = ?", true], :order => "updated_at DESC"
+  named_scope :active, :conditions => ["active = ?", true], :order => "updated_at DESC"  
+  named_scope :inactive, :conditions => ["active = ?", false], :order => "updated_at DESC"
   
   include Permalink
   before_validation_on_create :update_permalink
@@ -25,6 +26,10 @@ class Category < ActiveRecord::Base
 
   def list_subcategories
     subcategories.map(&:name).join(", ") || ""
+  end
+
+  def inherited_active?
+    self.active?
   end
 
 protected

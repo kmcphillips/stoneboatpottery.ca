@@ -14,3 +14,10 @@
           TODO
       .clear
 
+- if current_user
+  %div.post
+    %div.footer
+      %p
+        - if @inactive_categories.any?
+          * Plus #{@inactive_categories.size} #{@inactive_categories.size == 1 ? "category that is" : "categories that are"} not active.
+      %p= show_entity_image(admin_categories_path, "Show all categories")
