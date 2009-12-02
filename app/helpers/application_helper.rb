@@ -66,4 +66,8 @@ module ApplicationHelper
   def enlarge_button
     "Enlarge" + image_tag("/images/icons/magnify.png", :alt => "Enlarge", :class => :magnify)
   end
+
+  def redirect_to_404
+    redirect_to "/404.html"
+  end
 end

@@ -12,7 +12,7 @@ class BlocksController < ApplicationController
 
   def wholesale
     if wholesale?
-      @categories = Category.all_active
+      @categories = Category.active
     else
       flash[:error] = "You are not authorized to view that area."
       redirect_to "/login"
