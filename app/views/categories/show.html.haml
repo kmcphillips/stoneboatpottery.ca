@@ -12,9 +12,8 @@
 - if current_user
   %div.post
     %div.footer
-      %p
-        - if @inactive_subcategories.any?
-          * Plus #{@inactive_subcategories.size} #{@inactive_subcategories.size == 1 ? "subcategory that is" : "subcategories that are"} not active.
+      - if @inactive_subcategories.any?
+        %p * Plus #{@inactive_subcategories.size} #{@inactive_subcategories.size == 1 ? "subcategory that is" : "subcategories that are"} not active.
       %p
         = edit_entity_image(edit_admin_category_path(@category), "Edit this category")
         %br

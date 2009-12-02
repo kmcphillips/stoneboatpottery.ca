@@ -17,3 +17,10 @@
       .clear
   %div.post-footer.center
     = will_paginate @pieces
+
+- if current_user
+  %div.post
+    %div.footer
+      - if @inactive_pieces.any?
+        %p * Plus #{@inactive_pieces.size} #{@inactive_pieces.size == 1 ? "piece that is" : "pieces that are"} not active.
+      %p= show_entity_image(admin_pieces_path, "Show all pieces")

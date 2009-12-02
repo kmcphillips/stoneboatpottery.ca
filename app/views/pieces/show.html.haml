@@ -1,1 +1,9 @@
 = render :partial => 'pieces/piece', :object => @piece
+
+- if current_user
+  %div.post
+    %div.footer
+      %p
+        = edit_entity_image(edit_admin_piece_path(@piece), "Edit this piece")
+        %br
+        = show_entity_image(admin_piece_path(@piece), "Show this piece")
