@@ -6,6 +6,10 @@
 
     = simple_format @block.body
 
-    = edit_entity_image(edit_admin_block_path(@block), "Edit this block") if current_user
-
   .clear
+
+- if current_user
+  %div.post
+    %div.footer
+      %p
+        = edit_entity_image(edit_admin_block_path(@block), "Edit this block")

@@ -13,3 +13,8 @@
               - unless link.description.blank?
                 %br              
                 %span.description= simple_format link.description
+
+- if current_user
+  %div.post
+    %div.footer
+      %p= show_entity_image(admin_links_path, "Show all links")
