@@ -1,18 +1,15 @@
 class Category < ActiveRecord::Base
   has_one :image, :as => :imageable
   has_many :subcategories
+
+  acts_as_permalink :from => :name
   
-  validates_uniqueness_of :permalink
   validates_presence_of :name
   
   attr_protected :id
-  attr_readonly :permalink
   
   named_scope :active, :conditions => ["active = ?", true], :order => "updated_at DESC"  
   named_scope :inactive, :conditions => ["active = ?", false], :order => "updated_at DESC"
-  
-  include Permalink
-  before_validation_on_create :update_permalink
   
   before_save :deactivate_children
 
@@ -33,10 +30,6 @@ class Category < ActiveRecord::Base
   end
 
 protected
-
-  def update_permalink
-    self.permalink = generate_permalink_for(self, self.name)
-  end
 
   def deactivate_children
     if self.active_changed? && ! self.active?

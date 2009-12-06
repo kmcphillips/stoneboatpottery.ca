@@ -8,23 +8,17 @@ class Piece < ActiveRecord::Base
     end
   end
 
+  acts_as_permalink :from => :name
+
   named_scope :active, :conditions => ["`active` = ?", true], :order => "updated_at DESC"
   named_scope :inactive, :conditions => ["`active` = ?", false], :order => "updated_at DESC"
 
-  validates_presence_of :name, :description, :permalink
+  validates_presence_of :name, :description
   validate :price_if_for_sale  
 
   attr_protected :id
-  attr_readonly :permalink
-
-  include Permalink
-  before_validation_on_create :update_permalink
 
 protected
-
-  def update_permalink
-    self.permalink = generate_permalink_for(self, self.name)
-  end
 
   def price_if_for_sale
     self.errors.add(:price, "must be a positive number if the piece is for sale") if self.for_sale? && (!self.price || self.price <= 0)
