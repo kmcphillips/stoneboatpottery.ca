@@ -7,7 +7,7 @@
 - else
   - @pieces.each do |piece|
     %div{:class => cycle("preview_row_odd","preview_row_even")}
-      .image= link_to(image_tag(piece.images.primary_first.first.public_filename(:thumb), :alt => ALT_TAG_DEFAULT), piece_path(piece))
+      .image= link_to(image_tag(piece.images.primary_first.first.public_filename(:thumb), :alt => ALT_TAG_DEFAULT), piece_path(piece)) if piece.images.primary_first.any?
       .body
         %h3= link_to(piece.name, piece_path(piece))
         %p
