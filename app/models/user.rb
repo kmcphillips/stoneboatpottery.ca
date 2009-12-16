@@ -12,4 +12,22 @@ class User < ActiveRecord::Base
   def self.encrypt(password)
     Digest::SHA1.hexdigest password
   end
+
+  def change_password(password, password_confirm)
+    if password && password_confirm
+      if password == password_confirm
+        if password.length >= 4
+          self.update_attributes(:password_hash => User.encrypt(password))
+        else
+          self.errors.add_to_base "Password must be at least four characters."
+        end
+      else
+        self.errors.add_to_base "Passwords do not match."
+      end
+    else
+      self.errors.add_to_base "Password was not passed for update."
+    end
+
+    !self.errors.any?
+  end
 end
