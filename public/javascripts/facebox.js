@@ -108,7 +108,7 @@
                     <tr> \
                       <td class="tableLeft"><div class="navigation"></div></td> \
                       <td class="tableCenter"><div class="info"></div></td> \
-                      <td class="tableRight"><a href="#" class="close"><img src="/facebox/closelabel.gif" title="close" class="close_image" /></a></td> \
+                      <td class="tableRight"><a href="#" class="close"><img src="" title="close" class="close_image" /></a></td> \
                     </tr> \
                   </table> \
                 </div> \

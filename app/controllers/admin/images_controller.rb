@@ -15,7 +15,6 @@ class Admin::ImagesController < ApplicationController
 
             if @imageable && (@imageable.respond_to?(:image) || @imageable.respond_to?(:images))
               if @imageable.respond_to?(:image)
-                old_img = @imageable.image
                 @image = Image.new(params[:image].merge(:imageable => @imageable))
               elsif @imageable.respond_to?(:images)
                 @image = @imageable.images.new(params[:image])
@@ -23,7 +22,6 @@ class Admin::ImagesController < ApplicationController
 
               if @image.save
                 flash.now[:notice] = 'Image successfully added.'
-                old_img.destroy rescue nil
               else
                 flash.now[:error] = @image.errors.full_messages.to_sentence
               end
@@ -44,6 +42,7 @@ class Admin::ImagesController < ApplicationController
             page.call "upload_after"
             page.replace :image_container, :partial => "shared/image_single", :locals => {:imageable => @imageable} if @imageable.andand.respond_to?(:image)
             page.replace :images_container, :partial => "shared/image_multiple", :locals => {:imageable => @imageable} if @imageable.andand.respond_to?(:images)
+            page.call "init_facebox"
             page.replace_html :flashes_now, :partial => "shared/flashes"
           end
         end

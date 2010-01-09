@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  has_one :image, :as => :imageable
+  has_one :image, :as => :imageable, :dependent => :destroy
 
   validates_presence_of :body, :title
   

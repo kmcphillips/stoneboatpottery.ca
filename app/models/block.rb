@@ -1,5 +1,5 @@
 class Block < ActiveRecord::Base
-  has_one :image, :as => :imageable
+  has_one :image, :as => :imageable, :dependent => :destroy
   
   validates_uniqueness_of :label
   

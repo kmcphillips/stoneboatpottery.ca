@@ -1,11 +1,9 @@
 class Form < ActiveRecord::Base
   belongs_to :subcategory
-  has_many :images, :as => :imageable do
+
+  has_many :images, :as => :imageable, :dependent => :destroy do
     def primary
       first(:conditions => {:primary => true})
-    end
-    def primary_first
-      all(:order => "`primary` DESC, updated_at DESC")
     end
   end
   

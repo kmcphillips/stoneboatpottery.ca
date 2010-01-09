@@ -1,14 +1,10 @@
 - image = imageable.image
 #image_container
   - if image
-    = link_to image_tag(image.public_filename(:thumb)), image.public_filename, :rel => :facebox, :class => :thumb
+    = link_to image_tag(image.thumb), image.full, :rel => :facebox, :class => :thumb
 
   #images_add
     = button_to_function "#{image ? "Change" : "Set"} Image", "show_upload()"
     - if image
       = button_to_remote "Remove Image", :url => admin_image_path(image, :imageable_type => image.imageable_type, :imageable_id => image.imageable_id), :method => :delete, :failure => "alert('There was an error removing this image. Please try again or contact administrator.')"
 
-:javascript
-  $(document).ready(function($) {
-    $('a[rel*=facebox]').facebox()
-  }) 

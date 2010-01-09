@@ -11,8 +11,12 @@
       $('#upload').overlay().close();
       $('#upload img.throbber').hide();
       $('#upload input.submit').attr("disabled", false);
-      $('#image_uploaded_data').val("");
+      clear_upload_field();
     }
+
+    $(document).ready(function($) {
+      clear_upload_field();
+    }) 
 
 #flashes_now
 
@@ -28,7 +32,7 @@
     %h2 Upload Image
 
     - form_for :image, :url => admin_images_path(:format => "js"), :html => { :multipart => true, :target => "upload_iframe", :onsubmit => "upload_before();" } do |f|
-      = f.file_field :uploaded_data
+      = f.file_field :image
       = hidden_field_tag :imageable_id, imageable.id
       = hidden_field_tag :imageable_type, imageable.class.to_s
       %br

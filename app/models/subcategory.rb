@@ -1,5 +1,5 @@
 class Subcategory < ActiveRecord::Base
-  has_one :image, :as => :imageable
+  has_one :image, :as => :imageable, :dependent => :destroy
   has_many :forms
   belongs_to :category
 

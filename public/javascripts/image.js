@@ -10,11 +10,22 @@ function show_upload() {
   }).load();
 }
 
-$(document).ready(function($) {
+function init_facebox()
+{
   $('a[rel=facebox]').facebox({
     closeImage    : '/images/template/closelabel.gif',
     loadingImage  : '/images/template/throbber.gif',
     nextImage     : '/images/template/next.png',
     previousImage : '/images/template/prev.png'
   });
+}
+
+function clear_upload_field()
+{
+  $('#image_image').val("");
+}
+
+$(document).ready(function($) {
+  init_facebox();
 }) 
+
