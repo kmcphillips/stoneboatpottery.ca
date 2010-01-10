@@ -1,16 +1,22 @@
 %div.post
   %h2.title= h @form.name
 
+  %div.meta
+    %p
+      = h @form.updated_at.to_s(:short)
+
   %div.entry
+    = images_for @form
+    %br
     = simple_format @form.description
 
     %p
       Price:
-      = @form.retail_price
+      = number_to_currency @form.retail_price
       - if wholesale?
         %br
         Wholesale Price:
-        = @form.wholesale_price
+        = number_to_currency @form.wholesale_price
 
 - if current_user
   %div.post

@@ -3,16 +3,16 @@
 
 .multi_image
   .float_left  
-    = link_to image_tag(images[0].public_filename(:inline)), images[0].public_filename, :rel => :facebox
+    = link_to image_tag(images[0].inline), images[0].full, :rel => :facebox
   .float_right
     - images[1..-1].each do |image|
-      = link_to image_tag(image.public_filename(:thumb)), image.public_filename, :rel => :facebox, :class => "thumb"
+      = link_to image_tag(image.thumb), image.full, :rel => :facebox, :class => "thumb"
   
   .clear
 
 %div{:style => "display:none"}
   .primary_image
-    = link_to image_tag(images[0].public_filename(:inline)), images[0].public_filename, :rel => :facebox
+    = link_to image_tag(images[0].inline), images[0].full, :rel => :facebox
 
   - if images[1..-1].any?
     .hscroll_images
@@ -20,4 +20,4 @@
         %tr
           - images[1..-1].each do |image|
             %td
-              = link_to image_tag(image.public_filename(:thumb)), image.public_filename, :rel => :facebox, :class => "thumb"
+              = link_to image_tag(image.thumb), image.full, :rel => :facebox, :class => "thumb"
