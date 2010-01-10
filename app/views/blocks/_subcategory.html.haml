@@ -1,4 +1,4 @@
-- unless subcategory.forms.all_active.blank?
+- unless subcategory.forms.active.blank?
   %h5= h subcategory.name
 
   %table
@@ -7,7 +7,7 @@
       %th{:width => "400"} Description
       %th{:width => "90"} Retail Price
       %th{:width => "90"} Wholesale Price
-    - subcategory.forms.all_active.each do |form|
+    - subcategory.forms.active.each do |form|
       %tr
         %td= link_to form.name, category_subcategory_form_path(form.category, form.subcategory, form)
         %td= h truncate(form.description, :length => 120, :omission => " (more..)")

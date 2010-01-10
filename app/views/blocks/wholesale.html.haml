@@ -21,6 +21,6 @@
         - @categories.each do |category|
           - unless category.subcategories.blank?    
             %h4= h category.name
-            - category.subcategories.all_active.each do |subcategory|
+            - category.subcategories.active.each do |subcategory|
               = render :partial => 'blocks/subcategory', :object => subcategory
     
