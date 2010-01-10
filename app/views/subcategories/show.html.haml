@@ -1,19 +1,24 @@
 %div.post
   %h2.title= h @subcategory.name
 
+- if @forms.blank?
   %div.entry
-    %ul.menu
-      - @forms.each do |form|
-        %li
-          = link_to form.name, category_subcategory_form_path(@category, @subcategory, form)
-          = ":"
+    %p None
+- else
+  - @forms.each do |form|
+    %div{:class => cycle("preview_row_odd","preview_row_even")}
+      .image= thumb_for(form.images.primary, category_subcategory_form_path(@category, @subcategory, form), :alt => form.name)
+      .body
+        %h3= link_to(form.name, category_subcategory_form_path(@category, @subcategory, form))
+        %p
           = simple_format form.description
+      .clear
 
 - if current_user
   %div.post
     %div.footer
       - if @inactive_forms.any?
-        %p * Plus #{@inactive_forms.size} #{@inactive_forms.size == 1 ? "form that is" : "forms that are"} not active.
+        %p.italic (Plus #{@inactive_forms.size} #{@inactive_forms.size == 1 ? "form that is" : "forms that are"} not active.)
       %p
         = edit_entity_image(edit_admin_category_subcategory_path(@category, @subcategory), "Edit this subcategory")
         %br

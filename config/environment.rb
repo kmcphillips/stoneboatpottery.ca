@@ -45,3 +45,5 @@ Rails::Initializer.run do |config|
 end
 
 ALT_TAG_DEFAULT = "Stoneboat Pottery"
+THUMB_NOT_FOUND_IMAGE = "/images/template/thumbknown.png"
+

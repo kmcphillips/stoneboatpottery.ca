@@ -7,16 +7,16 @@
 - else
   - @categories.each do |category|
     %div{:class => cycle("preview_row_odd","preview_row_even")}
-      .image= link_to(image_tag(category.image.public_filename(:thumb), :alt => ALT_TAG_DEFAULT), category_path(category)) if category.image
+      .image= thumb_for(category.image, category_path(category), :alt => category.name)
       .body
         %h3= link_to(category.name, category_path(category))
         %p
-          TODO
+          = simple_format category.description
       .clear
 
 - if current_user
   %div.post
     %div.footer
       - if @inactive_categories.any?
-        %p * Plus #{@inactive_categories.size} #{@inactive_categories.size == 1 ? "category that is" : "categories that are"} not active.
+        %p.italic (Plus #{@inactive_categories.size} #{@inactive_categories.size == 1 ? "category that is" : "categories that are"} not active.)
       %p= show_entity_image(admin_categories_path, "Show all categories")

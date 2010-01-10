@@ -7,13 +7,14 @@
 - else
   - @pieces.each do |piece|
     %div{:class => cycle("preview_row_odd","preview_row_even")}
-      .image= link_to(image_tag(piece.images.primary_first.first.public_filename(:thumb), :alt => ALT_TAG_DEFAULT), piece_path(piece)) if piece.images.primary_first.any?
+      .image= thumb_for(piece.images.primary, piece_path(piece), :alt => piece.name)
       .body
         %h3= link_to(piece.name, piece_path(piece))
         %p
-          TODO
-          %br
-          This piece is for sale for $90.
+          = simple_format truncate(piece.description, :length => 200, :omission => link_to(" (more..)", piece_path(piece)))
+          - if piece.for_sale?      
+            %br
+            This piece is for sale for #{number_to_currency(piece.price)}.
       .clear
   %div.post-footer.center
     = will_paginate @pieces

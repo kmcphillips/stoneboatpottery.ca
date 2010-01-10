@@ -62,6 +62,16 @@ module ApplicationHelper
       render :partial => 'shared/show_images', :object => imageable
     end
   end
+
+  def thumb_for(image, path, options={})
+    {:alt => ALT_TAG_DEFAULT}.merge(options)
+
+    if image
+      link_to(image_tag(image.thumb, :alt => options[:alt]), path)
+    else
+      link_to(image_tag(THUMB_NOT_FOUND_IMAGE, :alt => options[:alt]), path)
+    end
+  end
   
   def enlarge_button
     "Enlarge" + image_tag("/images/icons/magnify.png", :alt => "Enlarge", :class => :magnify)

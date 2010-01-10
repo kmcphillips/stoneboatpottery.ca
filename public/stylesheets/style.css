@@ -58,6 +58,10 @@ a img {
   font-weight: bold;
 }
 
+.italic {
+ 	font-style: italic;
+}
+
 .float_left {
   float: left;
 }
