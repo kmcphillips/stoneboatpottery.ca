@@ -80,6 +80,7 @@ class Admin::ImagesController < ApplicationController
             logger.error "Error deleting image with params: #{params.inspect}"
           end
 
+          page.call "init_facebox"
           page.replace_html :flashes_now, :partial => "shared/flashes"
         end
       end
@@ -105,6 +106,7 @@ class Admin::ImagesController < ApplicationController
 
           render :update do |page|
             page.replace :images_container, :partial => "shared/image_multiple", :locals => {:imageable => imageable}
+            page.call "init_facebox"
             page.replace_html :flashes_now, :partial => "shared/flashes"
           end
         end

@@ -7,7 +7,7 @@
           - if images.any?
             - images.each do |image|
               %td
-                = link_to image_tag(image.public_filename(:thumb)), image.public_filename, :rel => :facebox, :class => (image.primary? ? :thumb_primary : :thumb)
+                = link_to image_tag(image.thumb), image.full, :rel => :facebox, :class => (image.primary? ? :thumb_primary : :thumb)
                 %br
                 = button_to_remote "Remove Image", :url => admin_image_path(image, :imageable_type => image.imageable_type, :imageable_id => image.imageable_id), :method => :delete, :failure => "alert('There was an error removing this image. Please try again or contact administrator.')", :confirm => "Are you sure you want to delete this image?"
                 
@@ -25,7 +25,3 @@
         attached to this
         = imageable.class.to_s.humanize.downcase + "."
 
-:javascript
-  $(document).ready(function($) {
-    $('a[rel*=facebox]').facebox()
-  }) 
