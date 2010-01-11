@@ -73,14 +73,14 @@ After the migrations, db:populate will seed required data, including a test user
 
 ### Done
 
-Start the server and direct your browser to http://localhost:3000/
+Start the server and direct your browser to [http://localhost:3000/](http://localhost:3000/)
 
     $ ./script/server
 
-The admin area can be reached at http://localhost:3000/admin/ and the username and password that were created with the populate are test/test.
+The admin area can be reached at [http://localhost:3000/admin/](http://localhost:3000/admin/) and the username and password that were created with the populate are test/test.
 
 
 ## Feedback
 
-Contact me at kimos-github@gleep.ca with questions or feedback.
+Contact me at [kimos-github@gleep.ca](mailto:kimos-github@gleep.ca) with questions or feedback.
 

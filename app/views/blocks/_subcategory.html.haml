@@ -1,16 +1,16 @@
 - unless subcategory.forms.active.blank?
   %h5= h subcategory.name
 
-  %table
+  %table.data
     %tr
       %th{:width => "180"} Name
       %th{:width => "400"} Description
       %th{:width => "90"} Retail Price
       %th{:width => "90"} Wholesale Price
     - subcategory.forms.active.each do |form|
-      %tr
+      %tr{:class => cycle("odd","even")}
         %td= link_to form.name, category_subcategory_form_path(form.category, form.subcategory, form)
         %td= h truncate(form.description, :length => 120, :omission => " (more..)")
-        %td= form.retail_price
-        %td= form.wholesale_price
+        %td= number_to_currency form.retail_price
+        %td= number_to_currency form.wholesale_price
 

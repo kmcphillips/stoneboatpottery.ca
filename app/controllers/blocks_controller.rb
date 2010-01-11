@@ -1,10 +1,9 @@
 class BlocksController < ApplicationController
   before_filter :load_block  
 
-  def about_joanna
-  end
-  
-  def about_stoneboat
+  def about
+    @about_joanna = Block.find_by_label("about_joanna")
+    @about_stoneboat = Block.find_by_label("about_stoneboat")
   end
 
   def contact
