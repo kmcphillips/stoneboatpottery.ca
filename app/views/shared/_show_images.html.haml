@@ -10,14 +10,3 @@
   
   .clear
 
-%div{:style => "display:none"}
-  .primary_image
-    = link_to image_tag(images[0].inline), images[0].full, :rel => :facebox
-
-  - if images[1..-1].any?
-    .hscroll_images
-      %table.image
-        %tr
-          - images[1..-1].each do |image|
-            %td
-              = link_to image_tag(image.thumb), image.full, :rel => :facebox, :class => "thumb"

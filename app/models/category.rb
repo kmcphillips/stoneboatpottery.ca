@@ -8,8 +8,8 @@ class Category < ActiveRecord::Base
   
   attr_protected :id
   
-  named_scope :active, :conditions => ["active = ?", true], :order => "updated_at DESC"  
-  named_scope :inactive, :conditions => ["active = ?", false], :order => "updated_at DESC"
+  named_scope :active, :conditions => ["active = ?", true], :order => "name ASC"  
+  named_scope :inactive, :conditions => ["active = ?", false], :order => "name ASC"
   
   before_save :deactivate_children
 

@@ -1,7 +1,9 @@
 # Stoneboat Pottery
 
-http://stoneboatpottery.ca
 Kevin McPhillips
+
+[http://stoneboatpottery.ca](http://stoneboatpottery.ca)
+
 
 ## About
 
@@ -10,7 +12,7 @@ This is a full website, written in Ruby on Rails. It provides a full content man
 
 ## Quick Setup
 
-Get the application running in under five minutes.
+With an OS X or Linux machine and MySQL installed, you should be able to go from 0 to running in under three minutes. 
 
 ### For the impatient
 

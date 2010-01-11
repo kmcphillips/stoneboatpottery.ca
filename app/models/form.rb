@@ -16,8 +16,8 @@ class Form < ActiveRecord::Base
 
   acts_as_permalink :from => :name
 
-  named_scope :active, :conditions => ["active = ?", true], :order => "updated_at DESC"
-  named_scope :inactive, :conditions => ["active = ?", false], :order => "updated_at DESC"
+  named_scope :active, :conditions => ["active = ?", true], :order => "name ASC"  
+  named_scope :inactive, :conditions => ["active = ?", false], :order => "name ASC"
 
   def inherited_active?
     self.active? && self.subcategory.inherited_active?
