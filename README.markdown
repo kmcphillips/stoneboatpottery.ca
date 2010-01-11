@@ -1,6 +1,6 @@
 # Stoneboat Pottery
 
-Kevin McPhillips
+[Kevin McPhillips](mailto:kimos-github@gleep.ca)
 
 [http://stoneboatpottery.ca](http://stoneboatpottery.ca)
 
@@ -31,7 +31,7 @@ The MySQL commands may be different depending on your database credentials.
 
 
 ## Setup
-
+[kimos-github@gleep.ca](mailto:kimos-github@gleep.ca)
 ### Create a Database
 
 Create a MySQL database called "stoneboat_development" with the username and password "stoneboat/stoneboat". The MySQL commands would look something like this.
