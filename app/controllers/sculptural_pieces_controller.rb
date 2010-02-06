@@ -4,6 +4,7 @@ class SculpturalPiecesController < ApplicationController
     @pieces = SculpturalPiece.active.paginate(:per_page => 10, :page => params[:page] || 1)
     @inactive_pieces = SculpturalPiece.inactive
     @title = "Sculptural Pieces"
+    render "pieces/index"
   end
 
   def show
@@ -12,9 +13,14 @@ class SculpturalPiecesController < ApplicationController
     if @piece && (@piece.active? || current_user)
       flash[:warning] = "This piece is not active and can't be seen by users other than you." unless @piece.active?
       @title = @piece.name
+      render "pieces/show"
     else
       redirect_to_404
     end  
   end
 
+
+  def lineage
+    [@piece || SculpturalPiece.new]
+  end
 end

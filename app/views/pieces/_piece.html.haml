@@ -5,7 +5,7 @@
     %p
       = h piece.updated_at.to_s(:short)
       = " - "
-      = link_to "permalink", sculptural_piece_path(piece.permalink)
+      = link_to "permalink", polymorphic_path(piece)
 
   %div.entry
     = images_for piece

@@ -1,0 +1,9 @@
+= render :partial => 'pieces/piece', :object => @piece
+
+- if current_user
+  %div.post
+    %div.footer
+      %p
+        = edit_entity_image(edit_polymorphic_path([:admin, @piece]), "Edit this piece")
+        %br
+        = show_entity_image(polymorphic_path([:admin, @piece]), "Show this piece")
