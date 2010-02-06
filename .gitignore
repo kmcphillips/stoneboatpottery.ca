@@ -7,4 +7,4 @@ tmp/**/*
 doc/api
 doc/app
 public/images/attachment/*
-
+.idea
