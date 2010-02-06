@@ -48,13 +48,16 @@
 		</div>
 		
 		<div id="sidebar">
-      <ul>
+        <ul>
 <% if current_user %>
         <li>
           <h2>Admin</h2>
 <%= render :partial => 'shared/admin_nav' %>
         </li>
 <% end %>
+
+<%= render :partial => 'shared/sidebar' %>
+          
       </ul>
 		</div>
 

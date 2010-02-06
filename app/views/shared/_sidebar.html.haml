@@ -1,0 +1,12 @@
+- unless @sidebar_images.blank?
+  %li
+    %h2 Recent Images
+
+    %ul
+      - @sidebar_images.each do |image|
+      - obj = image.imageable
+        %li
+          - if image.imageable.is_a? Post
+            = render :partial => "shared/sidebar_image", :locals => {:image => image, :name => image.imageable.title, :path => post_path(image.imageable)}
+          - if image.imageable.is_a? SculpturalPiece
+            = render :partial => "shared/sidebar_image", :locals => {:image => image, :name => image.imageable.name, :path => sculptural_piece_path(image.imageable)}
