@@ -1,9 +1,9 @@
 %div.post
-  %h2.title Pieces
+  %h2.title Funky Functional Pieces
 
   %div.entry
     %p
-      = new_entity_image(new_admin_piece_path, "Create new piece")
+      = new_entity_image(new_admin_functional_piece_path, "Create new funky functional piece")
 
     - if @pieces.blank?
       %h3 None here
@@ -18,11 +18,11 @@
           %th Actions
         - @pieces.each do |piece| 
           %tr{:class => cycle("odd","even")}
-            %td= link_to piece.name, piece_path(piece)
-            %td= link_to truncate(piece.description, :length => 120, :omission => " (more..)"), piece_path(piece)
+            %td= link_to piece.name, functional_piece_path(piece)
+            %td= link_to truncate(piece.description, :length => 120, :omission => " (more..)"), functional_piece_path(piece)
             %td= number_to_currency(piece.price)
             %td= h piece.for_sale?
             %td= h piece.active?
             %td{:width => 46}
-              = edit_entity_image(edit_admin_piece_path(piece))
-              = delete_entity_image(admin_piece_path(piece))
+              = edit_entity_image(edit_admin_functional_piece_path(piece))
+              = delete_entity_image(admin_functional_piece_path(piece))

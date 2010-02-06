@@ -1,0 +1,20 @@
+%div.post
+  %h2.title= h piece.name
+
+  %div.meta
+    %p
+      = h piece.updated_at.to_s(:short)
+      = " - "
+      = link_to "permalink", functional_piece_path(piece.permalink)
+
+  %div.entry
+    = images_for piece
+    %br
+    = simple_format piece.description
+ 
+    - if piece.for_sale?
+      %p= "This piece is for sale for #{number_to_currency(piece.price)}"
+    - else
+      %p This piece is not for sale
+
+  %div.clear

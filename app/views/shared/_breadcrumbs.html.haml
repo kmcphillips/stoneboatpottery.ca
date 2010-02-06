@@ -26,12 +26,20 @@
           = spacer
           = link_to @form.name, admin_category_subcategory_form_path(@category, @subcategory, @form)
 
-- elsif params[:controller] == "pieces"
+- elsif params[:controller] == "functional_pieces"
   #breadcrumbs
-    = link_to "All Pieces", pieces_path
+    = link_to "All Funky Functional Pieces", functional_pieces_path
     - if @piece
       = spacer
-      = link_to @piece.name, piece_path(@piece)
+      = link_to @piece.name, functional_piece_path(@piece)
+
+
+- elsif params[:controller] == "sculptural_pieces"
+  #breadcrumbs
+    = link_to "All Sculptural Pieces", sculptural_pieces_path
+    - if @piece
+      = spacer
+      = link_to @piece.name, sculptural_piece_path(@piece)
 
 - else
   #breadcrumbs-blank

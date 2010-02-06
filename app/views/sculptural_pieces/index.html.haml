@@ -1,0 +1,27 @@
+%div.post_header
+  %h2.title Sculptural Pieces
+
+- if @pieces.blank?
+  %div.entry
+    %p None
+- else
+  - @pieces.each do |piece|
+    %div{:class => cycle("preview_row_odd","preview_row_even")}
+      .image= thumb_for(piece.images.primary, sculptural_piece_path(piece), :alt => piece.name)
+      .body
+        %h3= link_to(piece.name, sculptural_piece_path(piece))
+        %p
+          = simple_format truncate(piece.description, :length => 200, :omission => link_to(" (more..)", sculptural_piece_path(piece)))
+          - if piece.for_sale?      
+            %br
+            This piece is for sale for #{number_to_currency(piece.price)}.
+      .clear
+  %div.post-footer.center
+    = will_paginate @pieces
+
+- if current_user
+  %div.post
+    %div.footer
+      - if @inactive_pieces.any?
+        %p * Plus #{@inactive_pieces.size} #{@inactive_pieces.size == 1 ? "sculptural piece that is" : "sculptural functional_pieces that are"} not active.
+      %p= show_entity_image(admin_sculptural_pieces_path, "Show all sculptural functional_pieces")

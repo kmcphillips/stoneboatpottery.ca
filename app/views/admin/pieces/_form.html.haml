@@ -28,11 +28,11 @@
     %span.bold= f.object.permalink
 %p
   = f.label :for_sale
-  = f.check_box :for_sale, :onclick => "manage_price_field()"
+  = f.check_box :for_sale, :onclick => "manage_price_field()", :id => "piece_for_sale"
 
 %p
   = f.label :price
-  = f.text_field :price, :size => 6, :maxlength => 6
+  = f.text_field :price, :size => 6, :maxlength => 6, :id => "piece_price"
 
 %p
   = f.label :active

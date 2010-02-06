@@ -11,7 +11,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :posts, :only => [:index, :show], :collection => [:archive]
   map.connect 'rss.:format', :controller => 'posts', :action => 'rss'
 
-  map.resources :pieces, :only => [:index, :show]
+  map.resources :functional_pieces, :only => [:index, :show]
+
+  map.resources :sculptural_pieces, :only => [:index, :show]
+
 
   map.resources :blocks, :only => [], :collection => [:about, :contact, :wholesale]
   map.connect 'about', :controller => 'blocks', :action => 'about'
@@ -36,7 +39,9 @@ ActionController::Routing::Routes.draw do |map|
 
     admin.resources :links
 
-    admin.resources :pieces
+    admin.resources :functional_pieces
+
+    admin.resources :sculptural_pieces
 
     admin.resources :users, :only => [:edit, :update]
 

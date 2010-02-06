@@ -1,0 +1,18 @@
+%div.post
+  %h2.title Edit Sculptural Piece
+
+  %div.entry
+    - form_for [:admin, @piece] do |f| 
+      = render :partial => 'admin/pieces/form', :locals => {:f => f}
+      = f.submit "Save"
+
+    %br 
+    = render :partial => "shared/images_edit", :locals => { :imageable => @piece }
+
+  %div.actions
+    = index_entity_image(admin_sculptural_pieces_path, "Back to all sculptural pieces")
+    %br
+    = show_entity_image(sculptural_piece_path(@piece), "Show this piece")
+    %br
+    = delete_entity_image(admin_sculptural_pieces_path(@piece), "Delete this piece")
+
