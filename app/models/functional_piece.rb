@@ -1,0 +1,3 @@
+class FunctionalPiece < Piece
+  
+end
