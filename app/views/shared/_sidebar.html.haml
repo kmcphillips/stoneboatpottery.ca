@@ -6,7 +6,17 @@
       - @sidebar_images.each do |image|
       - obj = image.imageable
         %li
-          - if image.imageable.is_a? Post
-            = render :partial => "shared/sidebar_image", :locals => {:image => image, :name => image.imageable.title, :path => post_path(image.imageable)}
-          - if image.imageable.is_a? SculpturalPiece
-            = render :partial => "shared/sidebar_image", :locals => {:image => image, :name => image.imageable.name, :path => sculptural_piece_path(image.imageable)}
+          - if obj.is_a?(Post)
+            = render :partial => "shared/sidebar_image", :locals => {:image => image, :name => obj.title, :path => post_path(obj)}
+          - if obj.is_a?(SculpturalPiece) && obj.active?
+            = render :partial => "shared/sidebar_image", :locals => {:image => image, :name => obj.name, :path => sculptural_piece_path(obj)}
+          - if obj.is_a?(FunctionalPiece) && obj.active?
+            = render :partial => "shared/sidebar_image", :locals => {:image => image, :name => obj.name, :path => functional_piece_path(obj)}
+          - if obj.is_a?(Block)
+            = render :partial => "shared/sidebar_image", :locals => {:image => image, :name => obj.label_display, :path => obj.section_path}
+          - if obj.is_a?(Category) && obj.inherited_active?
+            = render :partial => "shared/sidebar_image", :locals => {:image => image, :name => obj.name, :path => category_path(obj)}
+          - if obj.is_a?(Subcategory) && obj.inherited_active?
+            = render :partial => "shared/sidebar_image", :locals => {:image => image, :name => obj.name, :path => category_subcategory_path(obj.category, obj)}
+          - if obj.is_a?(Form) && obj.inherited_active?
+            = render :partial => "shared/sidebar_image", :locals => {:image => image, :name => obj.name, :path => category_subcategory_form_path(obj.category, obj.subcategory, obj)}
