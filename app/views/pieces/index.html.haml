@@ -11,7 +11,7 @@
       .body
         %h3= link_to(piece.name, polymorphic_path(piece))
         %p
-          = simple_format truncate(piece.description, :length => 200, :omission => link_to(" (more..)", polymorphic_path(piece)))
+          = simple_format piece.description
           - if piece.for_sale?      
             %br
             This piece is for sale for #{number_to_currency(piece.price)}.

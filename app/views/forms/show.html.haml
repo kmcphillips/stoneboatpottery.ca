@@ -8,7 +8,7 @@
   %div.entry
     = images_for @form
     %br
-    = simple_format @form.description
+    = auto_link(simple_format(@form.description))
 
     %p
       Price:

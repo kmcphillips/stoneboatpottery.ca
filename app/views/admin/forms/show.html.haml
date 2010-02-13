@@ -7,7 +7,7 @@
     = h @form.category.name
 
   %div.entry
-    = simple_format @form.description
+    = auto_link(simple_format(@form.description))
 
     %p
       %label Permalink

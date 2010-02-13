@@ -4,7 +4,7 @@
   %div.entry
     = images_for @about_stoneboat, :align => :right
 
-    = simple_format @about_stoneboat.body
+    = auto_link(simple_format(@about_stoneboat.body))
 
   .clear
 
@@ -20,7 +20,7 @@
   %div.entry
     = images_for @about_joanna, :align => :right
 
-    = simple_format @about_joanna.body
+    = auto_link(simple_format(@about_joanna.body))
 
   .clear
 

@@ -9,7 +9,10 @@
 
   %div.entry
     = images_for post
-    = simple_format post.body
+    - if post.generated
+      = post.body
+    - else
+      = auto_link(simple_format(post.body))
     
     = edit_entity_image(edit_admin_post_path(post), "Edit this post") if current_user && !post.generated
 
