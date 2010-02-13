@@ -313,7 +313,7 @@ textarea {
 	padding: 12px 0 0 20px;
 	letter-spacing: -.5px;
 	/* color: #E3295B; */
-  color: #3E574F;
+    color: #3E574F;
 }
 
 .post .meta {
@@ -458,7 +458,6 @@ div.preview_row_odd div.image img , div.preview_row_even div.image img {
 #sidebar p {
 	margin: 0 0px;
 	padding: 0px 20px 20px 0px;
-	text-align: justify;
 }
 
 #sidebar a {
@@ -467,6 +466,26 @@ div.preview_row_odd div.image img , div.preview_row_even div.image img {
 
 #sidebar a:hover {
 	text-decoration: underline;
+}
+
+#sidebar div.thumb {
+    text-align: right;
+    margin: 10px 20px 4px 4px;
+}
+
+#sidebar div.thumb div.image img {
+    border: 5px solid #878787;
+}
+
+#sidebar div.thumb p.linktext {
+    padding: 0px;
+    font-size: 1.1em;
+}
+
+#sidebar div.thumb p.subtext {
+    padding: 0px;
+    font-size: 0.9em;
+    font-style: italic;
 }
 
 /* Footer */

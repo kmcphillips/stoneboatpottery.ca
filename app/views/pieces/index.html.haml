@@ -2,8 +2,8 @@
   %h2.title= lineage.last.display_type(true).upcase_words
 
 - if @pieces.blank?
-  %div.entry
-    %p None
+  .post
+    %h3.title None
 - else
   - @pieces.each do |piece|
     %div{:class => cycle("preview_row_odd","preview_row_even")}

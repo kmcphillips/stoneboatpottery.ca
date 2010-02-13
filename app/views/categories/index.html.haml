@@ -2,8 +2,8 @@
   %h2.title All Categories
 
 - if @categories.blank?
-  %div.entry
-    %p None
+  .post
+    %h3.title None
 - else
   - @categories.each do |category|
     %div{:class => cycle("preview_row_odd","preview_row_even")}

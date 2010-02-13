@@ -1,3 +1,4 @@
-.image= thumb_for(image, path, :alt => name)
-.linktext= link_to(name, path)
-.subtext= "Last updated #{image.imageable.updated_at}"
+.thumb
+  .image= thumb_for(image, path, :alt => name)
+  %p.linktext= link_to(name, path)
+  %p.subtext= "Last updated #{image.imageable.updated_at.to_s(:simple_short)}"
