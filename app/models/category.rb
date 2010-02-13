@@ -7,7 +7,9 @@ class Category < ActiveRecord::Base
   validates_presence_of :name
   
   attr_protected :id
-  
+
+  xss_terminate :except => [:permalink]
+
   named_scope :active, :conditions => ["active = ?", true], :order => "name ASC"  
   named_scope :inactive, :conditions => ["active = ?", false], :order => "name ASC"
   

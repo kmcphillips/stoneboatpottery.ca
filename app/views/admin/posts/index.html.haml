@@ -19,10 +19,10 @@
             %td= h post.updated_at.to_s(:table)
             %td= link_to post.title, post_path(post)
             %td
-              - if post.generated
+              - if post.system?
                 = link_to "System generated on #{post.created_at.to_s(:simple_short)} (read only)", post_path(post)
               - else
                 = link_to truncate(post.body, :length => 120, :omission => " (more..)"), post_path(post)
             %td{:width => 46}
-              = edit_entity_image(edit_admin_post_path(post)) unless post.generated
+              = edit_entity_image(edit_admin_post_path(post)) unless post.system?
               = delete_entity_image(admin_post_path(post))

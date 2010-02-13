@@ -5,7 +5,9 @@ class Block < ActiveRecord::Base
   
   attr_protected :id
   attr_readonly :label
-  
+
+  xss_terminate :except => [:label, :section_path]
+
   def label_display
     label.humanize
   end

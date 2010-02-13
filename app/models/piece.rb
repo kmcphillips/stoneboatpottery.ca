@@ -12,6 +12,8 @@ class Piece < ActiveRecord::Base
 
   attr_protected :id
 
+  xss_terminate :except => [:permalink, :type]
+
   named_scope :active, :conditions => ["active = ?", true], :order => "name ASC"  
   named_scope :inactive, :conditions => ["active = ?", false], :order => "name ASC"
 

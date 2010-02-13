@@ -9,6 +9,8 @@ class Subcategory < ActiveRecord::Base
   
   attr_protected :id
 
+  xss_terminate :except => [:permalink]
+
   before_save :deactivate_children
 
   named_scope :active, :conditions => ["active = ?", true], :order => "name ASC"  

@@ -12,6 +12,8 @@ class Form < ActiveRecord::Base
   
   attr_protected :id
 
+  xss_terminate :except => [:permalink]
+
   delegate :category, :to => :subcategory
 
   acts_as_permalink :from => :name

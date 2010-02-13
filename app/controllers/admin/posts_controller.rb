@@ -2,7 +2,7 @@ class Admin::PostsController < ApplicationController
   before_filter :require_login
   
   def index
-    @posts = Post.all(:order => "updated_at DESC")
+    @posts = Post.all(:order => "created_at DESC")
     @title = "Posts"
   end
   
@@ -20,7 +20,7 @@ class Admin::PostsController < ApplicationController
   def edit
     @post = Post.find_by_permalink(params[:id])
 
-    if @post.generated
+    if @post.system?
       flash[:error] = "Cannot edit system generated posts."
       redirect_to admin_posts_path
     else
@@ -43,7 +43,7 @@ class Admin::PostsController < ApplicationController
   def update
     @post = Post.find_by_permalink(params[:id])
 
-    if @post.generated
+    if @post.system?
       flash[:error] = "Cannot edit system generated posts."
       redirect_to admin_posts_path
     elsif @post.update_attributes(params[:post])

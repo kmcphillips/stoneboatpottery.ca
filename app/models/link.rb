@@ -6,6 +6,8 @@ class Link < ActiveRecord::Base
   
   attr_protected :id
 
+  xss_terminate :except => [:url]
+
 protected
 
   def url_begins_with_protocol
