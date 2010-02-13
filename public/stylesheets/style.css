@@ -630,3 +630,6 @@ div.primary_image {
   padding-bottom: 20px;
 }
 
+.multi_image img {
+    border: 5px solid #878787;
+}
