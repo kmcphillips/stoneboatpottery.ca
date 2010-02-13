@@ -40,8 +40,8 @@ class Admin::ImagesController < ApplicationController
 
           render :update do |page|
             page.call "upload_after"
-            page.replace :image_container, :partial => "shared/image_single", :locals => {:imageable => @imageable} if @imageable.andand.respond_to?(:image)
-            page.replace :images_container, :partial => "shared/image_multiple", :locals => {:imageable => @imageable} if @imageable.andand.respond_to?(:images)
+            page.replace :image_container, :partial => "shared/image_single", :locals => {:imageable => @imageable} if @imageable.try(:respond_to?, :image)
+            page.replace :images_container, :partial => "shared/image_multiple", :locals => {:imageable => @imageable} if @imageable.try(:respond_to?, :images)
             page.call "init_facebox"
             page.replace_html :flashes_now, :partial => "shared/flashes"
           end

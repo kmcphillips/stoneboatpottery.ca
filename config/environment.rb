@@ -20,7 +20,6 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem "haml", :version => ">=2.2.7"
-  config.gem "andand", :version => ">=1.3.1"
   config.gem "will_paginate", :version => ">=2.2.2"
 #  config.gem "rmagick", :version => ">=2.12.2"
   config.gem 'rmagick', :lib => "RMagick"

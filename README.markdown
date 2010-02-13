@@ -21,13 +21,15 @@ The MySQL commands may be different depending on your database credentials.
     $ mysql -u root -e "CREATE DATABASE stoneboat_development"
     $ mysql -u root -e "GRANT ALL PRIVILEGES ON stoneboat_development.* TO 'stoneboat'@'localhost' IDENTIFIED BY 'stoneboat'"
     $ mysql -u root -e "FLUSH PRIVILEGES"
-    $ sudo gem install haml andand will_paginate rmagick
+    $ sudo gem install haml will_paginate rmagick
     $ git clone git://github.com/kimos/stoneboat_pottery.git
     $ cd stoneboat_development
     $ cp config/database.yml.example config/database.yml
     $ rake db:migrate
     $ rake db:populate
     $ ./script/server
+
+Point your browser to [http://localhost:3000/](http://localhost:3000/) and you should be set to go.
 
 
 ## Setup
@@ -51,7 +53,7 @@ With some very small changes this could use a SQLite database, but I'll leave th
 
 The only tricky on is rmagick which depends on ImageMagick locally. On Linux it's usually just installing a package, but on OS X it's a little more intense. 
 
-    $ sudo gem install haml andand will_paginate rmagick
+    $ sudo gem install haml will_paginate rmagick
 
 
 ### Get the source
