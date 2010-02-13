@@ -318,8 +318,7 @@ textarea {
 
 .post .meta {
 	padding: 8px 15px;
-	margin: 11px 18px;
-	/* background: url(../images/template/bullet.jpg) no-repeat left 6px; */
+	margin: 11px 18px 4px 18px;
 	background: #6A9E8D;
 }
 
