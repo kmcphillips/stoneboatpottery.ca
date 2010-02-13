@@ -1,5 +1,5 @@
 %div.post_header
-  %h2.title= controller.lineage.last.display_type(true).upcase_words
+  %h2.title= lineage.last.display_type(true).upcase_words
 
 - if @pieces.blank?
   %div.entry
@@ -24,4 +24,4 @@
     %div.footer
       - if @inactive_pieces.any?
         %p * Plus #{@inactive_pieces.size} #{@inactive_pieces.size == 1 ? "#{@inactive_pieces.first.display_type} that is" : "#{@inactive_pieces.first.display_type(true)} that are"} not active.
-      %p= show_entity_image(polymorphic_path([:admin, @pieces.first.class.new]), "Show all #{@pieces.first.display_type} pieces") if @pieces.any?
+      %p= show_entity_image(polymorphic_path([:admin, lineage].flatten), "Show all #{lineage.last.display_type(true)}")

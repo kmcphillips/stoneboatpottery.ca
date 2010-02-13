@@ -3,12 +3,14 @@ class Admin::FunctionalPiecesController < ApplicationController
   
   def index
     @pieces = FunctionalPiece.all(:order => "active DESC, updated_at DESC")
-    @title = "Funky Functional Pieces"
+    @title = "Edit Funky Functional Pieces"
+    render 'admin/pieces/index'
   end
 
   def new
     @piece = FunctionalPiece.new
     @title = "New Funky Functional Piece"
+    render 'admin/pieces/new'
   end
   
   def show
@@ -19,6 +21,7 @@ class Admin::FunctionalPiecesController < ApplicationController
   def edit
     @piece = FunctionalPiece.find_by_permalink(params[:id])
     @title = "Edit #{@piece.name}"
+    render 'admin/pieces/edit'
   end
   
   def update
@@ -55,6 +58,11 @@ class Admin::FunctionalPiecesController < ApplicationController
     end
 
     redirect_to admin_functional_pieces_path
+  end
+
+  
+  def lineage
+    [:admin, FunctionalPiece.find_by_permalink(params[:id]) || FunctionalPiece.new]
   end
   
 end

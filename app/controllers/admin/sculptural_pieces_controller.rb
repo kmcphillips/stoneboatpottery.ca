@@ -3,12 +3,14 @@ class Admin::SculpturalPiecesController < ApplicationController
   
   def index
     @pieces = SculpturalPiece.all(:order => "active DESC, updated_at DESC")
-    @title = "Sculptural Pieces"
+    @title = "Edit Sculptural Pieces"
+    render 'admin/pieces/index'
   end
 
   def new
     @piece = SculpturalPiece.new
     @title = "New Sculptural Piece"
+    render 'admin/pieces/new'
   end
   
   def show
@@ -19,6 +21,7 @@ class Admin::SculpturalPiecesController < ApplicationController
   def edit
     @piece = SculpturalPiece.find_by_permalink(params[:id])
     @title = "Edit #{@piece.name}"
+    render 'admin/pieces/edit'
   end
   
   def update
@@ -56,5 +59,10 @@ class Admin::SculpturalPiecesController < ApplicationController
 
     redirect_to admin_sculptural_pieces_path
   end
-  
+
+
+  def lineage
+    [:admin, SculpturalPiece.find_by_permalink(params[:id]) || SculpturalPiece.new]
+  end
+
 end

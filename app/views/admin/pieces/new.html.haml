@@ -1,0 +1,11 @@
+%div.post
+  %h2.title= @title
+
+  %div.entry
+    - form_for lineage, :method => :post do |f|
+      = render :partial => 'admin/pieces/form', :locals => {:f => f}
+      = f.submit "Create"
+
+  %div.actions
+    = index_entity_image(polymorphic_path(lineage), "Back to all #{lineage.last.display_type(true)}")
+

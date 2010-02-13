@@ -5,7 +5,7 @@
     %p
       = h piece.updated_at.to_s(:short)
       = " - "
-      = link_to "permalink", polymorphic_path(piece)
+      = link_to "permalink", polymorphic_path(lineage)
 
   %div.entry
     = images_for piece

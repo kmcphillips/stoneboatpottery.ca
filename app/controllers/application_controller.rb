@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
 
   include ApplicationHelper  # I don't know why this is needed
 
+  helper_method :lineage
+
   before_filter :load_sidebar_images
 
   # Scrub sensitive parameters from your log
