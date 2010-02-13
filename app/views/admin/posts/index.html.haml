@@ -16,7 +16,7 @@
           %th Actions
         - @posts.each do |post| 
           %tr{:class => cycle("odd","even")}
-            %td= h post.updated_at.to_s(:long)
+            %td= h post.updated_at.to_s(:table)
             %td= link_to post.title, post_path(post)
             %td= link_to truncate(post.body, :length => 120, :omission => " (more..)"), admin_post_path(post)
             %td{:width => 46}

@@ -3,7 +3,7 @@
 
   %div.meta
     %p
-      = h piece.updated_at.to_s(:short)
+      = h piece.updated_at.to_s(:simple_short)
       = " - "
       = link_to "permalink", polymorphic_path(lineage)
 

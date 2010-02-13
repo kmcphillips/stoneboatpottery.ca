@@ -14,7 +14,7 @@
         - @blocks.each do |block| 
           %tr{:class => cycle("odd","even")}
             %td= link_to block.label_display, block.section_path
-            %td= h block.updated_at.to_s(:long)
+            %td= h block.updated_at.to_s(:table)
             %td= link_to truncate(block.body, :length => 120, :omission => " (more..)"), block.section_path
             %td
               = edit_entity_image(edit_admin_block_path(block))

@@ -3,7 +3,7 @@
 
   %div.meta
     %p
-      = h post.updated_at.to_s(:short)
+      = h post.updated_at.to_s(:simple_short)
       = " - "
       = link_to "permalink", post_path(post.permalink)
 
