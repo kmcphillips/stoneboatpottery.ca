@@ -19,7 +19,13 @@ class Admin::PostsController < ApplicationController
   
   def edit
     @post = Post.find_by_permalink(params[:id])
-    @title = "Edit Post"
+
+    if @post.generated
+      flash[:error] = "Cannot edit system generated posts."
+      redirect_to admin_posts_path
+    else
+      @title = "Edit Post"
+    end
   end
   
   def create
@@ -36,8 +42,11 @@ class Admin::PostsController < ApplicationController
   
   def update
     @post = Post.find_by_permalink(params[:id])
-    
-    if @post.update_attributes(params[:post])
+
+    if @post.generated
+      flash[:error] = "Cannot edit system generated posts."
+      redirect_to admin_posts_path
+    elsif @post.update_attributes(params[:post])
       flash[:notice] = "Post successfully updated."
       redirect_to admin_posts_path
     else
