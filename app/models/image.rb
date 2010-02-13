@@ -23,7 +23,7 @@ class Image < ActiveRecord::Base
 
   named_scope :primary_first, :order => "`primary` DESC, updated_at DESC"
   named_scope :all_primary, :conditions => "`primary` = 1"
-  named_scope :recent, lambda{|limit| {:order => "updated_at DESC", :limit => limit}}
+  named_scope :recent, lambda{|limit| {:order => "updated_at DESC", :limit => limit, :group => :imageable_type}}
 
   def thumb
     self.image.url(:thumb)

@@ -4,7 +4,7 @@
   %div.entry
     - form_for [:admin, @category], :method => :post do |f| 
       = render :partial => 'admin/categories/form', :locals => {:f => f}
-      = f.submit "Create New Category"
+      = f.submit "Create"
 
   %div.actions
     = index_entity_image(admin_categories_path, "Back to all categories")

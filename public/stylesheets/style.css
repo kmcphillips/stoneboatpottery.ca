@@ -480,6 +480,7 @@ div.preview_row_odd div.image img , div.preview_row_even div.image img {
 #sidebar div.thumb p.linktext {
     padding: 0px;
     font-size: 1.1em;
+    font-weight: bold;
 }
 
 #sidebar div.thumb p.subtext {

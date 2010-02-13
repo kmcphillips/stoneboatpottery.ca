@@ -21,4 +21,5 @@
 
 %p
   = f.label :description
-  = f.text_field :description
+  %div.clear
+  = f.text_area :description, :rows => 6, :cols => 70

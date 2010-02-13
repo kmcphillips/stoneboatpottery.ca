@@ -8,7 +8,7 @@
   %div.entry
     - form_for [:admin, @category, @subcategory, @form], :method => :post do |f| 
       = render :partial => 'admin/forms/form', :locals => {:f => f}
-      = f.submit "Create New Form"
+      = f.submit "Create"
 
   %div.actions
     = index_entity_image(admin_category_subcategory_path(@category, @subcategory), "Back to all forms under subcategory #{@subcategory.name}")

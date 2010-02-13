@@ -4,7 +4,7 @@
   %div.entry
     - form_for [:admin, @post], :method => :post do |f|
       = render :partial => 'admin/posts/form', :locals => {:f => f}
-      = f.submit "Create New Post"
+      = f.submit "Create"
 
   %div.actions
     = index_entity_image(admin_posts_path, "Back to all posts")

@@ -4,11 +4,14 @@
     = h @block.label_display
 
   %div.entry
-    - form_for [:admin, @block] do |f| 
+    - form_for [:admin, @block] do |f|
       %p
+        = f.label :description
+        %div.clear
         = f.text_area :body, :rows => 15, :cols => 70
 
-      = f.submit "Save #{@block.label_display}"
+        %br
+        = f.submit "Save"
 
     - if @block.accepts_image? 
       %br 
