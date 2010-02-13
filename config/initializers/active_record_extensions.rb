@@ -1,0 +1,1 @@
+ActiveRecord::Base.extend(DateScopes::ClassMethods)

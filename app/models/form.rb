@@ -20,6 +20,7 @@ class Form < ActiveRecord::Base
 
   named_scope :active, :conditions => ["active = ?", true], :order => "name ASC"  
   named_scope :inactive, :conditions => ["active = ?", false], :order => "name ASC"
+  date_scopes
 
   def inherited_active?
     self.active? && self.subcategory.inherited_active?

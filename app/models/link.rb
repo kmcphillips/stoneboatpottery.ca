@@ -8,6 +8,8 @@ class Link < ActiveRecord::Base
 
   xss_terminate :except => [:url]
 
+  date_scopes
+
 protected
 
   def url_begins_with_protocol

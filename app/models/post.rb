@@ -9,7 +9,11 @@ class Post < ActiveRecord::Base
 
   acts_as_permalink
 
+  named_scope :user_created, :conditions => {:type => nil}
+  date_scopes
+
   def system?
     self.type == "SystemPost"
   end
+
 end

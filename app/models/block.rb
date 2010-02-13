@@ -8,6 +8,8 @@ class Block < ActiveRecord::Base
 
   xss_terminate :except => [:label, :section_path]
 
+  date_scopes
+
   def label_display
     label.humanize
   end
