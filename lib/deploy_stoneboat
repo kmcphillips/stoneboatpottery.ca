@@ -52,7 +52,9 @@ echo "** WARNING: Old releases are not yet being removed"
 
 # Restart server
 # This may not be necessary
+echo "** Restarting httpd"
 sudo /etc/init.d/httpd graceful
 
+# Done
 echo "** Deployed successfully"
 
