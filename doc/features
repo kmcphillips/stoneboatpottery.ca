@@ -3,3 +3,7 @@
 - Scrubbing of old deployed versions for deploy script.
 - Rake task to reset password for a given user.
 - Create backups of this database that get copied with the regular backup.
+- Fix TODOs in the links at the bottom of the template.
+- Test extensively in other browsers, including without scripting.
+
+
