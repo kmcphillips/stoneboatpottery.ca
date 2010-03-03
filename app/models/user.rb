@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest password
   end
 
-  def change_password(password, password_confirm)
+  def change_password!(password, password_confirm)
     if password && password_confirm
       if password == password_confirm
         if password.length >= 4

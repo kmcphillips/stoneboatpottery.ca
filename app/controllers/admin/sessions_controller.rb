@@ -37,9 +37,8 @@ class Admin::SessionsController < ApplicationController
 
   def change_password
     @user = current_user
-    @user.change_password(params[:password], params[:password_confirm])
-
-    if @user.errors.any?
+    
+    if @user.change_password!(params[:password], params[:password_confirm])
       flash[:error] = @user.errors.full_messages.to_sentence
     else
       flash[:notice] = "Password was changed successfully."
