@@ -1,6 +1,7 @@
 class Category < ActiveRecord::Base
   has_one :image, :as => :imageable, :dependent => :destroy
   has_many :subcategories
+  has_many :forms, :through => :subcategories
 
   acts_as_permalink :from => :name
   
@@ -10,8 +11,8 @@ class Category < ActiveRecord::Base
 
   xss_terminate :except => [:permalink]
 
-  named_scope :active, :conditions => ["active = ?", true], :order => "name ASC"  
-  named_scope :inactive, :conditions => ["active = ?", false], :order => "name ASC"
+  named_scope :active, :conditions => ["categories.active = ?", true], :order => "name ASC"
+  named_scope :inactive, :conditions => ["categories.active = ?", false], :order => "name ASC"
   date_scopes
   
   before_save :deactivate_children

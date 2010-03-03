@@ -18,8 +18,8 @@ class Form < ActiveRecord::Base
 
   acts_as_permalink :from => :name
 
-  named_scope :active, :conditions => ["active = ?", true], :order => "name ASC"  
-  named_scope :inactive, :conditions => ["active = ?", false], :order => "name ASC"
+  named_scope :active, :conditions => ["forms.active = ?", true], :order => "name ASC"
+  named_scope :inactive, :conditions => ["form.sactive = ?", false], :order => "name ASC"
   date_scopes
 
   def inherited_active?

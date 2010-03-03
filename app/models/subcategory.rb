@@ -13,8 +13,8 @@ class Subcategory < ActiveRecord::Base
 
   before_save :deactivate_children
 
-  named_scope :active, :conditions => ["active = ?", true], :order => "name ASC"  
-  named_scope :inactive, :conditions => ["active = ?", false], :order => "name ASC"
+  named_scope :active, :conditions => ["subcategories.active = ?", true], :order => "name ASC"
+  named_scope :inactive, :conditions => ["subcategories.active = ?", false], :order => "name ASC"
   date_scopes
 
   def inherited_active?
