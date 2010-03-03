@@ -1,9 +1,8 @@
 - Rake task that will aggregate all new objects of the day into a system news post.
 - Area to add/remove wholesale passwords.
 - Scrubbing of old deployed versions for deploy script.
-- Rake task to reset password for a given user.
 - Create backups of this database that get copied with the regular backup.
-- Fix TODOs in the links at the bottom of the template.
+- Fix TODOs in the links at the bottom of the template, including obfuscating email addresses.
 - Test extensively in other browsers, including without scripting.
-
+- Meta tags and search engines.
 

@@ -2,13 +2,14 @@ namespace :user do
 
   desc "Reset password for a user"
   task :change_password => :environment do
+    puts "\nSelect a user to change their password\n\n"
     User.all.each {|user| puts "  #{user.id}. #{user.username}" }
     puts ""
     print "Enter a user id: "
     
-    if user = User.find_by_id(gets)
+    if user = User.find_by_id(STDIN.gets.chomp)
       print "Enter new password: "
-      pass = gets.strip
+      pass = STDIN.gets.chomp
       
       if user.change_password!(pass, pass)
         puts "Password has been changed"
@@ -21,3 +22,4 @@ namespace :user do
     end
   end
 end
+
