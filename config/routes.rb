@@ -28,7 +28,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'logout', :controller => 'sessions', :action => 'logout'
 
   map.namespace :admin do |admin|
-    admin.resources :sessions, :only => [:index, :new, :create, :destroy], :collection => [:logout]
+    admin.resources :sessions, :only => [:index, :new, :create, :destroy], :collection => {:logout => :get, :password => :get, :change_password => :post}
     admin.connect 'login', :controller => 'sessions', :action => 'new'
     admin.connect 'logout', :controller => 'sessions', :action => 'logout'
     

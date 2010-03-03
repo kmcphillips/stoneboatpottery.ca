@@ -12,7 +12,8 @@
       - form_tag sessions_path, :method => :post do
         %table
           %tr
-            %td Password
+            %td
+              %label Password
             %td= password_field_tag :password
           %tr
             %td &nbsp;

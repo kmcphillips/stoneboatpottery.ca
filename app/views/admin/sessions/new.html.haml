@@ -12,10 +12,12 @@
       - form_tag admin_sessions_path, :method => :post do
         %table
           %tr
-            %td Username
+            %td
+              %label Username
             %td= text_field_tag :username
           %tr
-            %td Password
+            %td
+              %label Password
             %td= password_field_tag :password
           %tr
             %td &nbsp;

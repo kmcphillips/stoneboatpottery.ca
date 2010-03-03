@@ -8,10 +8,12 @@ class ApplicationController < ActionController::Base
 
   before_filter :load_sidebar_images
 
-  filter_parameter_logging :password
+  filter_parameter_logging :password, :password_confirm
   
   def require_login
-    unless session[:admin_user]
+    except = require_login_except rescue []
+
+    unless session[:admin_user] || except.include?(params[:action])
       flash[:error] = "You must login to view that page."
       redirect_to "/admin/login"
     end

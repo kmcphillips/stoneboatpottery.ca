@@ -57,7 +57,7 @@ module ApplicationHelper
   
   def images_for(imageable, options={})
     if imageable && imageable.respond_to?(:image) && imageable.image
-      link_to(image_tag(imageable.image.inline, :alt => ALT_TAG_DEFAULT) + "<br />" + enlarge_button, imageable.image.full, :rel => :facebox, :class => (options[:align] && options[:align].to_s == "right"? "float-right" : "float-left"))
+      link_to(image_tag(imageable.image.inline, :alt => ALT_TAG_DEFAULT) + "<br />" + enlarge_button, imageable.image.full, :rel => :facebox, :class => (options[:align] && options[:align].to_s == "right"? "float-right no_underline" : "float-left no_underline"))
     elsif imageable && imageable.respond_to?(:images) && imageable.images.any?
       render :partial => 'shared/show_images', :object => imageable
     end
@@ -67,9 +67,9 @@ module ApplicationHelper
     {:alt => ALT_TAG_DEFAULT}.merge(options)
 
     if image
-      link_to(image_tag(image.thumb, :alt => options[:alt]), path)
+      link_to(image_tag(image.thumb, :alt => options[:alt]), path, :class => :no_underline)
     else
-      link_to(image_tag(THUMB_NOT_FOUND_IMAGE, :alt => options[:alt]), path)
+      link_to(image_tag(THUMB_NOT_FOUND_IMAGE, :alt => options[:alt]), path, :class => :no_underline)
     end
   end
   

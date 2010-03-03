@@ -36,7 +36,6 @@ ul, ol {
 }
 
 a {
-    text-decoration: underline;
     color: #333;
 }
 
@@ -46,6 +45,10 @@ a:hover {
 
 a img {
     border: 0;
+}
+
+a.no_underline {
+    text-decoration: none;
 }
 
 .center {
