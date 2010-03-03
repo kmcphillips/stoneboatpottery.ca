@@ -8,15 +8,18 @@
   %div.entry
     = images_for @form
     %br
-    = auto_link(simple_format(@form.description))
+    %br
 
     %p
-      Price:
-      = number_to_currency @form.retail_price
+      %label Price
+      %em= number_to_currency @form.retail_price
       - if wholesale?
-        %br
-        Wholesale Price:
-        = number_to_currency @form.wholesale_price
+        %p
+          %label Wholesale Price:
+          %em= number_to_currency @form.wholesale_price
+
+    %br
+    %p= auto_link(simple_format(@form.description))
 
 - if current_user
   %div.post

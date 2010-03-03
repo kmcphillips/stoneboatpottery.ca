@@ -10,11 +10,17 @@
   %div.entry
     = images_for piece
     %br
-    = auto_link(simple_format(piece.description))
- 
-    - if piece.for_sale?
-      %p= "This piece is for sale for #{number_to_currency(piece.price)}"
-    - else
-      %p This piece is not for sale
+    %br
+
+    %p
+      %label Price
+      %em
+        - if piece.for_sale?
+          = number_to_currency piece.price
+        - else
+          This piece is not for sale
+
+    %br
+    %p= auto_link(simple_format(piece.description))
 
   %div.clear

@@ -2,11 +2,9 @@
 - images = show_images.images.primary_first
 
 .multi_image
-  .float_left  
-    = link_to image_tag(images[0].inline), images[0].full, :rel => :facebox
-  .float_right
+  .primary
+    = link_to image_tag(images[0].inline_large), images[0].full, :rel => :facebox
+  .others
     - images[1..-1].each do |image|
       = link_to image_tag(image.thumb), image.full, :rel => :facebox, :class => "thumb"
-  
-  .clear
-
+ 

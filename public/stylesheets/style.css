@@ -60,6 +60,11 @@ a img {
     font-style: italic;
 }
 
+em {
+    font-style: normal;
+    font-weight: bold;
+}
+
 .float_left {
     float: left;
 }
@@ -150,13 +155,14 @@ textarea {
 
 #header-wrapper {
 }
-
+/*
 #header {
     width: 960px;
     height: 190px;
     margin: 0 auto;
     background: url(../images/template/header6.jpg) no-repeat right bottom;
 }
+*/
 
 /* Logo */
 
@@ -623,4 +629,18 @@ div.primary_image {
 
 .multi_image img {
     border: 5px solid #878787;
+}
+
+.multi_image .primary {
+    text-align: center;
+}
+
+.multi_image .others {
+    text-align: left;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.multi_image .others img {
+    margin: 6px;
 }
