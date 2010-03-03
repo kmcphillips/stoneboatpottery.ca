@@ -22,7 +22,6 @@ Rails::Initializer.run do |config|
 
   config.gem "haml", :version => ">=2.2.7"
   config.gem "will_paginate", :version => ">=2.2.2"
-#  config.gem "archive-tar-minitar", :version => ">=0.5.2", :lib => "archive/tar/minitar"
   config.gem "rmagick", :lib => "RMagick", :version => ">=2.12.2"
 
   # Only load the plugins named here, in the order given (default is alphabetical).

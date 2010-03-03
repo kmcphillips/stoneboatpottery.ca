@@ -1,8 +1,10 @@
 class Image < ActiveRecord::Base
   belongs_to :imageable, :polymorphic => true
 
+  SIZES = { :full => "700x560>", :thumb => "120x120#", :inline => "280x280>", :inline_large => "600x400>" }
+
   has_attached_file :image, 
-    :styles => { :full => "700x560>", :thumb => "120x120#", :inline => "280x280>" }, 
+    :styles => SIZES,
     :default_style => :full, 
     :whiny => true,
     :path => ":rails_root/public/images/attachment/:class/:attachment/:id/:style_:basename.:extension",
@@ -25,16 +27,11 @@ class Image < ActiveRecord::Base
   named_scope :all_primary, :conditions => "`primary` = 1"
   named_scope :recent, lambda{|limit| {:order => "updated_at DESC", :limit => limit, :group => "imageable_type, imageable_id"}}
 
-  def thumb
-    self.image.url(:thumb)
-  end
-
-  def full
-    self.image.url(:full)
-  end
-
-  def inline
-    self.image.url(:inline)
+  # create a convenience method for each of the image sizes/types
+  SIZES.each_key do |key|
+    define_method key do
+      self.image.url(key)
+    end
   end
 
 protected
