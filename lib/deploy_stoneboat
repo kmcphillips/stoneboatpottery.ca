@@ -40,7 +40,7 @@ fi
 # Run migrations
 echo "** Running migrations"
 cd "$RELEASE_FOLDER"
-rake db:migrate
+rake db:migrate RAILS_ENV=production
 
 # Update symlink
 echo "** Creating link to new release"
