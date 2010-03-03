@@ -11,7 +11,6 @@
             %li
               %em= link_to((link.title.blank? ? link.url : link.title), link.url)
               - unless link.description.blank?
-                %br              
                 %span.description= simple_format link.description
 
 - if current_user

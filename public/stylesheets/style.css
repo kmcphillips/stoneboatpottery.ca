@@ -36,12 +36,12 @@ ul, ol {
 }
 
 a {
-    text-decoration: none;
-    color: #464646;
+    text-decoration: underline;
+    color: #333;
 }
 
 a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 a img {
@@ -527,8 +527,7 @@ ul h3.archive-year {
 /* Links */
 
 ul.links {
-    padding-left: 8px;
-    list-style: none;
+    padding-left: 28px;
 }
 
 ul.links li {
