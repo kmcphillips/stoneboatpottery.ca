@@ -23,5 +23,5 @@
         = imageable.images.size
         = imageable.images.size == 1 ? "image" : "images"
         attached to this
-        = imageable.class.to_s.humanize.downcase + "."
+        = imageable.class.base_class.to_s.humanize.downcase + "."
 
