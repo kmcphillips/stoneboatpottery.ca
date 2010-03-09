@@ -70,7 +70,7 @@
 
 <div id="footer-wrapper">
 	<div id="footer">
-		<p><a href="/rss.xml">RSS  <%= image_tag "/images/icons/rss.png", :alt => "RSS Feed" %></a> | &copy; <a href="TODO">JoAnna Lange</a> | Site by <a href="TODO">Kevin McPhillips</a> / <a href="http://gleep.ca">gleep.ca</a></p>
+		<p><a href="/rss.xml">RSS  <%= image_tag "/images/icons/rss.png", :alt => "RSS Feed" %></a> | &copy; <%= safe_mail_to "joanna@stoneboatpottery.ca", "JoAnna Lange" %> | Site by <%= safe_mail_to "admin@gleep.ca", "Kevin McPhillips" %> / <a href="http://gleep.ca">gleep.ca</a></p>
 	</div>
 </div>
 

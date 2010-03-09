@@ -80,4 +80,9 @@ module ApplicationHelper
   def redirect_to_404
     redirect_to "/404.html"
   end
+
+  def safe_mail_to(email, label=nil)
+    obfuscated = email.scan(/.{1,10}/).join("[REMOVE_THIS]")
+    mail_to(email, label, :encode => "javascript") + "<noscript>#{mail_to(obfuscated, label || email.sub(/\@.*/, ""))}</noscript>"
+  end
 end
