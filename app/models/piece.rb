@@ -8,7 +8,7 @@ class Piece < ActiveRecord::Base
   acts_as_permalink :from => :name
 
   validates_presence_of :name, :description
-  validate :price_if_for_sale  
+  validate :price_if_for_sale
 
   attr_protected :id
 
@@ -23,4 +23,5 @@ protected
   def price_if_for_sale
     self.errors.add(:price, "must be a positive number if the piece is for sale") if self.for_sale? && (!self.price || self.price <= 0)
   end
+
 end
