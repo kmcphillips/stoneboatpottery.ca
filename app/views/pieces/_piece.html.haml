@@ -15,7 +15,10 @@
     %p
       %label Price
       %em
-        - if piece.for_sale?
+        - if piece.sold?
+          This piece was sold for
+          = number_to_currency piece.price
+        - elsif piece.for_sale?
           = number_to_currency piece.price
         - else
           This piece is not for sale

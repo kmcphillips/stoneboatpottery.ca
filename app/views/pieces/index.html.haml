@@ -12,7 +12,9 @@
         %h3= link_to(piece.name, polymorphic_path(piece))
         %p
           = simple_format piece.description
-          - if piece.for_sale?
+          - if piece.sold?
+            This piece is sold.
+          - elsif piece.for_sale?
             This piece is for sale for #{number_to_currency(piece.price)}.
       .clear
   %div.post-footer.center
