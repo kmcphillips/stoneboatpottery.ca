@@ -2,6 +2,9 @@
   %h2.title Contact
 
   %div.entry
+    %p
+      Email:
+      =safe_mail_to EMAIL[:main], "JoAnna Lange"
     = auto_link(simple_format(@block.body))
 
 - if current_user

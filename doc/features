@@ -3,7 +3,5 @@
 - Scrubbing of old deployed versions for deploy script.
 - Create backups of this database that get copied with the regular backup.
 - Test extensively in other browsers, including without scripting.
-- Meta tags and search engines.
 - Confirm email address.
-- Add automatic email to contact area.
-
+- Add version which shows up in comments etc.
