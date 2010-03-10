@@ -21,7 +21,7 @@ The MySQL commands may be different depending on your database credentials.
     $ mysql -u root -e "CREATE DATABASE stoneboat_development"
     $ mysql -u root -e "GRANT ALL PRIVILEGES ON stoneboat_development.* TO 'stoneboat'@'localhost' IDENTIFIED BY 'stoneboat'"
     $ mysql -u root -e "FLUSH PRIVILEGES"
-    $ sudo gem install haml will_paginate rmagick
+    $ sudo gem install haml will_paginate rmagick mysql
     $ git clone git://github.com/kimos/stoneboat_pottery.git
     $ cd stoneboat_development
     $ cp config/database.yml.example config/database.yml
