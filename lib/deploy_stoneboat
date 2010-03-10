@@ -41,6 +41,10 @@ fi
 echo "** Running migrations"
 cd "$RELEASE_FOLDER"
 rake db:migrate RAILS_ENV=production
+if [ "$?" -ne "0" ]; then
+  echo "** ERROR: deploy cancelled because of failed migrations"
+  exit 1
+fi
 
 # Update symlink
 echo "** Creating link to new release"
@@ -49,6 +53,8 @@ ln -s "$RELEASE_FOLDER" "$CURRENT_FOLDER"
 
 # Get rid of old verions
 echo "** WARNING: Old releases are not yet being removed"
+COUNT=`ls -1t $PROJECT_ROOT/releases/ | wc -l`
+echo "** Total of $COUNT releases in the history"
 
 # Restart server
 # This may not be necessary
