@@ -1,7 +1,6 @@
 - Rake task that will aggregate all new objects of the day into a system news post.
-- Area to add/remove wholesale passwords.
 - Scrubbing of old deployed versions for deploy script.
 - Create backups of this database that get copied with the regular backup.
 - Test extensively in other browsers, including without scripting.
 - Confirm email address.
-- Add version which shows up in comments etc.
+- Add date picker to wholesale passwords

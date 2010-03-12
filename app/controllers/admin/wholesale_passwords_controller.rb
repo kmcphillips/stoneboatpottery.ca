@@ -1,8 +1,7 @@
 class Admin::WholesalePasswordsController < ApplicationController
-  before_filter :require_login
+  before_filter :require_login, :load_all
   
   def index
-    @wholesale_passwords = WholesalePassword.all(:order => "created_at DESC")
     @title = "Wholesale Passwords"
   end
   
@@ -26,12 +25,12 @@ class Admin::WholesalePasswordsController < ApplicationController
       redirect_to admin_wholesale_passwords_path
     else
       flash[:error] = @wholesale_password.errors.full_messages.to_sentence
-      render 'admin/functional_pieces/new'
+      render 'admin/wholesale_passwords/index'
     end  
   end
 
   def destroy
-    @wholesale_password = WholesalePassword.find_by_permalink(params[:id])
+    @wholesale_password = WholesalePassword.find(params[:id])
 
     if @wholesale_password.delete
       flash[:notice] = "Wholesale password successfully deleted."
@@ -47,4 +46,7 @@ class Admin::WholesalePasswordsController < ApplicationController
     [:admin, WholesalePassword.find(params[:id]) || WholesalePassword.new]
   end
   
+  def load_all
+    @wholesale_passwords = WholesalePassword.all(:order => "created_at DESC")
+  end
 end

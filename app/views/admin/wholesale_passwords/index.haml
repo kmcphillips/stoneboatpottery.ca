@@ -2,9 +2,12 @@
   %h2.title= @title
 
   %div.entry
-    - form_for [:admin, @wholesale_password], :method => :post do |f| 
+    - form_for [:admin, @wholesale_password || WholesalePassword.new], :method => :post do |f| 
       = render :partial => 'admin/wholesale_passwords/form', :locals => {:f => f}
-      = f.submit "Add New"
+      = f.submit "Create"
+
+%div.post
+  %h2.title All Passwords
 
   %div.entry
     = render :partial => "admin/wholesale_passwords/wholesale_passwords"

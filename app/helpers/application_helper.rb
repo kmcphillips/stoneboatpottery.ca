@@ -87,6 +87,6 @@ module ApplicationHelper
   end
   
   def boolean_image(value)
-    image_tag("/images/icons/#{!!value}.png", :alt => (!!value).humanize)
+    image_tag("/images/icons/#{!!value}.png", :alt => (!!value).to_s.humanize)
   end
 end
