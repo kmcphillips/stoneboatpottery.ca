@@ -1,3 +1,2 @@
-WholesalePassword.connection.execute("truncate wholesale_passwords;")
-
+WholesalePassword.truncate!
 WholesalePassword.create!(:password => "wholesale")

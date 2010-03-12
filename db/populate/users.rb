@@ -1,4 +1,4 @@
-User.connection.execute("truncate users;")
+User.truncate!
 
 users = [
           {:username => "test", :password => "test"}

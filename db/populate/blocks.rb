@@ -1,4 +1,4 @@
-Block.connection.execute("truncate blocks;")
+Block.truncate!
 
 blocks = [
           {:label => "about_joanna", :section_path => "/about", :accepts_image => true},
