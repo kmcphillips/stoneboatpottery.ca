@@ -18,13 +18,10 @@ With an OS X or Linux machine and MySQL installed, you should be able to go from
 
 The MySQL commands may be different depending on your database credentials.
 
-    $ mysql -u root -e "CREATE DATABASE stoneboat_development"
-    $ mysql -u root -e "GRANT ALL PRIVILEGES ON stoneboat_development.* TO 'stoneboat'@'localhost' IDENTIFIED BY 'stoneboat'"
-    $ mysql -u root -e "FLUSH PRIVILEGES"
-    $ sudo gem install haml will_paginate rmagick mysql
+    $ sudo gem install haml will_paginate rmagick sqlite3-ruby
     $ git clone git://github.com/kimos/stoneboat_pottery.git
     $ cd stoneboat_development
-    $ cp config/database.yml.example config/database.yml
+    $ cp config/database.yml.sqlite3 config/database.yml
     $ rake db:migrate
     $ rake db:populate
     $ ./script/server
@@ -40,20 +37,16 @@ Feel free to contact me if you're having problems. [kimos-github@gleep.ca](mailt
 
 ### Create a Database
 
-Create a MySQL database called "stoneboat_development" with the username and password "stoneboat/stoneboat". The MySQL commands would look something like this.
+For simplicity this uses a SQLite database. There are instructions below on how to create a MySQL database. MySQL is faster and should be used for a production system, but this is much easier just to get going for now.
 
-    $ mysql -u root -e "CREATE DATABASE stoneboat_development"
-    $ mysql -u root -e "GRANT ALL PRIVILEGES ON stoneboat_development.* TO 'stoneboat'@'localhost' IDENTIFIED BY 'stoneboat'"
-    $ mysql -u root -e "FLUSH PRIVILEGES"
-
-With some very small changes this could use a SQLite database, but I'll leave that as an exercise to the reader.
+The SQLite database will get created with the migrations. Magic.
 
 
 ### Install the required gems
 
 The only tricky on is rmagick which depends on ImageMagick locally. On Linux it's usually just installing a package, but on OS X it's a little more intense. 
 
-    $ sudo gem install haml will_paginate rmagick
+    $ sudo gem install haml will_paginate rmagick sqlite3-ruby
 
 
 ### Get the source
@@ -68,7 +61,7 @@ Clone the git repo to get the source.
 Copy in the config files needed.
 
     $ cd stoneboat_development
-    $ cp config/database.yml.example config/database.yml
+    $ cp config/database.yml.sqlite3 config/database.yml
 
 
 ### Create and populate the database
@@ -86,6 +79,19 @@ Start the server and direct your browser to [http://localhost:3000/](http://loca
     $ ./script/server
 
 The admin area can be reached at [http://localhost:3000/admin/](http://localhost:3000/admin/) and the username and password that were created with the populate are test/test.
+
+
+## MySQL Database rather than SQLite
+
+SQLite is nice and easy but it's not fast. MySQL is much better for a real app. Modify the above instructions to do:
+
+    $ sudo gem install mysql
+    $ cp config/database.yml.mysql config/database.yml
+    $ mysql -u root -e "CREATE DATABASE stoneboat_development"
+    $ mysql -u root -e "GRANT ALL PRIVILEGES ON stoneboat_development.* TO 'stoneboat'@'localhost' IDENTIFIED BY 'stoneboat'"
+    $ mysql -u root -e "FLUSH PRIVILEGES"
+
+You'll need to install the mysql gem, copy in the appropriate config file, and create the database in your MySQL instance. Your root user may require different credentials.
 
 
 ## Feedback
