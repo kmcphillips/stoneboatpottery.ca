@@ -25,6 +25,10 @@ class Form < ActiveRecord::Base
   def inherited_active?
     self.active? && self.subcategory.inherited_active?
   end
+  
+  def deactivate!
+    self.update_attribute(:active, false)
+  end
 
 protected
   

@@ -36,10 +36,6 @@ class Category < ActiveRecord::Base
 protected
 
   def deactivate_children
-    if self.active_changed? && ! self.active?
-      self.subcategories.each do |subcategory|
-        subcategory.update_attribute(:active, false) if subcategory.active?
-      end
-    end
+    self.subcategories.map(&:deactivate!) if self.active_changed? && ! self.active?
   end
 end

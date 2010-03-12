@@ -21,13 +21,16 @@ class Subcategory < ActiveRecord::Base
     self.active? && self.category.inherited_active?
   end
 
+  def deactivate!
+    if self.active?
+      update_attribute(:active, false)
+      self.forms.active.map(&:deactivate!)
+    end
+  end
+
 protected
 
   def deactivate_children
-    if self.active_changed? && ! self.active?
-      self.forms.each do |form|
-        form.update_attribute(:active, false) if form.active?
-      end
-    end
+    self.forms.active.map(&:deactivate!) if self.active_changed? && ! self.active?
   end
 end

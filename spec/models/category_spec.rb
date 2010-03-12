@@ -2,8 +2,8 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Category do
   before(:each) do
-    @c = Category.create!(:name => "bowls and plates", :description => "bowls and plates are for eating!", :permalink => "bowls_and_mugs")
-    @s = Subcategory.create!(:name => "bowls", :description => "bowls for soup and salad", :permalink => "bowls", :category => @c)
+    @c = Category.create!(:name => "bowls and plates", :description => "bowls and plates are for eating!", :permalink => "bowls_and_mugs", :active => true)
+    @s = Subcategory.create!(:name => "bowls", :description => "bowls for soup and salad", :permalink => "bowls", :category => @c, :active => true)
   end
 
   it "should have subcategories" do
@@ -14,6 +14,10 @@ describe Category do
     it "should find all active subcategories in this category" do
       @c.subcategories.should_receive(:find).with(:all, :conditions => ["active = ?", true]).and_return([@s])
       @c.active_subcategories.should == [@s]
+    end
+    
+    it "should know inherrited active" do
+      @c.inherited_active?.should == @c.active?
     end
   end
 
@@ -41,6 +45,14 @@ describe Category do
 
     it "should show a blank string if there are no subcategories" do
       Category.new.list_subcategories.should == ""
+    end
+  end
+  
+  describe "deactivate children" do
+    it "should make all the children inactive" do
+      @c.active = false
+      @c.save!
+      @c.subcategories.any?{|s| s.active? }.should be_false
     end
   end
   
