@@ -26,3 +26,8 @@ config.action_mailer.delivery_method = :test
 # This is necessary if your schema can't be completely dumped by the schema dumper,
 # like if you have constraints or database-specific column types
 # config.active_record.schema_format = :sql
+
+# Require the gems for spec tests
+config.gem "rspec", :lib => false, :version => ">= 1.2.8"
+config.gem "rspec-rails", :lib => false, :version => ">= 1.2.7.1"
+config.gem "progressbar", :version => ">=0.9.0"

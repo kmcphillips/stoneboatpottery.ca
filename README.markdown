@@ -94,6 +94,29 @@ SQLite is nice and easy but it's not fast. MySQL is much better for a real app. 
 You'll need to install the mysql gem, copy in the appropriate config file, and create the database in your MySQL instance. Your root user may require different credentials.
 
 
+## Tests
+
+There's a suite of spec tests for all models and helpers and some of the controllers. With MySQL you'll need to create the test database.
+
+    $ mysql -u root -e "CREATE DATABASE stoneboat_test"
+    $ mysql -u root -e "GRANT ALL PRIVILEGES ON stoneboat_test.* TO 'stoneboat'@'localhost' IDENTIFIED BY 'stoneboat'"
+    $ mysql -u root -e "FLUSH PRIVILEGES"
+
+For SQLite you don't need to do anything.
+
+Next, clone your current database into your test database.
+
+    $ rake db:test:clone
+
+Be sure you have the spec gems.
+
+    $ sudo gem install rspec rspec-rails
+
+Then run them!
+
+    $ rake spec
+
+
 ## Feedback
 
 Contact me at [kimos-github@gleep.ca](mailto:kimos-github@gleep.ca) with questions or feedback.
