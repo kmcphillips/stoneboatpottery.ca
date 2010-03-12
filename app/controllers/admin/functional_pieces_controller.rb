@@ -49,9 +49,9 @@ class Admin::FunctionalPiecesController < ApplicationController
   end
 
   def destroy
-    piece = FunctionalPiece.find_by_permalink(params[:id])
+    @piece = FunctionalPiece.find_by_permalink(params[:id])
 
-    if piece.delete
+    if @piece.delete
       flash[:notice] = "Piece successfully deleted."
     else
       flash[:error] = @piece.errors.full_messages.to_sentence

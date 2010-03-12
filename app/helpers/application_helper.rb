@@ -85,4 +85,8 @@ module ApplicationHelper
     obfuscated = email.scan(/.{1,10}/).join("[REMOVE_THIS]")
     mail_to(email, label, :encode => "javascript") + "<noscript>#{mail_to(obfuscated, label || email.sub(/\@.*/, ""))}</noscript>"
   end
+  
+  def boolean_image(value)
+    image_tag("/images/icons/#{!!value}.png", :alt => (!!value).humanize)
+  end
 end

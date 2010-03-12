@@ -41,12 +41,12 @@ class Admin::FormsController < ApplicationController
   end
 
   def destroy
-    form = @subcategory.forms.find_by_permalink(params[:id])
+    @form = @subcategory.forms.find_by_permalink(params[:id])
 
-    if form.delete
+    if @form.delete
       flash[:notice] = "Form successfully deleted."
     else
-      flash[:error] = form.errors.full_messages.to_sentence
+      flash[:error] = @form.errors.full_messages.to_sentence
     end
 
     redirect_to admin_category_subcategory_path(@category, @subcategory)

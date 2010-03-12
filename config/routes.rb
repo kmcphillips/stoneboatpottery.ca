@@ -37,6 +37,8 @@ ActionController::Routing::Routes.draw do |map|
     
     admin.resources :blocks, :only => [:index, :show, :update, :edit]
 
+    admin.resources :wholesale_passwords, :only => [:index, :create, :destroy]
+
     admin.resources :links
 
     admin.resources :functional_pieces

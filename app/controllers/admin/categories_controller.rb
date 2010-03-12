@@ -46,15 +46,15 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def destroy
-    category = Category.find_by_permalink(params[:id])
+    @category = Category.find_by_permalink(params[:id])
 
-    if category.subcategories.size > 0
-      flash[:error] = "Can only delete empty categories. This category has #{category.subcategories.size} subcategories."
+    if @category.subcategories.size > 0
+      flash[:error] = "Can only delete empty categories. This category has #{@category.subcategories.size} subcategories."
     else
-      if category.delete
+      if @category.delete
         flash[:notice] = "Category successfully deleted."
       else
-        flash[:error] = category.errors.full_messages.to_sentence
+        flash[:error] = @category.errors.full_messages.to_sentence
       end
     end
 

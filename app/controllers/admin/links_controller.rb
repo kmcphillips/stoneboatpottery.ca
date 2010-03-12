@@ -46,9 +46,9 @@ class Admin::LinksController < ApplicationController
   end
 
   def destroy
-    link = Link.find(params[:id])
+    @link = Link.find(params[:id])
 
-    if link.delete
+    if @link.delete
       flash[:notice] = "Link successfully deleted."
     else
       flash[:error] = @link.errors.full_messages.to_sentence
