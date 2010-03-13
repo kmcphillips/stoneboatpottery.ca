@@ -102,7 +102,7 @@ describe Admin::SessionsController do
     end
   end
 
-  after(:each) do
-    
+  it "should know which controllers need authentication" do
+    controller.send(:require_login_except).sort.should == ["index", "new", "create", "destroy", "logout"].sort
   end
 end

@@ -5,7 +5,14 @@ describe Piece do
     @p = Piece.new(:name => "weirdy face", :description => "some big weirdy face sculpture")
   end
 
-  
+  describe "validations" do
+    it "should have a price if it is for sale" do
+      @p.for_sale = true
+      @p.price = nil
+      @p.should_not be_valid
+      @p.errors.on(:price).should_not == nil
+    end
+  end
 
   after(:each) do
     Piece.delete_all

@@ -2,9 +2,9 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Form do
   before(:each) do
-    @c = Category.create!(:name => "bowls and plates", :description => "bowls and plates are for eating!", :permalink => "bowls_and_mugs")
-    @s = Subcategory.create!(:name => "bowls", :description => "bowls for soup and salad", :permalink => "bowls", :category => @c)
-    @f = Form.create!(:name => "soup bowl", :description => "for soup", :subcategory => @s)
+    @c = Category.create!(:name => "bowls and plates", :description => "bowls and plates are for eating!", :permalink => "bowls_and_mugs", :active => true)
+    @s = Subcategory.create!(:name => "bowls", :description => "bowls for soup and salad", :permalink => "bowls", :category => @c, :active => true)
+    @f = Form.create!(:name => "soup bowl", :description => "for soup", :subcategory => @s, :active => true)
   end
 
   it "should have a parent subcategory" do
@@ -38,7 +38,16 @@ describe Form do
       @f.active?.should be_false
     end
   end
-  
+
+  describe "amount validations" do
+    it "should fail validations if the wholesale price is greater than the retail price" do
+      @f.retail_price = 10
+      @f.wholesale_price = 12
+      @f.should_not be_valid
+      @f.errors.on(:retail_price).should_not == nil
+    end
+  end
+
   after(:each) do
     Form.delete_all
     Subcategory.delete_all
