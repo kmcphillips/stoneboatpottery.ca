@@ -37,7 +37,7 @@ class Image < ActiveRecord::Base
 protected
 
   def set_primary_false_for_single
-    self.primary = false if self.imageable.try(:respond_to?, :image) && self.primary
+    self.primary = false if self.imageable.try(:respond_to?, :image) && self.primary?
   end
 
   def manage_primary
