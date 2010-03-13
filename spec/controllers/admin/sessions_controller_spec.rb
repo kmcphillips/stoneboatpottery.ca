@@ -3,6 +3,7 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 describe Admin::SessionsController do
   before(:each) do
     @u = mock_model(User)
+    controller.stub!(:require_login)
   end
 
   describe "GET index" do
@@ -52,12 +53,52 @@ describe Admin::SessionsController do
       end
     end
   end
-  
+
   describe "DELETE destroy" do
     it "should redirec to the index" do
       pending
       delete :destroy
       response.should redirect_to("/")
+    end
+  end
+
+  describe "GET password" do
+    it "should render view" do
+      get :password
+      response.should render_template("admin/sessions/password")
+    end
+  end
+
+  describe "GET logout" do
+    it "should call destroy" do
+      controller.should_receive(:destroy)
+      get :logout
+    end
+  end
+
+  describe "POST change_password" do
+    before(:each) do
+      controller.stub!(:current_user).and_return(@u)
+      @u.stub!(:change_password!).and_return(true)
+      controller.stub!(:require_login)
+    end
+
+    it "should redirect" do
+      @u.stub!(:save).and_return(true)
+      post :change_password
+      response.should redirect_to(password_admin_sessions_path)
+    end
+
+    it "should change password with params" do
+      @u.should_receive(:change_password!).with("pass1", "pass2").and_return(true)
+      post :change_password, :password => "pass1", :password_confirm => "pass2"
+    end
+
+    it "should flash errors on failure" do
+      @u.should_receive(:change_password!).and_return(false)
+      @u.should_receive(:errors).and_return(mock("errors", :full_messages => ["delicious", "pie"]))
+      post :change_password
+      flash[:error].should == "delicious and pie"
     end
   end
 
