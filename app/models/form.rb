@@ -8,7 +8,8 @@ class Form < ActiveRecord::Base
   end
   
   validates_presence_of :subcategory, :name, :description
-  validate :retail_price_must_be_more_than_wholesale_price, :wholesale_price_must_be_valid, :retail_price_must_be_valid
+  validates_numericality_of :retail_price, :wholesale_price, :allow_nil => true, :greater_than_or_equal_to => 0
+  validate :retail_price_must_be_more_than_wholesale_price
   
   attr_protected :id
 
@@ -34,13 +35,5 @@ protected
   
   def retail_price_must_be_more_than_wholesale_price
     errors.add(:retail_price, "must be greater than the wholesale price") if wholesale_price && retail_price && wholesale_price > retail_price
-  end
-  
-  def wholesale_price_must_be_valid
-    errors.add(:wholesale_price, "must be a positive value or blank") if !wholesale_price.blank? && wholesale_price < 0
-  end
-  
-  def retail_price_must_be_valid
-    errors.add(:retail_price, "must be a positive value or blank") if !retail_price.blank? && retail_price < 0
   end
 end

@@ -15,6 +15,29 @@ describe Form do
     s = Form.new(:name => "bowls", :description => "bowls for soup and salad")
     s.save.should be_false
   end
+
+  describe "inherited active" do
+    it "should be false if it is inactive" do
+      @f.update_attribute(:active, false)
+      @f.inherited_active?.should be_false
+    end
+    
+    it "should be false if the category is inactive" do
+      @s.should_receive(:inherited_active?).and_return(false)
+      @f.inherited_active?.should be_false
+    end
+    
+    it "should be true of everything is active" do
+      @f.inherited_active?.should be_true
+    end
+  end
+
+  describe "deactivate!" do
+    it "should description" do
+      @f.deactivate!
+      @f.active?.should be_false
+    end
+  end
   
   after(:each) do
     Form.delete_all

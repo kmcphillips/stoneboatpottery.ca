@@ -4,3 +4,4 @@
 - Test extensively in other browsers, including without scripting.
 - Confirm email address.
 - Add date picker to wholesale passwords
+- Write tests
