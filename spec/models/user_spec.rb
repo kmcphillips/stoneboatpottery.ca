@@ -37,7 +37,8 @@ end
   
   describe "encrypt" do
     it "should encrypt the password into a hash" do
-      pending
+      Digest::SHA1.should_receive(:hexdigest).with("pie").and_return("delicious")
+      User.encrypt("pie").should == "delicious"
     end
   end
   
