@@ -7,25 +7,34 @@ describe ApplicationHelper do
     end
 
     it "should find the current user if you are logged in" do
-      pending
+      session[:admin_user] = "pie"
+      User.should_receive(:find).with("pie").and_return(@u)
+      current_user.should == @u
     end
 
     it "should not look for a user if none is stored " do
-      pending
+      User.should_not_receive(:find)
+      current_user.should be_nil
     end
   end
 
   describe "wholesale" do
+    before(:each) do
+      self.stub!(:current_user).and_return(nil)
+    end
+
     it "should let you into wholesale if you are logged in as a site user" do
-      pending
+      self.stub!(:current_user).and_return(@u)
+      wholesale?.should == true
     end
 
     it "should let you in if you are logged into the wholesale area" do
-      pending
+      session[:wholesale_permitted] = true
+      wholesale?.should == true
     end
 
     it "should not let you in otherwise" do
-      pending
+      wholesale?.should == false
     end
   end
 
