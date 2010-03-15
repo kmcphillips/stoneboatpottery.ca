@@ -4,6 +4,3 @@
 - Test extensively in other browsers, including without scripting.
 - Confirm email address.
 - Add date picker to wholesale passwords
-- Write tests
-- Make rmagick an optional include since the gem is such a nightmare
-
