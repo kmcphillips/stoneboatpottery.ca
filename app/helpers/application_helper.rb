@@ -14,7 +14,7 @@ module ApplicationHelper
 
     if @title
       "#{prefix} - #{@title}"
-    elsif params[:controller] == "blocks"
+    elsif params[:controller] =~ /blocks$/
       "#{prefix} - #{params[:action].humanize}"
     else
       prefix
