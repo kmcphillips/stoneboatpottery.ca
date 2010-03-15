@@ -4,3 +4,6 @@
 - Test extensively in other browsers, including without scripting.
 - Confirm email address.
 - Add date picker to wholesale passwords
+- Update error pages to match the site, with clean messages too.
+
+
