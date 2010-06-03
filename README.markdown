@@ -20,7 +20,7 @@ The MySQL commands may be different depending on your database credentials.
 
     $ sudo gem install haml will_paginate rmagick sqlite3-ruby
     $ git clone git://github.com/kimos/stoneboat_pottery.git
-    $ cd stoneboat_development
+    $ cd stoneboat_pottery
     $ cp config/database.yml.sqlite3 config/database.yml
     $ rake db:migrate
     $ rake db:populate
@@ -44,9 +44,11 @@ The SQLite database will get created with the migrations. Magic.
 
 ### Install the required gems
 
-The only tricky on is rmagick which depends on ImageMagick locally. On Linux it's usually just installing a package, but on OS X it's a little more intense. 
+The only tricky on is rmagick which depends on ImageMagick locally. On Linux it's usually just installing a package, but on OS X it's a little more intense.  
 
     $ sudo gem install haml will_paginate rmagick sqlite3-ruby
+
+If rmagick won't install, then just omit it from the line above. The app will run but image uploads will not work. On linux you'll have to install the ImageMagick dev libraries that should be in the repo for your distro. On OS X try something like this:  http://github.com/masterkain/ImageMagick-sl
 
 
 ### Get the source
