@@ -12,13 +12,11 @@ This is a full website, written in Ruby on Rails. It provides a full content man
 
 ## Quick Setup
 
-With an OS X or Linux machine and MySQL installed, you should be able to go from 0 to running in under three minutes. 
+With an OS X or Linux machine with ruby and rubygems installed, you should be able to go from 0 to running in under three minutes. 
 
 ### For the impatient
 
-The MySQL commands may be different depending on your database credentials.
-
-    $ sudo gem install haml will_paginate rmagick sqlite3-ruby
+    $ sudo gem install rails haml will_paginate rmagick sqlite3-ruby
     $ git clone git://github.com/kimos/stoneboat_pottery.git
     $ cd stoneboat_pottery
     $ cp config/database.yml.sqlite3 config/database.yml
@@ -48,7 +46,9 @@ The only tricky on is rmagick which depends on ImageMagick locally. On Linux it'
 
     $ sudo gem install haml will_paginate rmagick sqlite3-ruby
 
-If rmagick won't install, then just omit it from the line above. The app will run but image uploads will not work. On linux you'll have to install the ImageMagick dev libraries that should be in the repo for your distro. On OS X try something like this:  http://github.com/masterkain/ImageMagick-sl
+If rmagick won't install, then just omit it from the line above. The app will run but image uploads will not work. On linux you'll have to install the ImageMagick dev libraries that should be in the repo for your distro. On OS X try something like this:  
+
+[http://github.com/masterkain/ImageMagick-sl](http://github.com/masterkain/ImageMagick-sl)
 
 
 ### Get the source
