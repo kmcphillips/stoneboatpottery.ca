@@ -1,6 +1,6 @@
 # Stoneboat Pottery
 
-[Kevin McPhillips](mailto:kimos-github@gleep.ca)
+[Kevin McPhillips](mailto:github@kevinmcphillips.ca)
 
 [http://stoneboatpottery.ca](http://stoneboatpottery.ca)
 
@@ -30,7 +30,7 @@ Point your browser to [http://localhost:3000/](http://localhost:3000/) and you s
 ## Setup
 
 This all works under the assumption that you have Ruby and Rubygems installed. 
-Feel free to contact me if you're having problems. [kimos-github@gleep.ca](mailto:kimos-github@gleep.ca)
+Feel free to contact me if you're having problems. [github@kevinmcphillips.ca](mailto:github@kevinmcphillips.ca)
 
 
 ### Create a Database
@@ -121,5 +121,5 @@ Then run them!
 
 ## Feedback
 
-Contact me at [kimos-github@gleep.ca](mailto:kimos-github@gleep.ca) with questions or feedback.
+Contact me at [github@kevinmcphillips.ca](mailto:github@kevinmcphillips.ca) with questions or feedback.
 
