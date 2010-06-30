@@ -6,6 +6,7 @@ set :use_sudo, false
 set :scm, "git"
 set :keep_releases, 10
 
+default_run_options[:pty] = true
 
 role :web, "stoneboatpottery.ca"
 role :app, "stoneboatpottery.ca"
