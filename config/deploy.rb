@@ -7,10 +7,9 @@ set :scm, "git"
 set :keep_releases, 10
 
 
-# server "production", :app, :web, :db, :primary => true
-role :web, "gleep.ca"                          # Your HTTP server, Apache/etc
-role :app, "gleep.ca"                          # This may be the same as your `Web` server
-role :db,  "gleep.ca", :primary => true        # This is where Rails migrations will run
+role :web, "stoneboatpottery.ca"
+role :app, "stoneboatpottery.ca"
+role :db,  "stoneboatpottery.ca", :primary => true
 
 
 namespace :deploy do
