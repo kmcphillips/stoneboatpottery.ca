@@ -154,6 +154,10 @@ textarea {
     line-height: 180%;
 }
 
+.datepicker img {
+	margin: 0 0 0 10px;
+}
+
 /* Header */
 
 #header-wrapper {

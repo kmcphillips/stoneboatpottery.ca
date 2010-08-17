@@ -1,9 +1,21 @@
+- content_for :js do
+  :javascript
+    $(function() {
+    	$("#wholesale_date").datepicker({
+    	  minDate: new Date(),
+    	  showOn: 'button',
+    	  buttonImage: '/images/template/datepicker.gif',
+    	  buttonImageOnly: true,
+    	  autoSize: true
+    	});
+    });
+
 %p
   = f.label :password
   = f.text_field :password
 
-%p
+%p.datepicker
   = f.label :expires_at
-  = f.text_field :expires_at
-  (No date means it will never expire)
+  = f.text_field :expires_at, :id => "wholesale_date", :size => 16
+  &nbsp;&nbsp;&nbsp;(No date means it will never expire)
 
