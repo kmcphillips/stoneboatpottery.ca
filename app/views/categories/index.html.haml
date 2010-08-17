@@ -1,6 +1,10 @@
 %div.post
   %h2.title Categories of Functional Pieces
 
+- if @block
+  %div.entry
+    = auto_link(simple_format(@block.body))
+    
 - if @categories.blank?
   .post
     %h3.title None

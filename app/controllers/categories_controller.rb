@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
   def index
     @categories = Category.active
     @inactive_categories = Category.inactive
+    @block = Block.find_by_label("categories")
   end
 
   def show
