@@ -21,7 +21,9 @@ namespace :deploy do
   end
 end
 
-task :after_update_code do
+after "deploy", "symlink_shared_files"
+
+task :symlink_shared_files do
   run "ln -s #{shared_path}/images #{release_path}/public/images/attachment"
 
   %w{database.yml}.each do |config|
