@@ -9,7 +9,7 @@ Rails::Initializer.run do |config|
   #config.gem "sqlite3-ruby", :lib => "sqlite3", :version => ">=1.2.4"
   
   config.gem "haml", :version => ">=2.2.7"
-  config.gem "will_paginate", :version => ">=2.2.2"
+  config.gem "will_paginate", :version => "=2.2.2"
   config.gem "rmagick", :lib => "RMagick", :version => ">=2.12.2"
 
   config.time_zone = 'UTC'
