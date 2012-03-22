@@ -31,7 +31,7 @@
   %div
     %h2 Upload Image
 
-    - form_for :image, :url => admin_images_path(:format => "js"), :html => { :multipart => true, :target => "upload_iframe", :onsubmit => "upload_before();" } do |f|
+    = form_for :image, :url => admin_images_path(:format => "js"), :html => { :multipart => true, :target => "upload_iframe", :onsubmit => "upload_before();" } do |f|
       = f.file_field :image
       = hidden_field_tag :imageable_id, imageable.id
       = hidden_field_tag :imageable_type, imageable.class.to_s

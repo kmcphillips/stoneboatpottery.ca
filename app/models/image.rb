@@ -23,9 +23,9 @@ class Image < ActiveRecord::Base
 
   attr_protected :id
 
-  named_scope :primary_first, :order => "`primary` DESC, updated_at DESC"
-  named_scope :all_primary, :conditions => "`primary` = 1"
-  named_scope :recent, lambda{|limit| {:order => "updated_at DESC", :limit => limit, :group => "imageable_type, imageable_id"}}
+  scope :primary_first, order("`primary` DESC, updated_at DESC")
+  scope :all_primary, where("`primary` = 1")
+  scope :recent, lambda{|limit| order("updated_at DESC").limit(limit).group("imageable_type, imageable_id") }
 
   # create a convenience method for each of the image sizes/types
   SIZES.each_key do |key|
@@ -50,7 +50,7 @@ protected
 
   def make_another_primary
     if self.imageable.try(:respond_to?, :images) && self.primary?
-      self.imageable.images.first(:conditions => ["id != ?", self.id], :order => "created_at ASC").try(:update_attribute, :primary, true)
+      self.imageable.images.where(["id != ?", self.id]).order("created_at ASC").first.try(:update_attribute, :primary, true)
     end
   end
   

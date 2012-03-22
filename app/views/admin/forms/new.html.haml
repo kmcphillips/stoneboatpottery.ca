@@ -6,7 +6,7 @@
     = h @category.name
 
   %div.entry
-    - form_for [:admin, @category, @subcategory, @form], :method => :post do |f| 
+    = form_for [:admin, @category, @subcategory, @form], :method => :post do |f| 
       = render :partial => 'admin/forms/form', :locals => {:f => f}
       = f.submit "Create"
 

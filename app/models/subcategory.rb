@@ -9,12 +9,12 @@ class Subcategory < ActiveRecord::Base
   
   attr_protected :id
 
-  xss_terminate :except => [:permalink]
+  # xss_terminate :except => [:permalink]
 
   before_save :deactivate_children
 
-  named_scope :active, :conditions => ["subcategories.active = ?", true], :order => "name ASC"
-  named_scope :inactive, :conditions => ["subcategories.active = ?", false], :order => "name ASC"
+  scope :active, where(["subcategories.active = ?", true]).order("name ASC")
+  scope :inactive, where(["subcategories.active = ?", false]).order("name ASC")
   date_scopes
 
   def inherited_active?

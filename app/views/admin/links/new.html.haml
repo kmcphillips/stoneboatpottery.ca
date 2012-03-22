@@ -2,7 +2,7 @@
   %h2.title New Link
 
   %div.entry
-    - form_for [:admin, @link], :method => :post do |f| 
+    = form_for [:admin, @link], :method => :post do |f| 
       = render :partial => 'admin/links/form', :locals => {:f => f}
       = f.submit "Create"
 

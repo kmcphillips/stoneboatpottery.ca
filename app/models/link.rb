@@ -6,11 +6,11 @@ class Link < ActiveRecord::Base
   
   attr_protected :id
 
-  xss_terminate :except => [:url]
+  # xss_terminate :except => [:url]
 
   date_scopes
 
-protected
+  protected
 
   def url_begins_with_protocol
     errors.add(:url, "must begin with 'http://' or 'https://'") unless url =~ /http(s)?:\/\/.+/

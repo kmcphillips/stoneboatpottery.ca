@@ -4,7 +4,7 @@
     = h @block.label_display
 
   %div.entry
-    - form_for [:admin, @block] do |f|
+    = form_for [:admin, @block] do |f|
       %p
         = f.label :description
         %div.clear

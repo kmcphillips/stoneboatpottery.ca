@@ -5,11 +5,11 @@ class Post < ActiveRecord::Base
   
   attr_protected :id
 
-  xss_terminate :except => [:permalink]
+  # xss_terminate :except => [:permalink]
 
   acts_as_permalink
 
-  named_scope :user_created, :conditions => {:type => nil}
+  scope :user_created, where(:type => nil)
   date_scopes
 
   def system?

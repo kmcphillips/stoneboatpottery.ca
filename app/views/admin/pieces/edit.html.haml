@@ -2,7 +2,7 @@
   %h2.title= @title
 
   %div.entry
-    - form_for lineage do |f| 
+    = form_for lineage do |f| 
       = render :partial => 'admin/pieces/form', :locals => {:f => f}
       = f.submit "Save"
 

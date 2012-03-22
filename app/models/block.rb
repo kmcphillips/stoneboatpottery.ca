@@ -6,7 +6,7 @@ class Block < ActiveRecord::Base
   attr_protected :id
   attr_readonly :label
 
-  xss_terminate :except => [:label, :section_path]
+  # xss_terminate :except => [:label, :section_path]
 
   date_scopes
 

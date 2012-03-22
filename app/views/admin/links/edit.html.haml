@@ -2,7 +2,7 @@
   %h2.title Edit Link
 
   %div.entry
-    - form_for [:admin, @link] do |f| 
+    = form_for [:admin, @link] do |f| 
       = render :partial => 'admin/links/form', :locals => {:f => f}
       = f.submit "Save"
 

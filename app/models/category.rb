@@ -9,16 +9,16 @@ class Category < ActiveRecord::Base
   
   attr_protected :id
 
-  xss_terminate :except => [:permalink]
+  # xss_terminate :except => [:permalink]
 
-  named_scope :active, :conditions => ["categories.active = ?", true], :order => "name ASC"
-  named_scope :inactive, :conditions => ["categories.active = ?", false], :order => "name ASC"
+  scope :active, where(["categories.active = ?", true]).order("name ASC")
+  scope :inactive, where(["categories.active = ?", false]).order("name ASC")
   date_scopes
   
   before_save :deactivate_children
 
   def active_subcategories
-    self.subcategories.find(:all, :conditions => ["active = ?", true])
+    self.subcategories.where(["active = ?", true])
   end
 
   def count_forms

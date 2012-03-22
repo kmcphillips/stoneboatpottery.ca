@@ -1,6 +1,6 @@
 class SculpturalPiece < Piece
 
-  xss_terminate :except => [:permalink, :type]
+  # xss_terminate :except => [:permalink, :type]
 
   date_scopes
 

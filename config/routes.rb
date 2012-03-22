@@ -1,57 +1,76 @@
-ActionController::Routing::Routes.draw do |map|
-  
-  map.root :controller => 'posts', :action => 'index'
+StoneboatpotteryCa::Application.routes.draw do
 
-  map.resources :categories, :only => [:index, :show] do |categories|
-    categories.resources :subcategories, :only => [:show] do |subcategories|
-      subcategories.resources :forms, :only => [:show]
+  root :to => 'posts#index'
+
+  resources :categories, :only => [:index, :show] do
+    resources :subcategories, :only => [:show]
+      resources :forms, :only => [:show]
     end  
   end
   
-  map.resources :posts, :only => [:index, :show], :collection => [:archive]
-  map.connect 'rss.:format', :controller => 'posts', :action => 'rss'
+  resources :posts, :only => [:index, :show] do
+    collection do
+      get :archive
+    end
+  end
 
-  map.resources :functional_pieces, :only => [:index, :show]
+  match 'rss.:format' => 'posts#rss'
 
-  map.resources :sculptural_pieces, :only => [:index, :show]
+  resources :functional_pieces, :only => [:index, :show]
+  resources :sculptural_pieces, :only => [:index, :show]
 
+  match 'about' => 'blocks#about'
+  match 'contact' => 'blocks#contact'
+  match 'wholesale' => 'blocks#wholesale'
 
-  map.resources :blocks, :only => [], :collection => [:about, :contact, :wholesale]
-  map.connect 'about', :controller => 'blocks', :action => 'about'
-  map.connect 'contact', :controller => 'blocks', :action => 'contact'
-  map.connect 'wholesale', :controller => 'blocks', :action => 'wholesale'
+  resources :links, :only => [:index]
 
-  map.resources :links, :only => [:index]
+  resources :sessions, :only => [:index, :new, :create, :destroy] do
+    collection do
+      get :logout
+    end
+  end
 
-  map.resources :sessions, :only => [:index, :new, :create, :destroy], :collection => [:logout]
-  map.connect 'login', :controller => 'sessions', :action => 'new'
-  map.connect 'logout', :controller => 'sessions', :action => 'logout'
+  match 'login' => 'sessions#new'
+  match 'logout' => 'sessions#logout'
 
-  map.namespace :admin do |admin|
-    admin.resources :sessions, :only => [:index, :new, :create, :destroy], :collection => {:logout => :get, :password => :get, :change_password => :post}
-    admin.connect 'login', :controller => 'sessions', :action => 'new'
-    admin.connect 'logout', :controller => 'sessions', :action => 'logout'
+  namespace :admin
+    root :to => 'posts#index'
+
+    resources :sessions, :only => [:index, :new, :create, :destroy] do
+      collection do
+        get :logout
+        get :password
+        post :change_password
+      end
+    end
+
+    match 'login'  => 'sessions#new'
+    match 'logout' => 'sessions#logout'
     
-    admin.resources :posts
-    admin.connect '/', :controller => 'posts'
+    resources :posts
     
-    admin.resources :blocks, :only => [:index, :show, :update, :edit]
+    resources :blocks, :only => [:index, :show, :update, :edit]
 
-    admin.resources :wholesale_passwords, :only => [:index, :create, :destroy]
+    resources :wholesale_passwords, :only => [:index, :create, :destroy]
 
-    admin.resources :links
+    resources :links
 
-    admin.resources :functional_pieces
+    resources :functional_pieces
 
-    admin.resources :sculptural_pieces
+    resources :sculptural_pieces
 
-    admin.resources :users, :only => [:edit, :update]
+    resources :users, :only => [:edit, :update]
 
-    admin.resources :images, :only => [:create, :new, :destroy], :member => [:make_primary]
+    resources :images, :only => [:create, :new, :destroy] do
+      member do
+        get :make_primary
+      end
+    end
 
-    admin.resources :categories do |categories|
-      categories.resources :subcategories, :only => [:new, :show, :create, :update, :edit, :destroy] do |subcategories|
-        subcategories.resources :forms, :only => [:new, :show, :create, :update, :edit, :destroy]
+    resources :categories do
+      resources :subcategories, :only => [:new, :show, :create, :update, :edit, :destroy]
+        resources :forms, :only => [:new, :show, :create, :update, :edit, :destroy]
       end
     end
 

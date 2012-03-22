@@ -2,7 +2,7 @@
   %h2.title Edit Form
 
   %div.entry
-    - form_for [:admin, @category, @subcategory, @form] do |f| 
+    = form_for [:admin, @category, @subcategory, @form] do |f| 
       = render :partial => 'admin/forms/form', :locals => {:f => f}
       = f.submit "Save"
 

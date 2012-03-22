@@ -2,7 +2,7 @@
   %h2.title New Post
 
   %div.entry
-    - form_for [:admin, @post], :method => :post do |f|
+    = form_for [:admin, @post], :method => :post do |f|
       = render :partial => 'admin/posts/form', :locals => {:f => f}
       = f.submit "Create"
 

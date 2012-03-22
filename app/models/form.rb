@@ -13,14 +13,14 @@ class Form < ActiveRecord::Base
   
   attr_protected :id
 
-  xss_terminate :except => [:permalink]
+  # xss_terminate :except => [:permalink]
 
   delegate :category, :to => :subcategory
 
   acts_as_permalink :from => :name
 
-  named_scope :active, :conditions => ["forms.active = ?", true], :order => "name ASC"
-  named_scope :inactive, :conditions => ["forms.active = ?", false], :order => "name ASC"
+  scope :active, where(["forms.active = ?", true]).order("name ASC")
+  scope :inactive, where(["forms.active = ?", false]).order("name ASC")
   date_scopes
 
   def inherited_active?
