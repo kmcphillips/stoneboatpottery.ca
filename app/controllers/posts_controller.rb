@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   
   def index
-    @posts = Post.all(:order => "created_at DESC").paginate(:per_page => 10, :page => params[:page] || 1)
+    @posts = Post.order("created_at DESC").paginate(:per_page => 10, :page => params[:page] || 1)
   end
 
   def show
@@ -16,11 +16,11 @@ class PostsController < ApplicationController
   end
 
   def archive
-    @posts = Post.all(:order => "created_at DESC")
+    @posts = Post.order("created_at DESC")
   end
 
   def rss
-    @posts = Post.all(:order => "created_at DESC")
+    @posts = Post.order("created_at DESC")
     
     respond_to do |wants|
       wants.xml do
