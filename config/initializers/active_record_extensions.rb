@@ -1,3 +1,4 @@
+require 'lib/date_scopes'
 ActiveRecord::Base.extend(DateScopes::ClassMethods)
 
 class ActiveRecord::Base

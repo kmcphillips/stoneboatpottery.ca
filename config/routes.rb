@@ -3,7 +3,7 @@ StoneboatpotteryCa::Application.routes.draw do
   root :to => 'posts#index'
 
   resources :categories, :only => [:index, :show] do
-    resources :subcategories, :only => [:show]
+    resources :subcategories, :only => [:show] do
       resources :forms, :only => [:show]
     end  
   end
@@ -34,7 +34,7 @@ StoneboatpotteryCa::Application.routes.draw do
   match 'login' => 'sessions#new'
   match 'logout' => 'sessions#logout'
 
-  namespace :admin
+  namespace :admin do
     root :to => 'posts#index'
 
     resources :sessions, :only => [:index, :new, :create, :destroy] do
@@ -69,7 +69,7 @@ StoneboatpotteryCa::Application.routes.draw do
     end
 
     resources :categories do
-      resources :subcategories, :only => [:new, :show, :create, :update, :edit, :destroy]
+      resources :subcategories, :only => [:new, :show, :create, :update, :edit, :destroy] do
         resources :forms, :only => [:new, :show, :create, :update, :edit, :destroy]
       end
     end

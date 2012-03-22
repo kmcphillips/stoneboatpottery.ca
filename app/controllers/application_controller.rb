@@ -7,8 +7,6 @@ class ApplicationController < ActionController::Base
   helper_method :lineage
 
   before_filter :load_sidebar_images
-
-  filter_parameter_logging :password, :password_confirm
   
   def require_login
     except = require_login_except rescue []
@@ -20,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   ## Handle custom dynamic errors
-  unless ActionController::Base.consider_all_requests_local
+  unless StoneboatpotteryCa::Application.config.consider_all_requests_local
     rescue_from Exception, :with => :render_500
     rescue_from ActionController::RoutingError, :with => :render_404
     rescue_from ActionController::UnknownAction, :with => :render_404
