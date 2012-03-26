@@ -32,8 +32,10 @@ class Admin::ImagesController < ApplicationController
               logger.error "Error associating image to object with params: #{params.inspect}"
             end
           rescue => e
+            raise e
             logger.error "Error responding to image upload"
-            logger.error e, e.backtrace
+            logger.error e
+            logger.error e.backtrace
     
             flash.now[:error] = "There was an error uploading image. Please try again or contact administrator. "
           end

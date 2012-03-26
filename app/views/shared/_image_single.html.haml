@@ -6,5 +6,4 @@
   #images_add
     = button_to_function "#{image ? "Change" : "Set"} Image", "show_upload()"
     - if image
-      = button_to_remote "Remove Image", :url => admin_image_path(image, :imageable_type => image.imageable_type, :imageable_id => image.imageable_id), :method => :delete, :failure => "alert('There was an error removing this image. Please try again or contact administrator.')"
-
+      = button_to "Remove Image", :url => admin_image_path(image, :imageable_type => image.imageable_type, :imageable_id => image.imageable_id), :method => :delete, :failure => "alert('There was an error removing this image. Please try again or contact administrator.')", :remote => true

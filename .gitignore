@@ -5,6 +5,7 @@ config/database.yml
 .settings
 log/*.log
 tmp/**/*
+tmp/*
 doc/api
 doc/app
 public/images/attachment/*

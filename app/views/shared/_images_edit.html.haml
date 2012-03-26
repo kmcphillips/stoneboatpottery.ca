@@ -37,7 +37,7 @@
       = hidden_field_tag :imageable_type, imageable.class.to_s
       %br
       = submit_tag "Upload", :class => "submit"
-      = submit_tag "Cancel", :class => "close", :onclick => "return false;"
+      = submit_tag "Cancel", :class => "close", :onclick => "upload_after(); return false;"
       = image_tag "/images/template/throbber.gif", :class => "throbber", :alt => "Loading..."
 
 %iframe{:id => "upload_iframe", :name => "upload_iframe", :height => 1, :width => 1, :style => "display: none"}
