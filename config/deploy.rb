@@ -1,16 +1,16 @@
 set :application, "Stoneboat Pottery"
 set :repository,  "git://github.com/kimos/stoneboat_pottery.git"
-set :deploy_to, "/home/kevin/stoneboatpottery.ca"
+set :deploy_to, "/var/www/kevin/data/www/stoneboatpottery.ca"
 set :user, "kevin"
 set :use_sudo, false
 set :scm, "git"
-set :keep_releases, 10
+set :keep_releases, 5
 
 default_run_options[:pty] = true
 
-role :web, "stoneboatpottery.ca"
-role :app, "stoneboatpottery.ca"
-role :db,  "stoneboatpottery.ca", :primary => true
+role :web, "68.169.58.121"
+role :app, "68.169.58.121"
+role :db,  "68.169.58.121", :primary => true
 
 
 namespace :deploy do
@@ -21,6 +21,8 @@ namespace :deploy do
   end
 end
 
+after "deploy:update", "deploy:cleanup"
+
 after "deploy", "symlink_shared_files"
 
 task :symlink_shared_files do
@@ -30,4 +32,3 @@ task :symlink_shared_files do
     run "ln -s #{shared_path}/#{config} #{release_path}/config/#{config}"
   end
 end
-
