@@ -1,7 +1,7 @@
 %div.post
   %h2.title
     = h @form.name
-    under 
+    under
     = h @form.subcategory.name
     and
     = h @form.category.name
@@ -15,15 +15,11 @@
 
     %p
       %label Active:
-      = @form.active?
+      = boolean_wrapper(@form.active?)
 
     %p
-      %label Retail Price:
+      %label Price:
       = number_to_currency @form.retail_price
-
-    %p
-      %label Wholesale Price:
-      = number_to_currency @form.wholesale_price
 
   %div.actions
     = index_entity_image(admin_category_subcategory_path(@form.category, @form.subcategory), "Back to subcategory #{@form.subcategory.name}")

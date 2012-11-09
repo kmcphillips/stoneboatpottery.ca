@@ -1,7 +1,7 @@
 class SculpturalPiecesController < ApplicationController
-  
+
   def index
-    @pieces = SculpturalPiece.active.paginate(:per_page => 10, :page => params[:page] || 1)
+    @pieces = SculpturalPiece.active.sorted.paginate(:per_page => 10, :page => params[:page] || 1)
     @inactive_pieces = SculpturalPiece.inactive
     @title = "Sculptural Pieces"
     render "pieces/index"
@@ -16,7 +16,7 @@ class SculpturalPiecesController < ApplicationController
       render "pieces/show"
     else
       redirect_to_404
-    end  
+    end
   end
 
 

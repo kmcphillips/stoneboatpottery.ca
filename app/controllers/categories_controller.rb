@@ -1,8 +1,8 @@
 class CategoriesController < ApplicationController
-  
+
   def index
-    @categories = Category.active
-    @inactive_categories = Category.inactive
+    @categories = Category.active.sorted
+    @inactive_categories = Category.inactive.sorted
     @block = Block.find_by_label("categories")
   end
 
@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
       @title = @category.name
     else
       redirect_to_404
-    end    
+    end
 
   end
 

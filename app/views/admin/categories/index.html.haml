@@ -16,13 +16,14 @@
           %th Subcategories
           %th Number of Forms
           %th Actions
-        - @categories.each do |category| 
+        - @categories.each do |category|
           %tr{:class => cycle("odd","even")}
             %td= link_to category.name, admin_category_path(category)
             %td= link_to truncate(category.description, :length => 120, :omission => " (more..)"), admin_category_path(category)
-            %td= category.active?
+            %td= boolean_wrapper(category.active?)
             %td
-              = category.subcategories.map{|subcategory| link_to(subcategory.name, admin_category_subcategory_path(category, subcategory))}.join(", ")
+              - category.subcategories.each do |subcategory|
+                = link_to(subcategory.name, admin_category_subcategory_path(category, subcategory))
             %td= category.count_forms
             %td{:width => 46}
               = edit_entity_image(edit_admin_category_path(category))

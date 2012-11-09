@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.2'
+gem 'rails', '3.2.8'
 
 gem 'mysql2'
 gem 'json'
@@ -12,19 +12,22 @@ gem 'jquery-rails'
 gem 'capistrano'
 gem 'rails_autolink'
 gem 'paperclip'
+gem 'acts_as_permalink'
+gem 'remotipart'
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+  gem 'sass-rails'
+  gem 'coffee-rails'
   gem 'therubyracer'
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier'
 end
 
 group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'pry'
+  gem 'pry-rails'
   gem 'thin'
-  gem 'awesome_print'  
+  gem 'awesome_print'
+  gem 'quiet_assets'
 end
-

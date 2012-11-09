@@ -11,11 +11,6 @@ describe Category do
   end
 
   describe "active_subcategories" do
-    it "should find all active subcategories in this category" do
-      @c.subcategories.should_receive(:find).with(:all, :conditions => ["active = ?", true]).and_return([@s])
-      @c.active_subcategories.should == [@s]
-    end
-    
     it "should know inherrited active" do
       @c.inherited_active?.should == @c.active?
     end
@@ -47,7 +42,7 @@ describe Category do
       Category.new.list_subcategories.should == ""
     end
   end
-  
+
   describe "deactivate children" do
     it "should make all the children inactive" do
       @c.active = false
@@ -55,7 +50,7 @@ describe Category do
       @c.subcategories.any?{|s| s.active? }.should be_false
     end
   end
-  
+
   after(:each) do
     Subcategory.delete_all
     Category.delete_all

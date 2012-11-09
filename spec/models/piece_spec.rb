@@ -10,7 +10,6 @@ describe Piece do
       @p.for_sale = true
       @p.price = nil
       @p.should_not be_valid
-      @p.errors.on(:price).should_not == nil
     end
   end
 

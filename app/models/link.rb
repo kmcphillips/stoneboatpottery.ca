@@ -1,12 +1,10 @@
 class Link < ActiveRecord::Base
-  
+
   validates_presence_of :url
   validates_uniqueness_of :url
   validate :url_begins_with_protocol
-  
-  attr_protected :id
 
-  # xss_terminate :except => [:url]
+  attr_protected :id
 
   date_scopes
 

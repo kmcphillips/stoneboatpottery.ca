@@ -11,7 +11,7 @@ class SubcategoriesController < ApplicationController
       @title = @subcategory.name
     else
       redirect_to_404
-    end 
+    end
   end
 
 end

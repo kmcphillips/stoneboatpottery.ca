@@ -1,7 +1,7 @@
 class FunctionalPiecesController < ApplicationController
-  
+
   def index
-    @pieces = FunctionalPiece.active.paginate(:per_page => 10, :page => params[:page] || 1)
+    @pieces = FunctionalPiece.active.sorted.paginate(:per_page => 10, :page => params[:page] || 1)
     @inactive_pieces = FunctionalPiece.inactive
     @title = "Funky Functional Pieces"
     render "pieces/index"
@@ -16,11 +16,11 @@ class FunctionalPiecesController < ApplicationController
       render "pieces/show"
     else
       redirect_to_404
-    end  
+    end
   end
 
 
   def lineage
-    [FunctionalPiece.find_by_permalink(params[:id]) || FunctionalPiece.new]
+    [@piece || FunctionalPiece.new]
   end
 end

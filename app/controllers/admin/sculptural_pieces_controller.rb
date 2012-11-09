@@ -1,8 +1,8 @@
 class Admin::SculpturalPiecesController < ApplicationController
   before_filter :require_login
-  
+
   def index
-    @pieces = SculpturalPiece.all(:order => "active DESC, updated_at DESC")
+    @pieces = SculpturalPiece.sorted
     @title = "Edit Sculptural Pieces"
     render 'admin/pieces/index'
   end
@@ -12,40 +12,40 @@ class Admin::SculpturalPiecesController < ApplicationController
     @title = "New Sculptural Piece"
     render 'admin/pieces/new'
   end
-  
+
   def show
     @piece = SculpturalPiece.find_by_permalink(params[:id])
     redirect_to sculptural_piece_path(@piece)
   end
-  
+
   def edit
     @piece = SculpturalPiece.find_by_permalink(params[:id])
     @title = "Edit #{@piece.name}"
     render 'admin/pieces/edit'
   end
-  
+
   def update
     @piece = SculpturalPiece.find_by_permalink(params[:id])
-    
+
     if @piece.update_attributes(params[:sculptural_piece])
       flash[:notice] = "Piece successfully updated."
       redirect_to admin_sculptural_pieces_path
     else
       flash[:error] = @piece.errors.full_messages.to_sentence
       render 'admin/sculptural_pieces/edit'
-    end      
+    end
   end
 
   def create
     @piece = SculpturalPiece.new(params[:sculptural_piece])
-    
+
     if @piece.save
       flash[:notice] = "Piece successfully created."
       redirect_to admin_sculptural_pieces_path
     else
       flash[:error] = @piece.errors.full_messages.to_sentence
       render 'admin/sculptural_pieces/new'
-    end  
+    end
   end
 
   def destroy
@@ -62,7 +62,7 @@ class Admin::SculpturalPiecesController < ApplicationController
 
 
   def lineage
-    [:admin, SculpturalPiece.find_by_permalink(params[:id]) || SculpturalPiece.new]
+    [:admin, @piece || SculpturalPiece.new]
   end
 
 end

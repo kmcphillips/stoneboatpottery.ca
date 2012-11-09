@@ -9,13 +9,13 @@
               %td
                 = link_to image_tag(image.thumb), image.full, :rel => :facebox, :class => (image.primary? ? :thumb_primary : :thumb)
                 %br
-                = button_to "Remove Image", :url => admin_image_path(image, :imageable_type => image.imageable_type, :imageable_id => image.imageable_id), :method => :delete, :failure => "alert('There was an error removing this image. Please try again or contact administrator.')", :confirm => "Are you sure you want to delete this image?", :remote => true
-                
+                = button_to "Remove Image", admin_image_path(image, :imageable_type => image.imageable_type, :imageable_id => image.imageable_id), :method => :delete, :confirm => "Are you sure you want to delete this image?", :remote => true
+
                 - unless image.primary?
                   %br
-                  = button_to "Make Primary", :url => make_primary_admin_image_path(image), :method => :put, :failure => "alert('There was an error making this image primary. Please try again or contact administrator.')", :remote => true
+                  = button_to "Make Primary", make_primary_admin_image_path(image), :method => :put, :remote => true
 
-  
+
   #images_add
     = button_to_function "Add Image", "show_upload()"
     - if imageable.respond_to?(:images)

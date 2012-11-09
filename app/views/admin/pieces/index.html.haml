@@ -17,14 +17,14 @@
           %th Sold?
           %th Active?
           %th Actions
-        - @pieces.each do |piece| 
+        - @pieces.each do |piece|
           %tr{:class => cycle("odd","even")}
             %td= link_to piece.name, polymorphic_path(piece)
             %td= link_to truncate(piece.description, :length => 120, :omission => " (more..)"), polymorphic_path(piece)
             %td= number_to_currency(piece.price)
-            %td= h piece.for_sale?
-            %td= h piece.sold?
-            %td= h piece.active?
+            %td= boolean_wrapper(piece.for_sale?)
+            %td= boolean_wrapper(piece.sold?)
+            %td= boolean_wrapper(piece.active?)
             %td{:width => 46}
               = edit_entity_image(edit_polymorphic_path([:admin, piece]))
               = delete_entity_image(polymorphic_path([:admin, piece]))

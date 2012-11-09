@@ -1,0 +1,3 @@
+$("#images_container").replaceWith("<%= escape_javascript(render(:partial => 'shared/image_multiple', :locals => {:imageable => @imageable})) %>");
+init_facebox();
+$("#flashes_now").html("<%= escape_javascript(render(:partial => 'shared/flashes')) %>");

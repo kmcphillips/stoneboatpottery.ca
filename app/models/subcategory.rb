@@ -4,12 +4,10 @@ class Subcategory < ActiveRecord::Base
   belongs_to :category
 
   acts_as_permalink :from => :name
-  
-  validates_presence_of :category, :name
-  
-  attr_protected :id
 
-  # xss_terminate :except => [:permalink]
+  validates_presence_of :category, :name
+
+  attr_protected :id
 
   before_save :deactivate_children
 

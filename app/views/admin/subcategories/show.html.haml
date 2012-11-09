@@ -1,6 +1,6 @@
 %div.post
   %h2.title
-    Subcategory 
+    Subcategory
     = h @subcategory.name
     under
     = h @subcategory.category.name
@@ -14,7 +14,7 @@
 
     %p
       %label Active:
-      = @subcategory.active?
+      = boolean_wrapper(@subcategory.active?)
 
   %div.actions
     = index_entity_image(admin_category_subcategories_path(@subcategory.category), "Back to category #{@subcategory.category.name}")

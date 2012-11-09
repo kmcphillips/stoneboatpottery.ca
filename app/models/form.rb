@@ -6,14 +6,11 @@ class Form < ActiveRecord::Base
       first(:conditions => {:primary => true})
     end
   end
-  
-  validates_presence_of :subcategory, :name, :description
-  validates_numericality_of :retail_price, :wholesale_price, :allow_nil => true, :greater_than_or_equal_to => 0
-  validate :retail_price_must_be_more_than_wholesale_price
-  
-  attr_protected :id
 
-  # xss_terminate :except => [:permalink]
+  validates_presence_of :subcategory, :name, :description
+  validates_numericality_of :retail_price, :allow_nil => true, :greater_than_or_equal_to => 0
+
+  attr_protected :id
 
   delegate :category, :to => :subcategory
 
@@ -26,14 +23,9 @@ class Form < ActiveRecord::Base
   def inherited_active?
     self.active? && self.subcategory.inherited_active?
   end
-  
+
   def deactivate!
     self.update_attribute(:active, false)
   end
 
-protected
-  
-  def retail_price_must_be_more_than_wholesale_price
-    errors.add(:retail_price, "must be greater than the wholesale price") if wholesale_price && retail_price && wholesale_price > retail_price
-  end
 end

@@ -5,9 +5,9 @@ StoneboatpotteryCa::Application.routes.draw do
   resources :categories, :only => [:index, :show] do
     resources :subcategories, :only => [:show] do
       resources :forms, :only => [:show]
-    end  
+    end
   end
-  
+
   resources :posts, :only => [:index, :show] do
     collection do
       get :archive
@@ -21,18 +21,8 @@ StoneboatpotteryCa::Application.routes.draw do
 
   match 'about' => 'blocks#about'
   match 'contact' => 'blocks#contact'
-  match 'wholesale' => 'blocks#wholesale'
 
   resources :links, :only => [:index]
-
-  resources :sessions, :only => [:index, :new, :create, :destroy] do
-    collection do
-      get :logout
-    end
-  end
-
-  match 'login' => 'sessions#new'
-  match 'logout' => 'sessions#logout'
 
   namespace :admin do
     root :to => 'posts#index'
@@ -47,12 +37,10 @@ StoneboatpotteryCa::Application.routes.draw do
 
     match 'login'  => 'sessions#new'
     match 'logout' => 'sessions#logout'
-    
-    resources :posts
-    
-    resources :blocks, :only => [:index, :show, :update, :edit]
 
-    resources :wholesale_passwords, :only => [:index, :create, :destroy]
+    resources :posts
+
+    resources :blocks, :only => [:index, :show, :update, :edit]
 
     resources :links
 
@@ -64,7 +52,7 @@ StoneboatpotteryCa::Application.routes.draw do
 
     resources :images, :only => [:create, :new, :destroy] do
       member do
-        get :make_primary
+        put :make_primary
       end
     end
 

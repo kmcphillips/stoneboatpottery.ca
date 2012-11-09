@@ -2,8 +2,6 @@ class ApplicationController < ActionController::Base
   helper :all
   protect_from_forgery
 
-  include ApplicationHelper
-
   helper_method :lineage
 
   before_filter :load_sidebar_images

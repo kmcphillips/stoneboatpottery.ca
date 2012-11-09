@@ -8,13 +8,13 @@
       %th Description
       %th Number of Forms
       %th Active?
-      %th Actions      
+      %th Actions
     - category.subcategories.each do |sub|
       %tr{:class => cycle("odd","even")}
         %td= link_to sub.name, admin_category_subcategory_path(category, sub)
         %td= link_to truncate(sub.description, :length => 120, :omission => " (more..)"), admin_category_subcategory_path(category, sub)
         %td= sub.forms.size
-        %td= sub.active?
+        %td= boolean_wrapper(sub.active?)
         %td{:width => 46}
           = edit_entity_image(edit_admin_category_subcategory_path(category, sub))
           = delete_entity_image(admin_category_subcategory_path(category, sub))

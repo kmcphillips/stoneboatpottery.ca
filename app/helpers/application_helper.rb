@@ -4,10 +4,6 @@ module ApplicationHelper
     User.find(session[:admin_user]) if session[:admin_user]
   end
 
-  def wholesale?
-    !! (session[:wholesale_permitted] || current_user)
-  end
-
   def page_title
     prefix = "Stoneboat Pottery"
     prefix = "#{prefix} - Admin" if params[:controller] =~ /^admin\//
@@ -21,6 +17,10 @@ module ApplicationHelper
     end
   end
 
+  def boolean_wrapper(value)
+    content_tag(:span, (value ? "Yes" : "No"), :class => "boolean_#{!!value}")
+  end
+
   # Action image helpers
 
   def index_entity_image(path, label=nil, args={})
@@ -28,7 +28,7 @@ module ApplicationHelper
     html += " ".html_safe + link_to(label, path) if label
     html.html_safe
   end
-  
+
   def new_entity_image(path, label=nil, args={})
     html = link_to image_tag("/images/icons/new.png", :alt => "New"), path, :title => "New"
     html += " ".html_safe + link_to(label, path) if label
@@ -51,10 +51,10 @@ module ApplicationHelper
     html = link_to image_tag("/images/icons/show.png", :alt => "Show", :class => "action-image"), path, :title => "Show"
     html += " ".html_safe + link_to(label, path) if label
     html.html_safe
-  end  
+  end
 
   # Shortcuts for images in posts
-  
+
   def images_for(imageable, options={})
     if imageable && imageable.respond_to?(:image) && imageable.image
       link_to(image_tag(imageable.image.inline, :alt => ALT_TAG_DEFAULT) + "<br />".html_safe + enlarge_button, imageable.image.full, :rel => :facebox, :class => (options[:align] && options[:align].to_s == "right"? "float-right no_underline" : "float-left no_underline"))
@@ -72,7 +72,7 @@ module ApplicationHelper
       link_to(image_tag(THUMB_NOT_FOUND_IMAGE, :alt => options[:alt]), path, :class => :no_underline)
     end
   end
-  
+
   def enlarge_button
     "Enlarge".html_safe + image_tag("/images/icons/magnify.png", :alt => "Enlarge", :class => :magnify)
   end
@@ -85,7 +85,7 @@ module ApplicationHelper
     obfuscated = email.scan(/.{1,10}/).join("[REMOVE_THIS]")
     mail_to(email, label, :encode => "javascript") + "<noscript>#{mail_to(obfuscated, label || email.sub(/\@.*/, ""))}</noscript>".html_safe
   end
-  
+
   def boolean_image(value)
     image_tag("/images/icons/#{!!value}.png", :alt => (!!value).to_s.humanize)
   end

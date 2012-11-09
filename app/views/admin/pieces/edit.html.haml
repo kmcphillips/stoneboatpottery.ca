@@ -2,11 +2,11 @@
   %h2.title= @title
 
   %div.entry
-    = form_for lineage do |f| 
+    = form_for lineage do |f|
       = render :partial => 'admin/pieces/form', :locals => {:f => f}
       = f.submit "Save"
 
-    %br 
+    %br
     = render :partial => "shared/images_edit", :locals => { :imageable => @piece }
 
   %div.actions

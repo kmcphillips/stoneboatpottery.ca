@@ -1,22 +1,8 @@
 - content_for :js do
   :javascript
-    function upload_before()
-    {
-      $('#upload img.throbber').show();
-      $('#upload input.submit').attr("disabled", true);
-    }
-
-    function upload_after()
-    {
-      $('#upload').overlay().close();
-      $('#upload img.throbber').hide();
-      $('#upload input.submit').attr("disabled", false);
-      clear_upload_field();
-    }
-
     $(document).ready(function($) {
       clear_upload_field();
-    }) 
+    })
 
 #flashes_now
 
@@ -31,7 +17,7 @@
   %div
     %h2 Upload Image
 
-    = form_for :image, :url => admin_images_path(:format => "js"), :html => { :multipart => true, :target => "upload_iframe", :onsubmit => "upload_before();" } do |f|
+    = form_for :image, :url => admin_images_path, :remote => true, :html => { :multipart => true, :target => "upload_iframe", :onsubmit => "upload_before();" } do |f|
       = f.file_field :image
       = hidden_field_tag :imageable_id, imageable.id
       = hidden_field_tag :imageable_type, imageable.class.to_s

@@ -85,6 +85,14 @@ em {
     padding: 0;
 }
 
+.boolean_true {
+    color: green;
+}
+
+.boolean_false {
+    color: red;
+}
+
 img.action-image {
     padding: 2px;
 }

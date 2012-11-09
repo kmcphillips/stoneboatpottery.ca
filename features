@@ -2,6 +2,5 @@
 - Create backups of this database that get copied with the regular backup.
 - Test extensively in other browsers, including without scripting.
 - Confirm email address.
-- Add date picker to wholesale passwords
 - Add errors and image to 404 page
 

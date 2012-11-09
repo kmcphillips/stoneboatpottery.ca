@@ -1,3 +1,10 @@
+$(document).ready(function($) {
+  init_facebox();
+  $('#upload input.submit').attr("disabled", false);
+})
+
+
+
 function show_upload() {
   $("#upload").overlay({
     top: 272,
@@ -25,7 +32,16 @@ function clear_upload_field()
   $('#image_image').val("");
 }
 
-$(document).ready(function($) {
-  init_facebox();
-}) 
+function upload_before()
+{
+  $('#upload img.throbber').show();
+  $('#upload input.submit').attr("disabled", true);
+}
 
+function upload_after()
+{
+  $('#upload').overlay().close();
+  $('#upload img.throbber').hide();
+  $('#upload input.submit').attr("disabled", false);
+  clear_upload_field();
+}

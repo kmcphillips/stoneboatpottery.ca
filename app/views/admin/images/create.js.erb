@@ -1,0 +1,10 @@
+upload_after();
+
+<% if @imageable.try(:respond_to?, :image) %>
+  $("#image_container").replaceWith("<%= escape_javascript(render(:partial => 'shared/image_single', :locals => {:imageable => @imageable})) %>");
+<% elsif @imageable.try(:respond_to?, :images) %>
+  $("#images_container").replaceWith("<%= escape_javascript(render(:partial => 'shared/image_multiple', :locals => {:imageable => @imageable})) %>");
+<% end %>
+
+init_facebox();
+$("#flashes_now").html("<%= escape_javascript(render(:partial => 'shared/flashes')) %>");

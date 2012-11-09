@@ -10,7 +10,7 @@ describe Form do
   it "should have a parent subcategory" do
     @f.subcategory.should == @s
   end
-  
+
   it "should fail to save if it does not have a subcategory" do
     s = Form.new(:name => "bowls", :description => "bowls for soup and salad")
     s.save.should be_false
@@ -21,12 +21,12 @@ describe Form do
       @f.update_attribute(:active, false)
       @f.inherited_active?.should be_false
     end
-    
+
     it "should be false if the category is inactive" do
       @s.should_receive(:inherited_active?).and_return(false)
       @f.inherited_active?.should be_false
     end
-    
+
     it "should be true of everything is active" do
       @f.inherited_active?.should be_true
     end
@@ -36,15 +36,6 @@ describe Form do
     it "should description" do
       @f.deactivate!
       @f.active?.should be_false
-    end
-  end
-
-  describe "amount validations" do
-    it "should fail validations if the wholesale price is greater than the retail price" do
-      @f.retail_price = 10
-      @f.wholesale_price = 12
-      @f.should_not be_valid
-      @f.errors.on(:retail_price).should_not == nil
     end
   end
 

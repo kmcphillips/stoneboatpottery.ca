@@ -19,34 +19,34 @@ describe Admin::SessionsController do
       response.should render_template("admin/sessions/new")
     end
   end
-  
+
   describe "POST create" do
     describe "success" do
       before(:each) do
         User.should_receive(:authenticate).with("user", "pass").and_return(@u)
       end
-      
+
       it "should log user in successfully and flash" do
         post :create, :username => "user", :password => "pass"
         flash[:notice].should == "Logged in successfully."
       end
 
       it "should log user in successfully and redirect" do
-        post :create, :username => "user", :password => "pass"      
+        post :create, :username => "user", :password => "pass"
         response.should redirect_to(admin_posts_path)
       end
     end
-    
+
     describe "failure" do
       before(:each) do
         User.should_receive(:authenticate).with("user", "pass").and_return(nil)
       end
-      
+
       it "should flash a message" do
         post :create, :username => "user", :password => "pass"
         flash[:error].should == "Username and password are incorrect."
       end
-      
+
       it "should render the same view" do
         post :create, :username => "user", :password => "pass"
         response.should redirect_to("/admin/login")
@@ -66,13 +66,6 @@ describe Admin::SessionsController do
     it "should render view" do
       get :password
       response.should render_template("admin/sessions/password")
-    end
-  end
-
-  describe "GET logout" do
-    it "should call destroy" do
-      controller.should_receive(:destroy)
-      get :logout
     end
   end
 

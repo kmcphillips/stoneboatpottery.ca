@@ -12,10 +12,9 @@ class Piece < ActiveRecord::Base
 
   attr_protected :id
 
-  # xss_terminate :except => [:permalink, :type]
-
-  scope :active, where(["active = ?", true]).order("name ASC")
-  scope :inactive, where(["active = ?", false]).order("name ASC")
+  scope :active, where(["active = ?", true])
+  scope :inactive, where(["active = ?", false])
+  scope :sorted, order("name DESC")
   date_scopes
 
   protected

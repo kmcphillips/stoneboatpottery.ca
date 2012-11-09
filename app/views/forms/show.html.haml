@@ -13,10 +13,6 @@
     %p
       %label Price
       %em= number_to_currency @form.retail_price
-      - if wholesale?
-        %p
-          %label Wholesale Price:
-          %em= number_to_currency @form.wholesale_price
 
     %br
     %p= auto_link(simple_format(@form.description))
@@ -28,4 +24,4 @@
         = edit_entity_image(edit_admin_category_subcategory_form_path(@category, @subcategory, @form), "Edit this form")
         %br
         = show_entity_image(admin_category_subcategory_form_path(@category, @subcategory, @form), "Show this form")
-    
+

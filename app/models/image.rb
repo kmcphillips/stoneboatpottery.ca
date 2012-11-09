@@ -3,9 +3,9 @@ class Image < ActiveRecord::Base
 
   SIZES = { :full => "700x560>", :thumb => "120x120#", :inline => "280x280>", :inline_large => "600x400>" }
 
-  has_attached_file :image, 
+  has_attached_file :image,
     :styles => SIZES,
-    :default_style => :full, 
+    :default_style => :full,
     :whiny => true,
     :path => ":rails_root/public/images/attachment/:class/:attachment/:id/:style_:basename.:extension",
     :url => "/images/attachment/:class/:attachment/:id/:style_:basename.:extension"
@@ -16,7 +16,7 @@ class Image < ActiveRecord::Base
   after_save :manage_primary
 
   validates_attachment_presence :image
-  validates_attachment_size :image, :in => 1..3.megabytes
+  validates_attachment_size :image, :in => 1..4.megabytes
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/pjpeg", "image/png", "image/tiff", "image/x-png", "image/gif"]
 
   validates_presence_of :imageable_type, :imageable_id
@@ -53,5 +53,5 @@ protected
       self.imageable.images.where(["id != ?", self.id]).order("created_at ASC").first.try(:update_attribute, :primary, true)
     end
   end
-  
+
 end

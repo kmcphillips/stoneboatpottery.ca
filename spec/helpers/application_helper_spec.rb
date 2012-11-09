@@ -20,19 +20,17 @@ describe ApplicationHelper do
     end
   end
 
-  describe "wholesale" do
-    it "should let you into wholesale if you are logged in as a site user" do
-      self.stub!(:current_user).and_return(@u)
-      wholesale?.should == true
+  describe "#boolean_wrapper" do
+    it "should render the span for true values" do
+      helper.boolean_wrapper(true).should eq("<span class=\"boolean_true\">Yes</span>")
     end
 
-    it "should let you in if you are logged into the wholesale area" do
-      session[:wholesale_permitted] = true
-      wholesale?.should == true
+    it "should render the span for false values" do
+      helper.boolean_wrapper(false).should eq("<span class=\"boolean_false\">No</span>")
     end
 
-    it "should not let you in otherwise" do
-      wholesale?.should == false
+    it "should not care if a non-boolean is passed in" do
+      helper.boolean_wrapper("pie").should eq("<span class=\"boolean_true\">Yes</span>")
     end
   end
 
@@ -52,13 +50,13 @@ describe ApplicationHelper do
       self.stub!(:params).and_return(:controller => "admin/pie")
       page_title.should == "Stoneboat Pottery - Admin"
     end
-    
+
     it "should prepend admin if you are under admin" do
       self.stub!(:params).and_return(:controller => "admin/pie")
       self.instance_variable_set('@title', "Delicious")
       page_title.should == "Stoneboat Pottery - Admin - Delicious"
     end
-    
+
     it "should makes special exception for the blocks controller" do
       self.stub!(:params).and_return(:controller => "blocks", :action => "eat")
       page_title.should == "Stoneboat Pottery - Eat"

@@ -4,17 +4,16 @@ class Category < ActiveRecord::Base
   has_many :forms, :through => :subcategories
 
   acts_as_permalink :from => :name
-  
-  validates_presence_of :name
-  
-  attr_protected :id
 
-  # xss_terminate :except => [:permalink]
+  validates_presence_of :name
+
+  attr_protected :id
 
   scope :active, where(["categories.active = ?", true]).order("name ASC")
   scope :inactive, where(["categories.active = ?", false]).order("name ASC")
+  scope :sorted, order("name DESC")
   date_scopes
-  
+
   before_save :deactivate_children
 
   def active_subcategories
