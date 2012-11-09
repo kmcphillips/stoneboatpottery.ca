@@ -18,6 +18,7 @@ StoneboatpotteryCa::Application.routes.draw do
 
   resources :functional_pieces, :only => [:index, :show]
   resources :sculptural_pieces, :only => [:index, :show]
+  resources :paper_pieces, :only => [:index, :show]
 
   match 'about' => 'blocks#about'
   match 'contact' => 'blocks#contact'
@@ -45,8 +46,8 @@ StoneboatpotteryCa::Application.routes.draw do
     resources :links
 
     resources :functional_pieces
-
     resources :sculptural_pieces
+    resources :paper_pieces
 
     resources :users, :only => [:edit, :update]
 

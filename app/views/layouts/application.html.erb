@@ -11,9 +11,9 @@
   <%= csrf_meta_tags %>
 
   <title><%= page_title %></title>
-  
+
   <%= stylesheet_link_tag 'application' %>
-  
+
   <%= javascript_include_tag 'application' %>
   <%= yield :js %>
 
@@ -46,7 +46,7 @@
 
       <div style="clear: both;">&nbsp;</div>
 		</div>
-		
+
 		<div id="sidebar">
         <ul>
 <% if current_user %>
@@ -57,7 +57,7 @@
 <% end %>
 
 <%= render :partial => 'shared/sidebar' %>
-          
+
       </ul>
 		</div>
 
