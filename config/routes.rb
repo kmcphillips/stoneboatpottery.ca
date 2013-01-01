@@ -22,6 +22,7 @@ StoneboatpotteryCa::Application.routes.draw do
 
   match 'about' => 'blocks#about'
   match 'contact' => 'blocks#contact'
+  match 'teaching' => 'blocks#teaching'
 
   resources :links, :only => [:index]
 

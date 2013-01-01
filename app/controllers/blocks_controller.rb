@@ -8,7 +8,11 @@ class BlocksController < ApplicationController
   def contact
   end
 
-protected
+  def teaching
+
+  end
+
+  protected
 
   def load_block
     @block = Block.find_by_label(params[:action])

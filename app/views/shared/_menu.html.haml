@@ -1,11 +1,10 @@
 %ul.nav
-  %li= link_to "News", "/"
+  %li= link_to "News", root_path
   %li= link_to "Functional Pieces", categories_path
   %li= link_to "Funky Functional", functional_pieces_path
   %li= link_to "Sculptural", sculptural_pieces_path
   %li= link_to "Works on Paper", paper_pieces_path
-  %li= link_to "About", "/about"
+  %li= link_to "About", about_path
+  %li= link_to "Teaching", teaching_path
   %li= link_to "Links", links_path
-  %li= link_to "Contact", "/contact"
-  - if Rails.env.development? && !current_user
-    %li= link_to "Login", "/admin/login"
+  %li= link_to "Contact", contact_path
