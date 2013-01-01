@@ -2,7 +2,7 @@ class BlocksController < ApplicationController
   before_filter :load_block
 
   def about
-    @about = [Block.find_by_label("about_stoneboat"), Block.find_by_label("about_joanna")]
+    @about = [Block.about_stoneboat, Block.about_joanna]
   end
 
   def contact

@@ -19,4 +19,13 @@ class Block < ActiveRecord::Base
     end
   end
 
+  class << self
+
+    def method_missing(method, *args)
+      # find_by_label is built using method_missing so using it here causes infinite recursion
+      self.where(label: method).first || super
+    end
+
+  end
+
 end
