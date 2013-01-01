@@ -1,31 +1,14 @@
-%div.post
-  %h2.title About Stoneboat
-
-  %div.entry
-    = images_for @about_stoneboat, :align => :right
-
-    = auto_link(simple_format(@about_stoneboat.body))
-
-  .clear
-
-- if current_user
+- @about.each do |section|
   %div.post
-    %div.footer
-      %p
-        = edit_entity_image(edit_admin_block_path(@about_stoneboat), "Edit this block")
+    %h2.title= section.label_display
+    %div.entry
+      - if section.accepts_image?
+        = images_for section, :align => :right
 
-%div.post
-  %h2.title About JoAnna
+        = auto_link(simple_format(section.body))
 
-  %div.entry
-    = images_for @about_joanna, :align => :right
+      - if current_user
+        %br
+        = edit_entity_image(edit_admin_block_path(section), "Edit this block")
+    .clear
 
-    = auto_link(simple_format(@about_joanna.body))
-
-  .clear
-
-- if current_user
-  %div.post
-    %div.footer
-      %p
-        = edit_entity_image(edit_admin_block_path(@about_joanna), "Edit this block")

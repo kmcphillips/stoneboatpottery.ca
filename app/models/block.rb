@@ -9,7 +9,14 @@ class Block < ActiveRecord::Base
   date_scopes
 
   def label_display
-    label.humanize
+    case label
+    when "about_joanna"
+      "About JoAnna"
+    when "about_stoneboat"
+      "About Stoneboat"
+    else
+      label.humanize
+    end
   end
 
 end
