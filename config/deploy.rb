@@ -1,3 +1,5 @@
+require "bundler/capistrano"
+
 set :application, "Stoneboat Pottery"
 set :repository,  "git://github.com/kimos/stoneboat_pottery.git"
 set :deploy_to, "/var/www/kevin/data/www/stoneboatpottery.ca"
