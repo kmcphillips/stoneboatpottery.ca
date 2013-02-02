@@ -18,7 +18,7 @@ With an OS X or Linux machine with ruby and rubygems installed, you should be ab
 
 ### For the impatient
 
-    $ git clone git://github.com/kimos/stoneboat_pottery.git
+    $ git clone git://github.com/kmcphillips/stoneboat_pottery.git
     $ cd stoneboat_pottery
     $ cp config/database.yml.sqlite3 config/database.yml
     $ bundle
@@ -46,7 +46,7 @@ The SQLite database will get created with the migrations. Magic.
 
 Clone the git repo to get the source.
 
-    $ git clone git://github.com/kimos/stoneboat_pottery.git
+    $ git clone git://github.com/kmcphillips/stoneboat_pottery.git
 
 
 ### Configure it
