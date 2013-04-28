@@ -19,8 +19,6 @@ class Image < ActiveRecord::Base
   validates_attachment_size :image, :in => 1..10.megabytes
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/pjpeg", "image/png", "image/tiff", "image/x-png", "image/gif"]
 
-  validates_presence_of :imageable_type, :imageable_id
-
   attr_protected :id
 
   scope :primary_first, order("`primary` DESC, updated_at DESC")
