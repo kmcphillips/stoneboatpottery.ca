@@ -12,5 +12,6 @@
 
 - if f.object.new_record?
   %p
+    %label Image
     = f.fields_for :image_attributes do |ff|
       = ff.file_field :image
