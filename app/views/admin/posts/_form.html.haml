@@ -10,6 +10,7 @@
     = f.label :permalink
     %span.bold= f.object.permalink
 
-%p
-  = f.fields_for :image_attributes do |ff|
-    = ff.file_field :image
+- if f.object.new_record?
+  %p
+    = f.fields_for :image_attributes do |ff|
+      = ff.file_field :image
