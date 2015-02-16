@@ -1,5 +1,4 @@
-class Admin::PaperPiecesController < ApplicationController
-  before_filter :require_login
+class Admin::PaperPiecesController < AuthenticatedController
 
   def index
     @pieces = PaperPiece.sorted

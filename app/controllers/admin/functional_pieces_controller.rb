@@ -1,5 +1,4 @@
-class Admin::FunctionalPiecesController < ApplicationController
-  before_filter :require_login
+class Admin::FunctionalPiecesController < AuthenticatedController
 
   def index
     @pieces = FunctionalPiece.sorted

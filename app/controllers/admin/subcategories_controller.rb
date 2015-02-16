@@ -1,43 +1,43 @@
-class Admin::SubcategoriesController < ApplicationController
-  before_filter :require_login, :set_objects
-  
+class Admin::SubcategoriesController < AuthenticatedController
+  before_filter :set_objects
+
   def new
     @subcategory = @category.subcategories.new
     @title = "New Subcategory"
   end
-  
+
   def show
     @subcategory = @category.subcategories.find_by_permalink(params[:id])
     @title = @subcategory.name
   end
-  
+
   def edit
     @subcategory = @category.subcategories.find_by_permalink(params[:id])
     @title = "Edit #{@subcategory.name}"
   end
-  
+
   def update
     @subcategory = @category.subcategories.find_by_permalink(params[:id])
-    
+
     if @subcategory.update_attributes(params[:subcategory])
       flash[:notice] = "Subcategory successfully updated."
       redirect_to admin_category_path(@category)
     else
       flash[:error] = @subcategory.errors.full_messages.to_sentence
       render 'admin/subcategories/edit'
-    end      
+    end
   end
 
   def create
     @subcategory = @category.subcategories.new(params[:subcategory])
-    
+
     if @subcategory.save
       flash[:notice] = "Subcategory successfully created."
       redirect_to admin_category_path(@category)
     else
       flash[:error] = @category.errors.full_messages.to_sentence
       render 'admin/subcategories/new'
-    end  
+    end
   end
 
   def destroy
@@ -60,5 +60,5 @@ protected
 
   def set_objects
     @category = Category.find_by_permalink(params[:category_id])
-  end  
+  end
 end

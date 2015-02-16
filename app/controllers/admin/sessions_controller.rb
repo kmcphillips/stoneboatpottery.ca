@@ -1,5 +1,4 @@
-class Admin::SessionsController < ApplicationController
-  before_filter :require_login
+class Admin::SessionsController < AuthenticatedController
 
   def index
     redirect_to "/admin/login"
@@ -11,7 +10,7 @@ class Admin::SessionsController < ApplicationController
 
   def create
     user = User.authenticate(params[:username], params[:password])
-    
+
     if user
       session[:admin_user] = user.id
       flash[:notice] = "Logged in successfully."
@@ -37,7 +36,7 @@ class Admin::SessionsController < ApplicationController
 
   def change_password
     @user = current_user
-    
+
     if @user.change_password!(params[:password], params[:password_confirm])
       flash[:notice] = "Password was changed successfully."
     else

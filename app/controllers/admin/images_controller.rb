@@ -1,5 +1,4 @@
-class Admin::ImagesController < ApplicationController
-  before_filter :require_login
+class Admin::ImagesController < AuthenticatedController
 
   def new
     @image = Image.new

@@ -1,5 +1,4 @@
-class Admin::SculpturalPiecesController < ApplicationController
-  before_filter :require_login
+class Admin::SculpturalPiecesController < AuthenticatedController
 
   def index
     @pieces = SculpturalPiece.sorted

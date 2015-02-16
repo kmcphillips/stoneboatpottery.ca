@@ -1,6 +1,5 @@
-class Admin::LinksController < ApplicationController
-  before_filter :require_login
-  
+class Admin::LinksController < AuthenticatedController
+
   def index
     @links = Link.all(:order => "updated_at DESC")
     @title = "Links"
@@ -10,39 +9,39 @@ class Admin::LinksController < ApplicationController
     @link = Link.new
     @title = "New Link"
   end
-  
+
   def show
     @link = Link.find(params[:id])
     @title = (@link.title.blank? ? "Link" : @link.title)
   end
-  
+
   def edit
     @link = Link.find(params[:id])
     @title = "Edit #{(@link.title.blank? ? "Link" : @link.title)}"
   end
-  
+
   def update
     @link = Link.find(params[:id])
-    
+
     if @link.update_attributes(params[:link])
       flash[:notice] = "Link successfully updated."
       redirect_to admin_links_path
     else
       flash[:error] = @link.errors.full_messages.to_sentence
       render 'admin/links/edit'
-    end      
+    end
   end
 
   def create
     @link = Link.new(params[:link])
-    
+
     if @link.save
       flash[:notice] = "Link successfully created."
       redirect_to admin_links_path
     else
       flash[:error] = @link.errors.full_messages.to_sentence
       render 'admin/links/new'
-    end  
+    end
   end
 
   def destroy
@@ -56,5 +55,5 @@ class Admin::LinksController < ApplicationController
 
     redirect_to admin_links_path
   end
-  
+
 end

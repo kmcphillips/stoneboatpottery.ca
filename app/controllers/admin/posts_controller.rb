@@ -1,22 +1,21 @@
-class Admin::PostsController < ApplicationController
-  before_filter :require_login
-  
+class Admin::PostsController < AuthenticatedController
+
   def index
     @posts = Post.all(:order => "created_at DESC")
     @title = "Posts"
   end
-  
+
   def show
     @post = Post.find_by_permalink(params[:id])
 
     redirect_to post_path(@post)
   end
-  
+
   def new
     @post = Post.new
     @title = "New Post"
   end
-  
+
   def edit
     @post = Post.find_by_permalink(params[:id])
 
@@ -27,10 +26,10 @@ class Admin::PostsController < ApplicationController
       @title = "Edit Post"
     end
   end
-  
+
   def create
     @post = Post.new(params[:post])
-    
+
     if @post.save
       flash[:notice] = "Post successfully created."
       redirect_to admin_posts_path
@@ -39,7 +38,7 @@ class Admin::PostsController < ApplicationController
       render 'admin/posts/new'
     end
   end
-  
+
   def update
     @post = Post.find_by_permalink(params[:id])
 
@@ -52,19 +51,19 @@ class Admin::PostsController < ApplicationController
     else
       flash[:error] = @post.errors.full_messages.to_sentence
       render 'admin/posts/edit'
-    end      
+    end
   end
-  
+
   def destroy
     @post = Post.find_by_permalink(params[:id])
-    
+
     if @post.delete
       flash[:notice] = "Post deleted."
     else
       flash[:error] = @post.errors.full_messages.to_sentence
     end
-    
+
     redirect_to admin_posts_path
   end
-  
+
 end

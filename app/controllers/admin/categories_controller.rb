@@ -1,5 +1,4 @@
-class Admin::CategoriesController < ApplicationController
-  before_filter :require_login
+class Admin::CategoriesController < AuthenticatedController
 
   def index
     @categories = Category.sorted
