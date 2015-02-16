@@ -1,4 +1,4 @@
-Block.truncate!
+Block.delete_all
 blocks = [
           {:label => "about_joanna", :section_path => "/about", :accepts_image => true},
           {:label => "about_stoneboat", :section_path => "/about", :accepts_image => true},
@@ -11,7 +11,7 @@ blocks.each do |block|
 end
 
 
-User.truncate!
+User.delete_all
 
 users = [
           {:username => "test", :password => "test"}
