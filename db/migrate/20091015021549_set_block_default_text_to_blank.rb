@@ -2,7 +2,7 @@ class SetBlockDefaultTextToBlank < ActiveRecord::Migration
   def self.up
     drop_table :blocks
     create_table :blocks do |t|
-      t.text :body, :default => ""
+      t.text :body
       t.string :title
       t.string :label
 
