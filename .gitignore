@@ -11,3 +11,4 @@ public/images/attachment/*
 public/images/images
 .idea
 db/*.sqlite3
+db/structure.sql
