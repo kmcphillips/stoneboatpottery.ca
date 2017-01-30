@@ -1,34 +1,36 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '4.2.7.1'
 
 gem 'mysql2'
+gem 'rake'
 gem 'json'
-gem 'haml'
 gem 'haml-rails'
 gem 'will_paginate'
-gem 'rmagick'
-gem 'jquery-rails'
-gem 'capistrano'
-gem 'rvm-capistrano'
+gem 'rmagick', '2.16.0'
 gem 'rails_autolink'
 gem 'paperclip'
 gem 'acts_as_permalink'
 gem 'remotipart'
 
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'therubyracer'
-  gem 'uglifier'
+gem 'sass-rails'
+gem 'jquery-rails'
+gem 'coffee-rails'
+gem 'therubyracer'
+
+group :development do
+  gem 'capistrano', '3.6.1'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
 end
 
 group :development, :test do
-  gem 'rspec'
-  gem 'rspec-rails'
-  gem 'pry'
-  gem 'pry-rails'
   gem 'thin'
-  gem 'awesome_print'
-  gem 'quiet_assets'
+  gem 'rspec-rails'
+  gem 'pry-rails'
+end
+
+group :production do
+  gem 'unicorn'
 end
