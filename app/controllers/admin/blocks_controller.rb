@@ -1,7 +1,7 @@
 class Admin::BlocksController < AuthenticatedController
 
   def index
-    @blocks = Block.all(:order => "label ASC")
+    @blocks = Block.order("label ASC")
   end
 
   def show

@@ -3,9 +3,6 @@ class Block < ActiveRecord::Base
 
   validates_uniqueness_of :label
 
-  attr_protected :id
-  attr_readonly :label
-
   date_scopes
 
   def label_display

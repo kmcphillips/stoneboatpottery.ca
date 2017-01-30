@@ -7,11 +7,9 @@ class Category < ActiveRecord::Base
 
   validates_presence_of :name
 
-  attr_protected :id
-
-  scope :active, where(["categories.active = ?", true]).order("name ASC")
-  scope :inactive, where(["categories.active = ?", false]).order("name ASC")
-  scope :sorted, order("name DESC")
+  scope :active, ->{ where(["categories.active = ?", true]).order("name ASC") }
+  scope :inactive, ->{ where(["categories.active = ?", false]).order("name ASC") }
+  scope :sorted, ->{ order("name DESC") }
   date_scopes
 
   before_save :deactivate_children

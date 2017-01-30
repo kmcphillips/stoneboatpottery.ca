@@ -19,11 +19,9 @@ class Image < ActiveRecord::Base
   validates_attachment_size :image, :in => 1..10.megabytes
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/pjpeg", "image/png", "image/tiff", "image/x-png", "image/gif"]
 
-  attr_protected :id
-
-  scope :primary_first, order("`primary` DESC, updated_at DESC")
-  scope :all_primary, where("`primary` = 1")
-  scope :recent, lambda{|limit| order("updated_at DESC").limit(limit).group("imageable_type, imageable_id") }
+  scope :primary_first, ->{ order("`primary` DESC, updated_at DESC") }
+  scope :all_primary, ->{ where("`primary` = 1") }
+  scope :recent, ->(limit) { order("updated_at DESC").limit(limit).group("imageable_type, imageable_id") }
 
   # create a convenience method for each of the image sizes/types
   SIZES.each_key do |key|

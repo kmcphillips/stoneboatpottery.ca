@@ -1,7 +1,7 @@
 class Admin::LinksController < AuthenticatedController
 
   def index
-    @links = Link.all(:order => "updated_at DESC")
+    @links = Link.order("updated_at DESC")
     @title = "Links"
   end
 

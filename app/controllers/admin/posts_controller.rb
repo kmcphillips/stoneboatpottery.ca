@@ -1,7 +1,7 @@
 class Admin::PostsController < AuthenticatedController
 
   def index
-    @posts = Post.all(:order => "created_at DESC")
+    @posts = Post.order("created_at DESC")
     @title = "Posts"
   end
 

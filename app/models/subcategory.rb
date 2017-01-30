@@ -7,12 +7,10 @@ class Subcategory < ActiveRecord::Base
 
   validates_presence_of :category, :name
 
-  attr_protected :id
-
   before_save :deactivate_children
 
-  scope :active, where(["subcategories.active = ?", true]).order("name ASC")
-  scope :inactive, where(["subcategories.active = ?", false]).order("name ASC")
+  scope :active, ->{ where(["subcategories.active = ?", true]).order("name ASC") }
+  scope :inactive, ->{ where(["subcategories.active = ?", false]).order("name ASC") }
   date_scopes
 
   def inherited_active?

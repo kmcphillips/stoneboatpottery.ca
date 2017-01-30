@@ -1,4 +1,4 @@
-StoneboatpotteryCa::Application.routes.draw do
+Rails.application.routes.draw do
 
   root :to => 'posts#index'
 
@@ -14,15 +14,15 @@ StoneboatpotteryCa::Application.routes.draw do
     end
   end
 
-  match 'rss.:format' => 'posts#rss'
+  get 'rss.:format' => 'posts#rss'
 
   resources :functional_pieces, :only => [:index, :show]
   resources :sculptural_pieces, :only => [:index, :show]
   resources :paper_pieces, :only => [:index, :show]
 
-  match 'about' => 'blocks#about'
-  match 'contact' => 'blocks#contact'
-  match 'teaching' => 'blocks#teaching'
+  get 'about' => 'blocks#about'
+  get 'contact' => 'blocks#contact'
+  get 'teaching' => 'blocks#teaching'
 
   resources :links, :only => [:index]
 
@@ -37,8 +37,8 @@ StoneboatpotteryCa::Application.routes.draw do
       end
     end
 
-    match 'login'  => 'sessions#new'
-    match 'logout' => 'sessions#logout'
+    get 'login'  => 'sessions#new'
+    get 'logout' => 'sessions#logout'
 
     resources :posts
 

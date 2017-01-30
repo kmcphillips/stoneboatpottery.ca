@@ -4,8 +4,6 @@ class Link < ActiveRecord::Base
   validates_uniqueness_of :url
   validate :url_begins_with_protocol
 
-  attr_protected :id
-
   date_scopes
 
   protected
