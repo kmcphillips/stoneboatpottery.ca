@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
+require 'spec_helper'
 
 describe Post do
   before(:each) do
@@ -6,6 +6,6 @@ describe Post do
   end
 
   it "should know it is not a system post" do
-    @p.system?.should be_false
+    @p.system?.should be_falsey
   end
 end

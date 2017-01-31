@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
+require 'spec_helper'
 
 describe Category do
   before(:each) do
@@ -7,12 +7,12 @@ describe Category do
   end
 
   it "should have subcategories" do
-    @c.subcategories.should == [@s]
+    @c.subcategories.should eq([@s])
   end
 
   describe "active_subcategories" do
     it "should know inherrited active" do
-      @c.inherited_active?.should == @c.active?
+      @c.inherited_active?.should eq(@c.active?)
     end
   end
 
@@ -25,7 +25,7 @@ describe Category do
     end
 
     it "should count forms" do
-      @c.count_forms.should == 3
+      @c.count_forms.should eq(3)
     end
   end
 
@@ -35,11 +35,11 @@ describe Category do
     end
 
     it "should create a list of subcategories" do
-      @c.list_subcategories.should == "bowls, plates"
+      @c.list_subcategories.should eq("bowls, plates")
     end
 
     it "should show a blank string if there are no subcategories" do
-      Category.new.list_subcategories.should == ""
+      Category.new.list_subcategories.should eq("")
     end
   end
 
@@ -47,7 +47,7 @@ describe Category do
     it "should make all the children inactive" do
       @c.active = false
       @c.save!
-      @c.subcategories.any?{|s| s.active? }.should be_false
+      @c.subcategories.any?{|s| s.active? }.should be_falsey
     end
   end
 

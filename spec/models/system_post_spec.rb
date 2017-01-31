@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
 describe SystemPost do
   before(:each) do
@@ -6,7 +6,7 @@ describe SystemPost do
   end
 
   it "should know it is a system post" do
-    @p.system?.should be_true
+    @p.system?.should be_truthy
   end
 
 end

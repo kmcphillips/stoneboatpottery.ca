@@ -160,6 +160,10 @@ GEM
     ref (1.0.5)
     remotipart (1.0.5)
     rmagick (2.16.0)
+    rspec-activemodel-mocks (1.0.3)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      rspec-mocks (>= 2.99, < 4.0)
     rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -236,6 +240,7 @@ DEPENDENCIES
   rake
   remotipart
   rmagick (= 2.16.0)
+  rspec-activemodel-mocks
   rspec-rails
   sass-rails
   therubyracer

@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
+require 'spec_helper'
 
 describe Form do
   before(:each) do
@@ -13,29 +13,29 @@ describe Form do
 
   it "should fail to save if it does not have a subcategory" do
     s = Form.new(:name => "bowls", :description => "bowls for soup and salad")
-    s.save.should be_false
+    s.save.should be_falsey
   end
 
   describe "inherited active" do
     it "should be false if it is inactive" do
       @f.update_attribute(:active, false)
-      @f.inherited_active?.should be_false
+      @f.inherited_active?.should be_falsey
     end
 
     it "should be false if the category is inactive" do
       @s.should_receive(:inherited_active?).and_return(false)
-      @f.inherited_active?.should be_false
+      @f.inherited_active?.should be_falsey
     end
 
     it "should be true of everything is active" do
-      @f.inherited_active?.should be_true
+      @f.inherited_active?.should be_truthy
     end
   end
 
   describe "deactivate!" do
     it "should description" do
       @f.deactivate!
-      @f.active?.should be_false
+      @f.active?.should be_falsey
     end
   end
 

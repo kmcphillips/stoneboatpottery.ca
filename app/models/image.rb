@@ -39,8 +39,13 @@ protected
   def manage_primary
     # Only manage primary if the imageable object has multiple images
     if self.imageable.try(:respond_to?, :images)
-      self.imageable.images.update_all("`primary` = 0", ["id != ? AND `primary` = ?", self.id, true]) if self.primary_changed? && self.primary?
-      self.update_attribute(:primary, true) if self.imageable.try(:images) && self.imageable.images.size == 1 && ! self.primary?
+      if self.primary_changed? && self.primary?
+        self.imageable.images.where(["id != ? AND `primary` = ?", self.id, true]).update_all("`primary` = 0")
+      end
+
+      if self.imageable.try(:images) && self.imageable.images.size == 1 && ! self.primary?
+        self.update_attribute(:primary, true)
+      end
     end
   end
 

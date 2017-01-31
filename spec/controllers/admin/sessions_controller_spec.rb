@@ -1,9 +1,9 @@
-require File.dirname(__FILE__) + '/../../spec_helper'
+require 'spec_helper'
 
-describe Admin::SessionsController do
+describe Admin::SessionsController, type: :controller do
   before(:each) do
     @u = mock_model(User)
-    controller.stub!(:require_login)
+    controller.stub(:require_login)
   end
 
   describe "GET index" do
@@ -55,11 +55,6 @@ describe Admin::SessionsController do
   end
 
   describe "DELETE destroy" do
-    it "should redirec to the index" do
-      pending
-      delete :destroy
-      response.should redirect_to("/")
-    end
   end
 
   describe "GET password" do
@@ -71,13 +66,13 @@ describe Admin::SessionsController do
 
   describe "POST change_password" do
     before(:each) do
-      controller.stub!(:current_user).and_return(@u)
-      @u.stub!(:change_password!).and_return(true)
-      controller.stub!(:require_login)
+      controller.stub(:current_user).and_return(@u)
+      @u.stub(:change_password!).and_return(true)
+      controller.stub(:require_login)
     end
 
     it "should redirect" do
-      @u.stub!(:save).and_return(true)
+      @u.stub(:save).and_return(true)
       post :change_password
       response.should redirect_to(password_admin_sessions_path)
     end
@@ -89,7 +84,7 @@ describe Admin::SessionsController do
 
     it "should flash errors on failure" do
       @u.should_receive(:change_password!).and_return(false)
-      @u.should_receive(:errors).and_return(mock("errors", :full_messages => ["delicious", "pie"]))
+      @u.should_receive(:errors).and_return(double("errors", :full_messages => ["delicious", "pie"]))
       post :change_password
       flash[:error].should == "delicious and pie"
     end

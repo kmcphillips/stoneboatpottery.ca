@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
+require 'spec_helper'
 
 describe Image do
   before(:each) do
@@ -16,13 +16,13 @@ describe Image do
     it "should set primary to false if this is the only image" do
       @image_single.update_attribute(:primary, true)
       @image_single.save!
-      @image_single.primary?.should be_false
+      @image_single.primary?.should be_falsey
     end
 
     it "should make another primary on destroy" do
-      @img1.primary?.should be_true
+      @img1.primary?.should be_truthy
       @img1.destroy
-      @piece.images.first.primary?.should be_true
+      @piece.images.first.primary?.should be_truthy
     end
 
     describe "manage primary" do
@@ -30,14 +30,14 @@ describe Image do
         @img3.primary = true
         @img3.save!
         @img1.reload
-        @img1.primary?.should be_false
+        @img1.primary?.should be_falsey
       end
 
       it "should make the last remaining image primary if all others are destroyed" do
         @img3.destroy
         @img1.destroy
         @img2.reload
-        @img2.primary?.should be_true
+        @img2.primary?.should be_truthy
       end
     end
   end

@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
+require 'spec_helper'
 
 describe User do
   before(:each) do
@@ -6,22 +6,22 @@ describe User do
   end
 
   it "should create a new instance" do
-    @u.save.should be_true
+    @u.save.should be_truthy
   end
 
   it "should fail to create without a username" do
     u = User.new(:password_hash => "1234567890abcdef")
-    u.save.should be_false
+    u.save.should be_falsey
   end
 
   it "should fail to create without a password_hash" do
     u = User.new(:username => "km")
-    u.save.should be_false
-end
+    u.save.should be_falsey
+  end
 
   describe "authenticate" do
     before(:each) do
-      User.stub!(:encrypt).with("pie").and_return("pie_encrypted")
+      User.stub(:encrypt).with("pie").and_return("pie_encrypted")
     end
 
     it "should find a user by name and password_hash" do
