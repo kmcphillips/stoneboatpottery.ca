@@ -15,12 +15,12 @@ class Admin::ImagesController < AuthenticatedController
             if @imageable.respond_to?(:image)
               if @imageable.image
                 @image = @imageable.image
-                @image.image = params[:image][:image]
+                @image.image = params[:image].permit![:image]
               else
-                @image = Image.new(params[:image].merge(:imageable => @imageable))
+                @image = Image.new(params[:image].permit!.merge(:imageable => @imageable))
               end
             elsif @imageable.respond_to?(:images)
-              @image = @imageable.images.new(params[:image])
+              @image = @imageable.images.new(params[:image].permit!)
             end
 
             if @image.save
