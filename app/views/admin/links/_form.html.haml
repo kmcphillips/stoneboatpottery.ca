@@ -17,7 +17,7 @@
 %p
   = f.label :url
   = f.text_field :url, :value => (f.object.url.blank? ? "http://" : f.object.url)
-  = link_to_function(image_tag("/images/icons/link_preview.png", :alt => "Preview") + "Preview", "preview_link();", :title => "Preview")
+  = link_to(image_tag("/images/icons/link_preview.png", :alt => "Preview") + "Preview", "#", onclick: "preview_link();", :title => "Preview")
 
 %p
   = f.label :description
