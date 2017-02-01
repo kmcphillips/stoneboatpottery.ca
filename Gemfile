@@ -14,7 +14,7 @@ gem 'acts_as_permalink'
 gem 'remotipart'
 
 gem 'sass-rails'
-gem 'jquery-rails'
+gem 'jquery-rails', '2.2.1'
 gem 'coffee-rails'
 gem 'therubyracer'
 
