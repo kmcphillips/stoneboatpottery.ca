@@ -19,7 +19,7 @@ class Admin::SubcategoriesController < AuthenticatedController
   def update
     @subcategory = @category.subcategories.find_by_permalink(params[:id])
 
-    if @subcategory.update_attributes(params[:subcategory])
+    if @subcategory.update_attributes(subcategory_params)
       flash[:notice] = "Subcategory successfully updated."
       redirect_to admin_category_path(@category)
     else
@@ -29,7 +29,7 @@ class Admin::SubcategoriesController < AuthenticatedController
   end
 
   def create
-    @subcategory = @category.subcategories.new(params[:subcategory])
+    @subcategory = @category.subcategories.new(subcategory_params)
 
     if @subcategory.save
       flash[:notice] = "Subcategory successfully created."
@@ -56,9 +56,13 @@ class Admin::SubcategoriesController < AuthenticatedController
     redirect_to admin_category_path(@category)
   end
 
-protected
+  protected
 
   def set_objects
     @category = Category.find_by_permalink(params[:category_id])
+  end
+
+  def subcategory_params
+    params.permit![:subcategory]
   end
 end

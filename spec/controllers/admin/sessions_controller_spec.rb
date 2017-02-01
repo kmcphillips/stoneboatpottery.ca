@@ -66,9 +66,10 @@ describe Admin::SessionsController, type: :controller do
 
   describe "POST change_password" do
     before(:each) do
-      controller.stub(:current_user).and_return(@u)
+      User.stub(:find).with(@u.id).and_return(@u)
       @u.stub(:change_password!).and_return(true)
       controller.stub(:require_login)
+      session[:admin_user] = @u.id
     end
 
     it "should redirect" do

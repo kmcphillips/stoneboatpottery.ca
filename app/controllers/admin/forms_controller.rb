@@ -19,7 +19,7 @@ class Admin::FormsController < AuthenticatedController
   def update
     @form = @subcategory.forms.find_by_permalink(params[:id])
 
-    if @form.update_attributes(params[:form])
+    if @form.update_attributes(form_params)
       flash[:notice] = "Form successfully updated."
       redirect_to admin_category_subcategory_path(@category, @subcategory)
     else
@@ -29,7 +29,7 @@ class Admin::FormsController < AuthenticatedController
   end
 
   def create
-    @form = @subcategory.forms.new(params[:form])
+    @form = @subcategory.forms.new(form_params)
 
     if @form.save
       flash[:notice] = "Form successfully created."
@@ -52,10 +52,16 @@ class Admin::FormsController < AuthenticatedController
     redirect_to admin_category_subcategory_path(@category, @subcategory)
   end
 
-protected
+  protected
 
   def set_objects
     @category = Category.find_by_permalink(params[:category_id])
     @subcategory = @category.subcategories.find_by_permalink(params[:subcategory_id])
+  end
+
+  private
+
+  def form_params
+    params.permit![:form]
   end
 end

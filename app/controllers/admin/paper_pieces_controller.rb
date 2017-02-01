@@ -26,7 +26,7 @@ class Admin::PaperPiecesController < AuthenticatedController
   def update
     @piece = PaperPiece.find_by_permalink(params[:id])
 
-    if @piece.update_attributes(params[:paper_piece])
+    if @piece.update_attributes(paper_piece_params)
       flash[:notice] = "Work on paper successfully updated."
       redirect_to admin_paper_pieces_path
     else
@@ -36,7 +36,7 @@ class Admin::PaperPiecesController < AuthenticatedController
   end
 
   def create
-    @piece = PaperPiece.new(params[:paper_piece])
+    @piece = PaperPiece.new(paper_piece_params)
 
     if @piece.save
       flash[:notice] = "Work on paper successfully created."
@@ -62,6 +62,12 @@ class Admin::PaperPiecesController < AuthenticatedController
 
   def lineage
     [:admin, @piece || PaperPiece.new]
+  end
+
+  private
+
+  def paper_piece_params
+    params.permit![:paper_piece]
   end
 
 end

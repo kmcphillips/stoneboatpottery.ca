@@ -35,7 +35,7 @@ class Admin::SessionsController < AuthenticatedController
   end
 
   def change_password
-    @user = current_user
+    @user = User.find(session[:admin_user])
 
     if @user.change_password!(params[:password], params[:password_confirm])
       flash[:notice] = "Password was changed successfully."

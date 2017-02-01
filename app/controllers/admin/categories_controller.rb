@@ -23,7 +23,7 @@ class Admin::CategoriesController < AuthenticatedController
   def update
     @category = Category.find_by_permalink(params[:id])
 
-    if @category.update_attributes(params[:category])
+    if @category.update_attributes(category_params)
       flash[:notice] = "Category successfully updated."
       redirect_to admin_categories_path
     else
@@ -33,7 +33,7 @@ class Admin::CategoriesController < AuthenticatedController
   end
 
   def create
-    @category = Category.new(params[:category])
+    @category = Category.new(category_params)
 
     if @category.save
       flash[:notice] = "Category successfully created."
@@ -60,4 +60,9 @@ class Admin::CategoriesController < AuthenticatedController
     redirect_to admin_categories_path
   end
 
+  private
+
+  def category_params
+    params.permit![:category]
+  end
 end

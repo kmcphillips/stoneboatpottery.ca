@@ -26,7 +26,7 @@ class Admin::FunctionalPiecesController < AuthenticatedController
   def update
     @piece = FunctionalPiece.find_by_permalink(params[:id])
 
-    if @piece.update_attributes(params[:functional_piece])
+    if @piece.update_attributes(functional_piece_params)
       flash[:notice] = "Piece successfully updated."
       redirect_to admin_functional_pieces_path
     else
@@ -36,7 +36,7 @@ class Admin::FunctionalPiecesController < AuthenticatedController
   end
 
   def create
-    @piece = FunctionalPiece.new(params[:functional_piece])
+    @piece = FunctionalPiece.new(functional_piece_params)
 
     if @piece.save
       flash[:notice] = "Piece successfully created."
@@ -59,9 +59,13 @@ class Admin::FunctionalPiecesController < AuthenticatedController
     redirect_to admin_functional_pieces_path
   end
 
-
   def lineage
     [:admin, @piece || FunctionalPiece.new]
   end
 
+  private
+
+  def functional_piece_params
+    params.permit![:functional_piece]
+  end
 end

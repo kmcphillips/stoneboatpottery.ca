@@ -9,7 +9,7 @@ class Admin::UsersController < AuthenticatedController
   def update
     @user = User.find(params[:id])
 
-    if @user == current_user
+    if @user == User.find(session[:admin_user])
       if @user.change_password(params[:password], params[:password_confirm])
         flash[:notice] = "Password successfully changed."
       else

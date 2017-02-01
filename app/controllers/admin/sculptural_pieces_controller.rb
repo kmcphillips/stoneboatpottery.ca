@@ -26,7 +26,7 @@ class Admin::SculpturalPiecesController < AuthenticatedController
   def update
     @piece = SculpturalPiece.find_by_permalink(params[:id])
 
-    if @piece.update_attributes(params[:sculptural_piece])
+    if @piece.update_attributes(sculptural_piece_params)
       flash[:notice] = "Piece successfully updated."
       redirect_to admin_sculptural_pieces_path
     else
@@ -36,7 +36,7 @@ class Admin::SculpturalPiecesController < AuthenticatedController
   end
 
   def create
-    @piece = SculpturalPiece.new(params[:sculptural_piece])
+    @piece = SculpturalPiece.new(sculptural_piece_params)
 
     if @piece.save
       flash[:notice] = "Piece successfully created."
@@ -64,4 +64,9 @@ class Admin::SculpturalPiecesController < AuthenticatedController
     [:admin, @piece || SculpturalPiece.new]
   end
 
+  private
+
+  def sculptural_piece_params
+    params.permit![:sculptural_piece]
+  end
 end

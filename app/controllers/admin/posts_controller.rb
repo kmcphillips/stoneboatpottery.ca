@@ -28,7 +28,7 @@ class Admin::PostsController < AuthenticatedController
   end
 
   def create
-    @post = Post.new(params[:post])
+    @post = Post.new(post_params)
 
     if @post.save
       flash[:notice] = "Post successfully created."
@@ -45,7 +45,7 @@ class Admin::PostsController < AuthenticatedController
     if @post.system?
       flash[:error] = "Cannot edit system generated posts."
       redirect_to admin_posts_path
-    elsif @post.update_attributes(params[:post])
+    elsif @post.update_attributes(post_params)
       flash[:notice] = "Post successfully updated."
       redirect_to admin_posts_path
     else
@@ -66,4 +66,9 @@ class Admin::PostsController < AuthenticatedController
     redirect_to admin_posts_path
   end
 
+  private
+
+  def post_params
+    params.permit![:post]
+  end
 end

@@ -23,7 +23,7 @@ class Admin::LinksController < AuthenticatedController
   def update
     @link = Link.find(params[:id])
 
-    if @link.update_attributes(params[:link])
+    if @link.update_attributes(link_params)
       flash[:notice] = "Link successfully updated."
       redirect_to admin_links_path
     else
@@ -33,7 +33,7 @@ class Admin::LinksController < AuthenticatedController
   end
 
   def create
-    @link = Link.new(params[:link])
+    @link = Link.new(link_params)
 
     if @link.save
       flash[:notice] = "Link successfully created."
@@ -54,6 +54,12 @@ class Admin::LinksController < AuthenticatedController
     end
 
     redirect_to admin_links_path
+  end
+
+  private
+
+  def link_params
+    params.permit![:link]
   end
 
 end
