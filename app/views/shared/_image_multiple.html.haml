@@ -9,7 +9,7 @@
               %td
                 = link_to image_tag(image.thumb), image.full, :rel => :facebox, :class => (image.primary? ? :thumb_primary : :thumb)
                 %br
-                = button_to "Remove Image", admin_image_path(image, :imageable_type => image.imageable_type, :imageable_id => image.imageable_id), :method => :delete, :confirm => "Are you sure you want to delete this image?", :remote => true
+                = button_to "Remove Image", admin_image_path(image, :imageable_type => image.imageable_type, :imageable_id => image.imageable_id), :method => :delete, data: { :confirm => "Are you sure you want to delete this image?" }, :remote => true
 
                 - unless image.primary?
                   %br
@@ -17,7 +17,7 @@
 
 
   #images_add
-    = button_to_function "Add Image", "show_upload()"
+    = tag(:input, type: 'button', value: "Add Image", onclick: "show_upload()")
     - if imageable.respond_to?(:images)
       %span.count
         = imageable.images.size

@@ -36,8 +36,8 @@ module ApplicationHelper
   end
 
   def delete_entity_image(path, label=nil, args={})
-    html = link_to image_tag("/images/icons/delete.png", :alt => "Delete", :class => "action-image"), path, :method => :delete, :confirm => "Are you sure you want to delete this?", :title => "Delete"
-    html += " ".html_safe + link_to(label, path, :method => :delete, :confirm => "Are you sure you want to delete this?") if label
+    html = link_to image_tag("/images/icons/delete.png", :alt => "Delete", :class => "action-image"), path, :method => :delete, data: { :confirm => "Are you sure you want to delete this?" }, :title => "Delete"
+    html += " ".html_safe + link_to(label, path, :method => :delete, data: { :confirm => "Are you sure you want to delete this?" }) if label
     html.html_safe
   end
 

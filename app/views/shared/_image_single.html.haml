@@ -4,6 +4,6 @@
     = link_to image_tag(image.thumb), image.full, :rel => :facebox, :class => :thumb
 
   #images_add
-    = button_to_function "#{image ? "Change" : "Set"} Image", "show_upload()"
+    = tag(:input, type: 'button', value: "#{image ? "Change" : "Set"} Image", onclick: "show_upload()")
     - if image
-      = button_to "Remove Image", admin_image_path(image, :imageable_type => image.imageable_type, :imageable_id => image.imageable_id), :method => :delete, :remote => true, :confirm => "Are you sure you want to remove this image?"
+      = button_to "Remove Image", admin_image_path(image, :imageable_type => image.imageable_type, :imageable_id => image.imageable_id), :method => :delete, :remote => true, data: { :confirm => "Are you sure you want to remove this image?" }
