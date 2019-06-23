@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.7.1'
-
+gem 'rails', '~> 4.2.11.1'
+gem 'rack', '~> 1.6.11'
 gem 'mysql2'
+gem 'puma'
 gem 'rake'
 gem 'json'
 gem 'haml-rails'
@@ -25,17 +26,12 @@ group :development do
   gem 'capistrano', '3.6.1'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
-  gem 'capistrano3-unicorn'
+  gem 'capistrano3-puma'
 end
 
 group :development, :test do
-  gem 'thin'
   gem 'rspec-rails'
   gem 'rspec-activemodel-mocks'
-  gem 'pry-rails'
+  gem 'pry-rails', '~> 0.3.2' # readline compatibility 2.3.1
+  gem 'pry', '~> 0.10.1' # readline compatibility and 2.3.1
 end
-
-group :production do
-  gem 'unicorn'
-end
-
