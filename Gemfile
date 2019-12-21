@@ -23,7 +23,7 @@ gem 'coffee-rails'
 gem 'therubyracer'
 
 group :development do
-  gem 'capistrano', '3.6.1'
+  gem 'capistrano', '3.11.2'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano3-puma'
