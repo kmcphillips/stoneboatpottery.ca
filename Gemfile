@@ -13,7 +13,7 @@ gem 'rails_autolink'
 gem 'paperclip', '~> 5.2.0'
 gem 'acts_as_permalink'
 gem 'remotipart'
-gem 'rails-html-sanitizer', '~> 1.0.4'
+gem 'rails-html-sanitizer', '~> 1.4.4'
 gem 'nokogiri', '~> 1.10.8'
 gem 'sprockets', '~> 3.7.2'
 
